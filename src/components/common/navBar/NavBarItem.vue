@@ -1,67 +1,71 @@
 <template>
   <div>
-     <div class="menu-item">
-        <ul class="title">{{items.name}}</ul>
-        <transition
-        enter-active-class="animated fadeInDown"
-        leave-active-class=""
-        >
-        <ul class="content" >
-        <li v-for="(include, index) in items.includes" :key="index">
-          {{include}}
-        </li>
+    <div class="menu-item" @mouseenter="isShow=true" @mouseleave="isShow=false" @touch="isShow=!isShow">
+      <ul class="title">{{items.name}}</ul>
+      <transition
+              appear
+        enter-active-class="animated bounceIn "
+        leave-active-class="animated bounceOut"
+      >
+        <ul class="content" v-show="isShow">
+          <li v-for="(include, index) in items.includes" :key="index">{{include}}</li>
         </ul>
-        </transition>
-      </div>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'NavBarItem',
-  props:{
-    items:{
-      type:Object
+  name: "NavBarItem",
+  props: {
+    items: {
+      type: Object
     }
+  },
+  data() {
+    return {
+      isShow: false
+    };
   }
-
 };
 </script>
 
 <style lang='scss' scoped>
-.title{
+.title {
   height: 100%;
   line-height: $home-nav-height;
 }
-.text{
+.text {
   width: 200px;
 }
- .menu-item:hover .content{
-   display: block;
-    
- }
-.menu-item{
-  flex:1;
+.menu-item {
+  flex: 1;
   max-width: 800px;
   font-size: 1.2rem;
   list-style: none;
   position: relative;
 
-  .content{
-    display: none;
+
+  .content {
     position: absolute;
     left: 10px;
     right: 10px;
+     box-shadow: 0 1px 5px 5px rgba($devide-line-color,0.5);
+       max-width: 200px;
+       min-width: 100px;
   }
-  li{
+  li {
     top: $home-nav-height;
     height: 60px;
     line-height: 60px;
     background-color: $base-lightgray-color;
     border-bottom: 1px solid $devide-line-color;
     max-width: 200px;
-    margin: 0 auto
+    margin: 0 auto;
   }
 }
-
+.bounceOut,.bounceIn{
+  animation-duration: 0.45s
+}
 </style>

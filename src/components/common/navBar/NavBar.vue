@@ -39,6 +39,7 @@ export default {
 
 <style lang='scss' scoped>
 .nav {
+  box-shadow: 0 1px 5px 5px rgba($devide-line-color,0.5);
   height: $home-nav-height;
   display: flex;
   flex-wrap: nowrap;
@@ -62,7 +63,7 @@ export default {
   display: flex !important;
 }
 .nav-list-animation {
-  animation-duration: 1s
+  animation-duration: 1s;
 }
 .inline-box {
   display: inline-block;
