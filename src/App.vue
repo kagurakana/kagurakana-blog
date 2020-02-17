@@ -6,6 +6,9 @@
 
 <script>
 import _ from 'lodash'
+
+// import 'element-ui/lib/theme-chalk/index.css';
+
 export default {
   name:'App',
   mounted(){

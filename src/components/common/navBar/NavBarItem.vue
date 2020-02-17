@@ -49,9 +49,10 @@ export default {
 
   .content {
     position: absolute;
+    z-index: 10;
     left: 10px;
     right: 10px;
-     box-shadow: 0 1px 5px 5px rgba($devide-line-color,0.5);
+     box-shadow: 0 2px 10px 5px rgba($devide-line-color,0.5);
        max-width: 200px;
        min-width: 100px;
   }

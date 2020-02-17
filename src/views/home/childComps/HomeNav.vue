@@ -25,10 +25,8 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['cliWidth']),
-    isMobile(){
-      return this.cliWidth < 650 ? true:false
-    }
+    ...mapGetters(['isMobile']),
+
   }
 
 };
