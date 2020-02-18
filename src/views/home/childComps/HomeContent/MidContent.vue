@@ -1,19 +1,22 @@
 <template>
   <div>
-    <MidSwapper/>
-    <QuickShow/>
+    <MidSwapper />
+    <QuickShow />
+    <BlogList />
   </div>
 </template>
 
 <script>
-import MidSwapper from './mid/MidSwipper'
-import QuickShow from 'components/common/quickShow/QuickShow'
+import MidSwapper from "./mid/MidSwipper";
+import QuickShow from "components/common/quickShow/QuickShow";
+import BlogList from "components/common/blogList/BlogList";
 export default {
   name: "MidContent",
-  components: {MidSwapper,
-  QuickShow
-  },
-  
+  components: {
+    MidSwapper,
+    QuickShow,
+    BlogList
+  }
 };
 </script>
 
