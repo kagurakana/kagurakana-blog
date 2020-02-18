@@ -1,5 +1,6 @@
 <template >
-   <v-card :max-height="imgHeight" :max-width="imgWidth"
+  <v-col sm='12' cols="11">
+     <v-card :max-height="imgHeight" :max-width="imgWidth"
    class="mx-auto"
    >
       <v-carousel class="swiper" :height="imgHeight" cycle show-arrows>
@@ -11,6 +12,7 @@
         ></v-carousel-item>
       </v-carousel>
     </v-card>
+  </v-col>
 </template>
 
 <script>
