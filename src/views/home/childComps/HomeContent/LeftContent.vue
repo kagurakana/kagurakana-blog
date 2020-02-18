@@ -1,7 +1,7 @@
 <template>
   <div>
     <slot>
-      <el-Button>sadasd</el-Button>
+      
     </slot>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <transition-group tag="div" class="nav " name="trans-grop">
-      <div class="inline-box"  key="left">
+  <transition-group tag="div" class="nav" name="trans-grop">
+    <div class="inline-box" key="left">
       <transition
         appear
         enter-active-class="animated bounceInLeft "
@@ -10,7 +10,8 @@
           <slot name="left"></slot>
         </div>
       </transition>
-      </div>
+    </div>
+
     <div class="nav-right" key="right">
       <transition appear enter-active-class="animated bounceInRight">
         <div class="nav-right nav-container">
@@ -28,7 +29,9 @@ export default {
   computed: {
     ...mapGetters(["winWidth", "cliWidth"]),
     isShow() {
-      return (this.cliWidth / this.winWidth < 0.48 ||this.winWidth <1000)? false : true;
+      return this.cliWidth / this.winWidth < 0.48 || this.winWidth < 1000
+        ? false
+        : true;
     }
   },
   data() {
@@ -39,7 +42,7 @@ export default {
 
 <style lang='scss' scoped>
 .nav {
-  box-shadow: 2px 1px 2px 5px rgba($devide-line-color,0.5);
+  box-shadow: 2px 5px 2px 1px rgba($devide-line-color, 0.5);
 
   height: $home-nav-height;
   display: flex;
@@ -70,9 +73,9 @@ export default {
   display: inline-block;
 }
 .trans-grop-move {
-    transition: transform 1.5s;
+  transition: transform 1.5s;
 }
-.bounceOutLeft{
+.bounceOutLeft {
   width: 1px;
 }
 </style>

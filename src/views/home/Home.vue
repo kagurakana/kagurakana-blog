@@ -1,7 +1,7 @@
 <template>
   <div>
     <HomeHeadPic />
-    <HomeNav />
+    <HomeNav class="home-nav"/>
     <Content>
       <template v-slot:left>
         <LeftContent />
@@ -40,4 +40,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.home-nav{
+  position: sticky;
+  top:0;
+  z-index: 1000;
+}
 </style>

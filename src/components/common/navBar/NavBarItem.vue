@@ -35,6 +35,7 @@ export default {
 .title {
   height: 100%;
   line-height: $home-nav-height;
+      padding-left: 0;
 }
 .text {
   width: 200px;
@@ -52,7 +53,8 @@ export default {
     z-index: 10;
     left: 10px;
     right: 10px;
-     box-shadow: 0 2px 10px 5px rgba($devide-line-color,0.5);
+    padding-left: 0;
+     box-shadow: 2px 5px 2px 1px rgba($devide-line-color,0.5);
        max-width: 200px;
        min-width: 100px;
   }
@@ -62,7 +64,7 @@ export default {
     line-height: 60px;
     background-color: $base-lightgray-color;
     border-bottom: 1px solid $devide-line-color;
-    max-width: 200px;
+    width: 100%;
     margin: 0 auto;
   }
 }

@@ -1,26 +1,24 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <router-view></router-view>
-  </div>
+  </v-app>
 </template>
 
 <script>
-import _ from 'lodash'
-
-// import 'element-ui/lib/theme-chalk/index.css';
-
+import _ from "lodash";
+import 'assets/css/base.css'
 export default {
-  name:'App',
-  mounted(){
+  name: "App",
+  mounted() {
     // 防抖 缩放重新计算大小
-    const commitResize = _.debounce(()=>{this.$store.commit('resize')},100)
-    window.onresize = ()=>{
-      commitResize()
-    }
+
+    const commitResize = _.debounce(() => {
+      this.$store.commit("resize");
+    }, 100);
+
+    window.onresize = () => {
+      commitResize();
+    };
   }
 };
 </script>
-
-<style lang="scss">
-@import "assets/css/base.css";
-</style>

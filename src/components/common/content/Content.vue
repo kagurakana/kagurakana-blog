@@ -2,8 +2,8 @@
   <div class="content">
     <transition
       appear
-      enter-active-class="animated bounceInLeft "
-      leave-active-class="animated bounceOutLeft "
+      enter-active-class="animated fadeInLeft "
+      leave-active-class="animated fadeOutLeft "
     >
     <div  class="left" v-show="!isMobile">
       <slot  name="left"></slot>
@@ -14,8 +14,8 @@
     </div>
     <transition
       appear
-      enter-active-class="animated bounceInRight "
-      leave-active-class="animated bounceOutRight "
+      enter-active-class="animated fadeInRight "
+      leave-active-class="animated fadeOutRight "
     >
      <div class="right" v-show="!isMobile">
       <slot name="right"></slot>
@@ -42,7 +42,7 @@ export default {
   display: flex;
   .left {
     flex: 1;
-    height: 50vh;
+    // height: 50vh;
     background-color: #fff;
     background-color: red;
     position: relative;
@@ -50,7 +50,7 @@ export default {
   }
   .right {
     flex: 1;
-    height: 50vh;
+    // height: 50vh;
     z-index: 2;
     position: relative;
     background-color: red;
@@ -58,10 +58,10 @@ export default {
   .mid {
     flex: 2;
     background: blue;
-    height: 100vh;
+    // height: 100vh;
   }
-  .bounceOutLeft,
-  .bounceOutRight {
+  .fadeOutLeft,
+  .fadeOutRight {
     animation-duration: 0.5s;
   }
 }
