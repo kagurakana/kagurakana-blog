@@ -1,5 +1,7 @@
-<template :max-width="imgWidth">
-   <v-card :max-height="imgHeight" :max-width="imgWidth">
+<template >
+   <v-card :max-height="imgHeight" :max-width="imgWidth"
+   class="mx-auto"
+   >
       <v-carousel class="swiper" :height="imgHeight" cycle show-arrows>
         <v-carousel-item
           class="swiper-img"

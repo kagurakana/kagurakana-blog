@@ -1,12 +1,18 @@
 <template>
   <v-container class="mx-auto" max-width="50%">
     <v-row>
+      
       <v-col v-for="(quickShow, index) in quickShows" :key="index"
       sm='4'
       cols="11"
       >
-        <v-hover v-slot:default="{hover}">
-          <v-card elevation="hover?12:2" :class="{'on-hover':hover}">
+        <v-hover v-slot:default="{ hover }"
+        close-delay="200"
+        open-delay="100"
+        >
+          <v-card :elevation="hover?12:2" :class="{'on-hover':hover}"
+          min-height="100%"
+          >
             <v-img
               :src="quickShow.headPic"
               height="256px"
@@ -25,7 +31,7 @@
               </template>
             </v-img>
             <v-card-title class="title"  tag="div" text-truncate>{{quickShow.title}}</v-card-title>
-            <v-chip v-for="(tag, index) in quickShow.tags" :key="index">{{tag}}</v-chip>
+            <v-card-subtitle><v-chip class="mx-1 my-1" v-for="(tag, index) in quickShow.tags" :color="randomColor()" :key="index">{{tag}}</v-chip></v-card-subtitle>
           </v-card>
         </v-hover>
       </v-col>
@@ -35,6 +41,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import _ from 'lodash'
 export default {
   name: "",
   data() {
@@ -43,26 +50,32 @@ export default {
         {
           headPic: "https://i.loli.net/2020/02/17/EHeSiRW8wmNztrc.png",
           title: "我是标题我是标题",
-          tags: ["标题", "标题", "标题"]
+          tags: ["标题", "标题sadasd", "标题"]
 
 
         },
         {
           headPic: "https://i.loli.net/2020/02/17/ajSefBiAprlDwnh.png",
           title: "我是标题我是标题我是标题我是标题",
-          tags: ["标题", "标题", "标题"]
+          tags: ["标题", "标adsas题", "标题"]
         },
         {
           headPic: "https://i.loli.net/2020/02/17/uLS1R8b73kO2c6Z.png",
           title: "我是标题我是标题我是标题我是标题",
-          tags: ["标题", "标题", "标题"]
+          tags: ["标题", "标题sadsadasd", "标题"]
         }
-      ]
+      ],
+      isBind:false,
     };
   },
   computed: {
     ...mapGetters(["isMobile"])
-  }
+  },
+  methods: {
+    randomColor(){
+      return `rgb(${_.random(200,255)},${_.random(200,255)},${_.random(200,255)})`
+    }
+  },
 };
 </script>
 
@@ -74,4 +87,5 @@ v-card {
   padding: 10px;
   margin: 2px;
 }
+
 </style>

@@ -57,6 +57,8 @@ export default {
      box-shadow: 2px 5px 2px 1px rgba($devide-line-color,0.5);
        max-width: 200px;
        min-width: 100px;
+       border-radius: 0 0 10px 10px/ 0 0 10px 10px;
+       overflow: hidden;
   }
   li {
     top: $home-nav-height;
@@ -66,9 +68,13 @@ export default {
     border-bottom: 1px solid $devide-line-color;
     width: 100%;
     margin: 0 auto;
+
   }
 }
 .bounceOut,.bounceIn{
   animation-duration: 0.45s
+}
+li:hover{
+  background-color: #eee;
 }
 </style>

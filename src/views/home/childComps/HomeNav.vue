@@ -1,7 +1,7 @@
 <template>
   <NavBar>
     <template v-slot:left>
-      <img @click="tada" class="nav-logo" :class="{'animated swing':isTada}" src="~assets/img/nav_logo.png" alt="">
+      <img @click="tada" class="nav-logo" :class="{'animated tada':isTada}" src="~assets/img/nav_logo.png" alt="">
     </template>
     <template v-slot:right >
      <NavBarItem class="nav-bar-item" v-for="(item, index) in menu" :items="item" :isMobile="isMobile" :key="index"/> 

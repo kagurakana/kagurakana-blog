@@ -44,7 +44,7 @@ export default {
     flex: 1;
     // height: 50vh;
     background-color: #fff;
-    background-color: red;
+    // background-color: red;
     position: relative;
     z-index: 2;
   }
@@ -53,11 +53,15 @@ export default {
     // height: 50vh;
     z-index: 2;
     position: relative;
-    background-color: red;
+    // background-color: red;
+      background-color:rgb(250, 250, 250);
   }
   .mid {
+    padding-top: 10px;
     flex: 2;
-    background: blue;
+    // background: blue;
+    background-color: #fff;
+  
     // height: 100vh;
   }
   .fadeOutLeft,
