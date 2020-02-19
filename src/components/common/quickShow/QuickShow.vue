@@ -4,7 +4,7 @@
       
       <v-col v-for="(quickShow, index) in quickShows" :key="index"
       sm='4'
-      cols="11"
+      cols="12"
       >
         <v-hover v-slot:default="{ hover }"
         close-delay="200"

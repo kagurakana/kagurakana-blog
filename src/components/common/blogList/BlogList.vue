@@ -1,14 +1,7 @@
 <template>
   <v-container class="mx-auto" max-width="50%">
-    <v-row
-    >
-      <v-col
-        v-for="(blogShotCut, index)  in blogShotCuts"
-
-        :key="index"
-        sm="12"
-        cols="11"
-      >
+    <v-row>
+      <v-col v-for="(blogShotCut, index)  in blogShotCuts" :key="index" sm="12" cols="12">
         <v-hover v-slot:default="{ hover }" close-delay="200" open-delay="100">
           <v-card
             class="pa-2"
@@ -17,9 +10,9 @@
             min-height="100%"
           >
             <v-row>
-              <v-col>
+              <v-col cols="3">
                 <v-img
-                  :src="blogShotCut.headPic"
+                  :src="blogShotCut.headImg"
                   height="100px"
                   width="150px"
                   lazy-src="~assets/img/loading.gif"
@@ -37,7 +30,7 @@
                 </v-img>
               </v-col>
               <v-col>
-                <div>123123123</div>
+                <div>{{blogShotCut.desc}}</div>
               </v-col>
             </v-row>
             <v-card-title class="title" tag="div" text-truncate>{{blogShotCut.title}}</v-card-title>

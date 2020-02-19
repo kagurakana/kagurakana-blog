@@ -1,5 +1,5 @@
 <template >
-  <v-col sm='12' cols="11">
+  <v-col sm='12' cols="12">
      <v-card :max-height="imgHeight" :max-width="imgWidth"
    class="mx-auto"
    >

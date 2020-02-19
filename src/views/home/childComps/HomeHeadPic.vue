@@ -9,7 +9,7 @@
         enter-active-class="animated bounceIn"
         leave-active-class="animated bounceOut"
        >
-          <img v-show="isShow" src="~assets/img/head_logo.png" alt />
+          <img v-show="isShow" class="front-img" src="~assets/img/head_logo.png" alt />
        </transition>
       </div>
     </div>
@@ -68,5 +68,9 @@ export default {
 }
 .opc-enter, .opc-leave-to {
  opacity: 0;
+}
+.front-img{
+  background-color: rgba(255,255,255,0.25);
+  border-radius: 5px;
 }
 </style>

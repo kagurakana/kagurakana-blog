@@ -9,9 +9,15 @@
       <slot  name="left"></slot>
       </div>
     </transition>
-    <div class="mid">
+    <v-col
+    class="mid"
+    cols="12"
+    sm="6"
+    >
+
       <slot name="mid"></slot>
-    </div>
+
+    </v-col>
     <transition
       appear
       enter-active-class="animated fadeInRight "
@@ -43,7 +49,7 @@ export default {
   .left {
     flex: 1;
     // height: 50vh;
-    background-color: #fff;
+    background-color:rgb(250, 250, 250);
     // background-color: red;
     position: relative;
     z-index: 2;

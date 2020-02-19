@@ -35,6 +35,7 @@ export default {
   methods:{
     tada(){
       this.setTada()
+      this.$route.path === '/home' || this.$router.push('/home')
     }
   },
   computed:{
