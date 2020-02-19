@@ -13,43 +13,29 @@ const routes = [
     component:()=>import('views/home/Home')
   },
 
+
   {
-    path:'/前端',
-    component:()=>import('views/blogs/List')
-  },
-  {
-    path:'/前端/:tag',
-    component:()=>import('views/blogs/List')
+    path:'/list/朋友',
+    redirect:'/home'
+    // component:()=>import('views/blogs/List')
   },
 
   {
-    path:'/后端',
-    component:()=>import('views/blogs/List')
+    path:'/list/关于',
+    redirect:'/home'
+    // component:()=>import('views/blogs/List')
   },
-  {
-    path:'/后端/:tag',
-    component:()=>import('views/blogs/List')
-  },
-
-  {
-    path:'/杂物',
-    component:()=>import('views/blogs/List')
-  },
-  {
-    path:'/杂物/:tag',
-    component:()=>import('views/blogs/List')
-  },
-
-  // {
-  //   path:'/朋友',
-  //   component:()=>import('views/blogs/List')
-  // },
-
-  // {
-  //   path:'/关于',
-  //   component:()=>import('views/blogs/List')
-  // },
   
+  {
+    path:'/list/:tag',
+    component:()=>import('views/blogs/List')
+  },
+  
+  {
+    path:'detail/:id',
+    component:()=>import('views/blogs/BlogDetail')
+  }
+ 
 ]
 
 const router = new VueRouter({

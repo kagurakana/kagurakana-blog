@@ -7,7 +7,7 @@
       @touch="isShow=!isShow"
     >
       <ul class="title">
-        <router-link :to="'/'+ items.name" tag="div">{{items.name}}</router-link>
+        <router-link :to="'/list/'+ items.name" tag="div">{{items.name}}</router-link>
       </ul>
       <transition
         appear
@@ -16,7 +16,7 @@
       >
         <ul class="content" v-show="isShow">
           <li v-for="(include, index) in items.includes" :key="index">
-            <router-link tag="div" :to="'/'+items.name+'/'+include">{{include}}</router-link>
+            <router-link tag="div" :to="'/list/'+include">{{include}}</router-link>
           </li>
         </ul>
       </transition>

@@ -8,6 +8,7 @@
             :elevation="hover?12:2"
             :class="{'on-hover':hover}"
             min-height="100%"
+              @click="pushRouter(blogShotCut.id)"
           >
             <v-row>
               <v-col cols="3">
@@ -15,7 +16,7 @@
                   :src="blogShotCut.headImg"
                   height="100px"
                   width="150px"
-                  lazy-src="~assets/img/loading.gif"
+                  lazy-src="~assets/img/loading.gif"              
                 >
                   <template v-slot:placeholder>
                     <v-row
@@ -57,6 +58,7 @@ export default {
     return {
       blogShotCuts: [
         {
+          id:1,
           headImg: "https://i.loli.net/2020/02/17/EHeSiRW8wmNztrc.png",
           title: "我是标题我是标题我是标题我是标题",
           // tags: ["", "", ""],
@@ -65,6 +67,7 @@ export default {
           date: "yyyy/mm/dd"
         },
         {
+          id:2,
           headImg: "https://i.loli.net/2020/02/17/EHeSiRW8wmNztrc.png",
           title: "我是标题我是标题我是标题我是标题",
           // tags: ["", "", ""],
@@ -73,6 +76,7 @@ export default {
           date: "yyyy/mm/dd"
         },
         {
+          id:3,
           headImg: "https://i.loli.net/2020/02/17/EHeSiRW8wmNztrc.png",
           title: "我是标题我是标题我是标题我是标题",
           tags: ["我是", "我是我是", "我是"],
@@ -81,6 +85,7 @@ export default {
           date: "yyyy/mm/dd"
         },
         {
+          id:4,
           headImg: "https://i.loli.net/2020/02/17/EHeSiRW8wmNztrc.png",
           title: "我是标题我是标题我是标题我是标题",
           tags: ["我是", "我是", ""],
@@ -89,6 +94,7 @@ export default {
           date: "yyyy/mm/dd"
         },
         {
+          id:5,
           headImg: "https://i.loli.net/2020/02/17/EHeSiRW8wmNztrc.png",
           title: "我是标题我是标题我是标题我是标题",
           tags: ["我是", "我是", "ads"],
@@ -105,6 +111,9 @@ export default {
         200,
         255
       )})`;
+    },
+    pushRouter(id){
+      this.$router.push('/detail/'+id)
     }
   }
 };

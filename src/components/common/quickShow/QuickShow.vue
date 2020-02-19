@@ -3,7 +3,7 @@
     <v-row>
       
       <v-col v-for="(quickShow, index) in quickShows" :key="index"
-      sm='4'
+      md="4"
       cols="12"
       >
         <v-hover v-slot:default="{ hover }"
@@ -12,6 +12,7 @@
         >
           <v-card :elevation="hover?12:2" :class="{'on-hover':hover}"
           min-height="100%"
+          @click="pushRouter(quickShow.id)"
           >
             <v-img
               :src="quickShow.headPic"
@@ -48,6 +49,7 @@ export default {
     return {
       quickShows: [
         {
+          id:4,
           headPic: "https://i.loli.net/2020/02/17/EHeSiRW8wmNztrc.png",
           title: "我是标题我是标题",
           tags: ["标题", "标题sadasd", "标题"]
@@ -55,11 +57,13 @@ export default {
 
         },
         {
+          id:5,
           headPic: "https://i.loli.net/2020/02/17/ajSefBiAprlDwnh.png",
           title: "我是标题我是标题我是标题我是标题",
           tags: ["标题", "标adsas题", "标题"]
         },
         {
+          id:6,
           headPic: "https://i.loli.net/2020/02/17/uLS1R8b73kO2c6Z.png",
           title: "我是标题我是标题我是标题我是标题",
           tags: ["标题", "标题sadsadasd", "标题"]
@@ -74,6 +78,9 @@ export default {
   methods: {
     randomColor(){
       return `rgb(${_.random(200,255)},${_.random(200,255)},${_.random(200,255)})`
+    },
+    pushRouter(id){
+      this.$router.push('/detail/'+id)
     }
   },
 };
