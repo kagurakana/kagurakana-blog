@@ -12,8 +12,14 @@ const routes = [
     path:'/home',
     component:()=>import('views/home/Home')
   },
-
-
+  {
+    path:'/login',
+    component:()=>import('views/admin/Login')
+  },
+  {
+    path:'/admin/blogpost',
+    component:()=>import('views/admin/BlogPost')
+  },
   {
     path:'/list/朋友',
     redirect:'/home'
@@ -32,7 +38,7 @@ const routes = [
   },
   
   {
-    path:'detail/:id',
+    path:'/detail/:id',
     component:()=>import('views/blogs/BlogDetail')
   }
  

@@ -7,5 +7,8 @@ export default {
   },
   isMobile(state){
     return state.CLI_WIDTH < 650 ? true:false
+  },
+  search(state){
+    return state.search
   }
 }

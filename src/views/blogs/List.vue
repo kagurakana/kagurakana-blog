@@ -3,8 +3,9 @@
     <HomeNav class="home-nav" />
     <Content>
       <template v-slot:mid>
-        <QuickShow />
-        <BlogList/>
+        <!-- TODO：在这绑定数据 -->
+        <QuickShow :quickShows="quickShowData" />
+        <BlogList :blogShotCuts="blogListData" />
         <h1>{{tag}}</h1>
       </template>
     </Content>
@@ -15,19 +16,13 @@
 import HomeNav from "views/home/childComps/HomeNav";
 import Content from "components/common/content/Content";
 import QuickShow from "components/common/quickShow/QuickShow";
-import BlogList from 'components/common/blogList/BlogList'
+import BlogList from "components/common/blogList/BlogList";
+import { getBlogList } from "network/blog";
+import { mapGetters } from "vuex";
 export default {
   name: "List",
   created() {
-    const arr = this.$route.path.split("/");
-    const tag = arr[arr.length - 1];
-    this.tag = tag;
-    console.log(tag);
-    console.log("created");
-  },
-
-  activated() {
-    console.log("act");
+    this.getListData();
   },
   components: {
     Content,
@@ -37,16 +32,32 @@ export default {
   },
   data() {
     return {
-      tag: ""
+      tag: "",
+      listData: [],
+      quickShowData: [],
+      blogListData: []
     };
+  },
+  computed: {
+    ...mapGetters(["search"])
+  },
+  methods: {
+    getListData() {
+      const arr = this.$route.path.split("/");
+      const tag = arr[arr.length - 1];
+      this.tag = tag;
+      getBlogList(tag).then(list => {
+        this.listData = list.data;
+        console.log(this.listData);
+        this.quickShowData = this.listData.slice(0, 3);
+        this.blogListData = this.listData.slice(3);
+      });
+    }
   },
   beforeRouteUpdate(to, from, next) {
     next();
-    const arr = this.$route.path.split("/");
-    const tag = arr[arr.length - 1];
-    this.tag = tag;
-    console.log(tag);
-  },
+    this.getListData();
+  }
   // watch: {
   //   $route() {
   //     const arr = this.$route.path.split("/");

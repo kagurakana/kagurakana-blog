@@ -24,11 +24,6 @@ export default {
       isShow:true
     }
   },
-  watch:{
-    isShow(){
-      console.log(this.isShow)
-    }
-  }
 };
 </script>
 

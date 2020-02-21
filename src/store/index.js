@@ -9,12 +9,15 @@ export default new Vuex.Store({
     WIN_HEIGHT: window.screen.height,
     CLI_WIDTH: document.body.offsetWidth,
     CLI_HEIGHT: document.body.offsetHeight,
+    search:''
   },
   mutations: {
     resize(state,payload) {
-      console.log('bbb')
       state.CLI_WIDTH = document.body.offsetWidth
       state.CLI_HEIGHT = document.body.offsetHeight
+    },
+    search(state,payload){
+      state.search = payload.trim()
     }
   },
   actions: {

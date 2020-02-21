@@ -1,21 +1,16 @@
 <template>
   <v-container class="mx-auto" max-width="50%">
     <v-row>
-      
-      <v-col v-for="(quickShow, index) in quickShows" :key="index"
-      md="4"
-      cols="12"
-      >
-        <v-hover v-slot:default="{ hover }"
-        close-delay="200"
-        open-delay="100"
-        >
-          <v-card :elevation="hover?12:2" :class="{'on-hover':hover}"
-          min-height="100%"
-          @click="pushRouter(quickShow.id)"
+      <v-col v-for="(quickShow, index) in quickShows" :key="index" md="4" cols="12">
+        <v-hover v-slot:default="{ hover }" close-delay="200" open-delay="100">
+          <v-card
+            :elevation="hover?12:2"
+            :class="{'on-hover':hover}"
+            min-height="100%"
+            @click="pushRouter(quickShow.id)"
           >
             <v-img
-              :src="quickShow.headPic"
+              :src="quickShow.head_pic"
               height="256px"
               :max-width="isMobile?'100vw':'50vw'"
               lazy-src="~assets/img/loading.gif"
@@ -31,8 +26,15 @@
                 </v-row>
               </template>
             </v-img>
-            <v-card-title class="title"  tag="div" text-truncate>{{quickShow.title}}</v-card-title>
-            <v-card-subtitle><v-chip class="mx-1 my-1" v-for="(tag, index) in quickShow.tags" :color="randomColor()" :key="index">{{tag}}</v-chip></v-card-subtitle>
+            <v-card-title class="title" tag="div" text-truncate>{{quickShow.title}}</v-card-title>
+            <v-card-subtitle>
+              <v-chip
+                class="mx-1 my-1"
+                v-for="(tag, index) in quickShow.tags"
+                :color="randomColor()"
+                :key="index"
+              >{{tag}}</v-chip>
+            </v-card-subtitle>
           </v-card>
         </v-hover>
       </v-col>
@@ -42,47 +44,34 @@
 
 <script>
 import { mapGetters } from "vuex";
-import _ from 'lodash'
+import _ from "lodash";
 export default {
   name: "",
   data() {
     return {
-      quickShows: [
-        {
-          id:4,
-          headPic: "https://i.loli.net/2020/02/17/EHeSiRW8wmNztrc.png",
-          title: "我是标题我是标题",
-          tags: ["标题", "标题sadasd", "标题"]
-
-
-        },
-        {
-          id:5,
-          headPic: "https://i.loli.net/2020/02/17/ajSefBiAprlDwnh.png",
-          title: "我是标题我是标题我是标题我是标题",
-          tags: ["标题", "标adsas题", "标题"]
-        },
-        {
-          id:6,
-          headPic: "https://i.loli.net/2020/02/17/uLS1R8b73kO2c6Z.png",
-          title: "我是标题我是标题我是标题我是标题",
-          tags: ["标题", "标题sadsadasd", "标题"]
-        }
-      ],
-      isBind:false,
+      isBind: false
     };
+  },
+  props: {
+    //前三个博客的id,title,tags,headPic
+    quickShows: {
+      type: Array
+    }
   },
   computed: {
     ...mapGetters(["isMobile"])
   },
   methods: {
-    randomColor(){
-      return `rgb(${_.random(200,255)},${_.random(200,255)},${_.random(200,255)})`
+    randomColor() {
+      return `rgb(${_.random(200, 255)},${_.random(200, 255)},${_.random(
+        200,
+        255
+      )})`;
     },
-    pushRouter(id){
-      this.$router.push('/detail/'+id)
+    pushRouter(id) {
+      this.$router.push("/detail/" + id);
     }
-  },
+  }
 };
 </script>
 
@@ -94,5 +83,4 @@ v-card {
   padding: 10px;
   margin: 2px;
 }
-
 </style>

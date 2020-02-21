@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- TODO 绑定数据 -->
     <MidSwapper />
     <QuickShow />
     <BlogList />
