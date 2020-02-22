@@ -6,9 +6,10 @@
       <v-carousel class="swiper" :height="imgHeight" cycle show-arrows>
         <v-carousel-item
           class="swiper-img"
-          v-for="(item, index) in banners"
-          :src="item.image"
+          v-for="(item, index) in swiperData"
+          :src="item.headPic"
           :key="index"
+          @click="pushRoute(item)"
         ></v-carousel-item>
       </v-carousel>
     </v-card>
@@ -19,19 +20,10 @@
 import { mapGetters } from "vuex";
 export default {
   name: 'MidSwipper',
-  data() {
-    return {
-      banners: [
-        {
-          image: "https://s2.ax1x.com/2020/02/17/394fVe.png",
-          link: "https://imgchr.com/i/39445d"
-        },
-        {
-          image: "https://s2.ax1x.com/2020/02/17/39445d.png",
-          link: "https://imgchr.com/i/39445d"
-        }
-      ],
-    };
+  props:{
+    swiperData:{
+      type:Array
+    }
   },
   computed: {
     ...mapGetters(["cliWidth", "isMobile"]),
@@ -40,6 +32,11 @@ export default {
     },
     imgWidth() {
       return this.isMobile ? "100vw" : "50vw";
+    }
+  },
+  methods:{
+    pushRoute(item){
+      this.$router.push('/detail/'+item.id)
     }
   }
 

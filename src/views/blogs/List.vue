@@ -5,7 +5,7 @@
       <template v-slot:mid>
         <!-- TODO：在这绑定数据 -->
         <QuickShow :quickShows="quickShowData" />
-        <BlogList :blogShotCuts="blogListData" />
+        <BlogList :blogList="blogListData" />
         <h1>{{tag}}</h1>
       </template>
     </Content>
@@ -17,12 +17,18 @@ import HomeNav from "views/home/childComps/HomeNav";
 import Content from "components/common/content/Content";
 import QuickShow from "components/common/quickShow/QuickShow";
 import BlogList from "components/common/blogList/BlogList";
-import { getBlogList } from "network/blog";
 import { mapGetters } from "vuex";
+
+import getListDataMixin from "@/mixins/getListDataMixin";
 export default {
   name: "List",
+  mixins: [getListDataMixin],
   created() {
-    this.getListData();
+    this.getUrlTag();
+    this.getListData(this.tag).then(res => {
+      this.quickShowData = this.listData.slice(0, 3);
+      this.blogListData = this.listData.slice(3);
+    });
   },
   components: {
     Content,
@@ -32,8 +38,8 @@ export default {
   },
   data() {
     return {
-      tag: "",
-      listData: [],
+      // tag: "",
+      // listData: [],
       quickShowData: [],
       blogListData: []
     };
@@ -42,21 +48,30 @@ export default {
     ...mapGetters(["search"])
   },
   methods: {
-    getListData() {
+    // getListData() {
+    //   const arr = this.$route.path.split("/");
+    //   const tag = arr[arr.length - 1];
+    //   this.tag = tag;
+    //   getBlogList(tag).then(list => {
+    //     this.listData = list.data;
+    //     console.log(this.listData);
+    //     this.quickShowData = this.listData.slice(0, 3);
+    //     this.blogListData = this.listData.slice(3);
+    //   });
+
+    getUrlTag() {
       const arr = this.$route.path.split("/");
       const tag = arr[arr.length - 1];
       this.tag = tag;
-      getBlogList(tag).then(list => {
-        this.listData = list.data;
-        console.log(this.listData);
-        this.quickShowData = this.listData.slice(0, 3);
-        this.blogListData = this.listData.slice(3);
-      });
     }
   },
+
   beforeRouteUpdate(to, from, next) {
     next();
-    this.getListData();
+    this.getUrlTag();
+    this.getListData(this.tag);
+    this.quickShowData = this.listData.slice(0, 3);
+    this.blogListData = this.listData.slice(3);
   }
   // watch: {
   //   $route() {

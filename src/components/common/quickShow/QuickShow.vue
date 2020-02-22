@@ -10,7 +10,7 @@
             @click="pushRouter(quickShow.id)"
           >
             <v-img
-              :src="quickShow.head_pic"
+              :src="quickShow.headPic"
               height="256px"
               :max-width="isMobile?'100vw':'50vw'"
               lazy-src="~assets/img/loading.gif"

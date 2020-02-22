@@ -37,7 +37,7 @@ export default {
   methods:{
     post(){
       if(this.title&&this.headPic&&this.desc&&this.content){
-        this.desc = this.desc.split(',')
+        console.log(this.tags)
         console.log(this.title,this.tags,this.desc,this.content)
         postNewBlog(this.headPic,this.title,this.tags,this.desc,this.content)
       }

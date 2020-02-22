@@ -1,7 +1,7 @@
 <template>
   <v-container class="mx-auto" max-width="50%">
     <v-row>
-      <v-col v-for="(blogShotCut, index)  in blogShotCuts" :key="index" sm="12" cols="12">
+      <v-col v-for="(blogShotCut, index)  in blogList" :key="index" sm="12" cols="12">
         <v-hover v-slot:default="{ hover }" close-delay="200" open-delay="100">
           <v-card
             class="pa-2"
@@ -13,7 +13,7 @@
             <v-row>
               <v-col cols="3">
                 <v-img
-                  :src="blogShotCut.head_pic"
+                  :src="blogShotCut.headPic"
                   height="100px"
                   width="150px"
                   lazy-src="~assets/img/loading.gif"
@@ -56,7 +56,7 @@ export default {
   name: "BlogList",
   props: {
     
-    blogShotCuts: {
+    blogList: {
      type:Array
     }
   },
