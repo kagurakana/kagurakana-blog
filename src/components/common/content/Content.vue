@@ -49,7 +49,7 @@ export default {
   .left {
     flex: 1;
     // height: 50vh;
-    background-color:rgb(250, 250, 250);
+    background-color:$base-lightgray-color;
     // background-color: red;
     position: relative;
     z-index: 2;
@@ -60,7 +60,7 @@ export default {
     z-index: 2;
     position: relative;
     // background-color: red;
-      background-color:rgb(250, 250, 250);
+      background-color:$base-lightgray-color;
   }
   .mid {
     padding-top: 10px;

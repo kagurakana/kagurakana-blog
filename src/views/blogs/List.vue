@@ -1,12 +1,13 @@
 <template>
   <div>
     <HomeNav class="home-nav" />
+
     <Content>
       <template v-slot:mid>
+         <h1>{{tag}}</h1>
         <!-- TODO：在这绑定数据 -->
         <QuickShow :quickShows="quickShowData" />
         <BlogList :blogList="blogListData" />
-        <h1>{{tag}}</h1>
       </template>
     </Content>
   </div>
@@ -69,9 +70,10 @@ export default {
   beforeRouteUpdate(to, from, next) {
     next();
     this.getUrlTag();
-    this.getListData(this.tag);
-    this.quickShowData = this.listData.slice(0, 3);
-    this.blogListData = this.listData.slice(3);
+    this.getListData(this.tag).then(res => {
+      this.quickShowData = this.listData.slice(0, 3);
+      this.blogListData = this.listData.slice(3);
+    });
   }
   // watch: {
   //   $route() {

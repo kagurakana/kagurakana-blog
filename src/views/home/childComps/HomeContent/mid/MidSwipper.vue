@@ -36,7 +36,9 @@ export default {
   },
   methods:{
     pushRoute(item){
-      this.$router.push('/detail/'+item.id)
+      this.$router.push('/detail/'+item.id).catch(err=>{
+        ;
+      })
     }
   }
 

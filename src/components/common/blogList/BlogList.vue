@@ -41,6 +41,7 @@
                 v-for="(tag, index) in blogShotCut.tags"
                 :color="randomColor()"
                 :key="index"
+                @click.stop="pushRouterTag(tag)"
               >{{tag}}</v-chip>
             </v-card-subtitle>
           </v-card>
@@ -69,6 +70,9 @@ export default {
     },
     pushRouter(id) {
       this.$router.push("/detail/" + id);
+    },
+    pushRouterTag(tag){
+      this.$router.push("/list/" + tag);
     }
   }
 };

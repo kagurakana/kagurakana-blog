@@ -24,7 +24,7 @@ export function getBlogList(tags, search) {
 export function getBlogDetail(id) {
   return request({
     method: 'get',
-    url: '/blog/postblog',
+    url: '/blog/getblogdetail',
     params: {
       id
     }
