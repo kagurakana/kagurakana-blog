@@ -1,6 +1,8 @@
 <template>
   <v-app id="app">
+    <keep-alive include="Home">
     <router-view></router-view>
+    </keep-alive>
     <!-- <router-view :key="$route.fullPath"></router-view> -->
     <FloatingButton/>
   </v-app>

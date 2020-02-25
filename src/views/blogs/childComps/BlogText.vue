@@ -15,15 +15,16 @@
       </div>
       <div class="desc">{{blog.desc}}</div>
     </div>
-
-    <div>{{blog.content}}</div>
+    <article class="context" v-html="compiledMarkdown"></article>
   </div>
 </template>
 
 <script>
 import moment from "moment";
+import hljsMixin from "@/mixins/hljsMixin";
 export default {
   name: "BlogText",
+  mixins: [hljsMixin],
   props: {
     blog: {
       type: Object
@@ -32,13 +33,16 @@ export default {
   methods: {
     pushRoute(tag) {
       this.$router.push("/list/" + tag);
-    }
+    },
+
+    
   },
   computed: {
     date() {
-        return moment(this.blog.createTime).format('YYYY/MM/DD hh:mm:ss');
-      }
+      return moment(this.blog.createTime).format("YYYY/MM/DD hh:mm:ss");
     }
+    
+  }
 };
 </script>
 

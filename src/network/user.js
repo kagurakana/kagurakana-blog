@@ -1,32 +1,62 @@
 import { request } from './request'
-
-class User {
-  constructor(username,password,email,avatar){
-    this.username = username
-    this.password = password
-    this.email = email
-    this.avatar = avatar
+import { hmacSha } from '@/utils/cryp'
+  class User {
+    constructor(username, password, email, avatar) {
+      this.username = username
+      this.password = password
+      this.email = email
+      this.avatar = avatar
+    }
   }
+//测试用户名唯一性
+export function getValidUsername(username) {
+  return request({
+    method: 'get',
+    url: '/user/checkusername',
+    params: {
+      username
+    }
+  })
+}
+//测试邮箱唯一性
+export function getValidEmail(email) {
+  return request({
+    method: 'get',
+    url: '/user/checkemail',
+    params: {
+      email
+    }
+  })
 }
 
-export function postLogin(username,password){
+//发送登录请求
+export function postLogin(username, password) {
+  password = hmacSha(password)
   return request({
-    method:'post',
-    url:'/api/user/login',
-    data:{
+    method: 'post',
+    url: '/user/login',
+    data: {
       username,
       password
     }
   })
 }
-
-export function postRegister(username,password,email,avatar){
-  const user = new User(username,password,email,avatar)
+//发送注册请求
+export function postRegister(username, password, email, avatar) {
+  password = hmacSha(password)
+  const user = new User(username, password, email, avatar)
   return request({
-    method:'post',
-    url:'/user/register',
-    data:{
+    method: 'post',
+    url: '/user/register',
+    data: {
       user
     }
+  })
+}
+//前台登录认证
+export function getLoginCheck(){
+  return request({
+    method:'get',
+    url:'user/logincheck'
   })
 }

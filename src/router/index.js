@@ -21,19 +21,24 @@ const routes = [
     component:()=>import('views/admin/Register')
   },
   {
-    path:'/admin/blogpost',
+    path:'/admin/postblog',
     component:()=>import('views/admin/BlogPost')
   },
   {
+    path:'/admin/blogpost',
+    component:()=>import('views/admin/BlogPost')
+  },
+  
+  {
     path:'/list/朋友',
-    redirect:'/home'
-    // component:()=>import('views/blogs/List')
+    // redirect:'/home'
+    component:()=>import('views/Building')
   },
 
   {
     path:'/list/关于',
-    redirect:'/home'
-    // component:()=>import('views/blogs/List')
+    // redirect:'/home'
+    component:()=>import('views/Building')
   },
   
   {
@@ -44,6 +49,12 @@ const routes = [
   {
     path:'/detail/:id',
     component:()=>import('views/blogs/BlogDetail')
+  },
+
+
+  {
+    path:'/test',
+    component:()=>import('views/Test')
   }
  
 ]

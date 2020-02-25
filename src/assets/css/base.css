@@ -38,4 +38,72 @@
     zoom: 1;
   }
   
+.code,code{
+  background-color: floralwhite !important;
+  color:unset;
+  box-shadow: none !important;
+ 
+}
+
+/* .code, .kbd,code{
+    display: unset;
+    padding: 10px;
+    margin: 5px 0;
+    
+    border-radius: 10px;
+    white-space: nowrap;
+    font-size: unset;
+    font-weight: normal !important;
+    font-family: 'Fira Mono','Fira Code' ,'Roboto'!important; 
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+} */
+.code, .kbd,code{
+  font-family: 'Fira Mono','Fira Code' ,'Roboto'!important;
+  font-weight: normal !important; 
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  font-size: large;
+  padding: 10px;
+  margin: 5px 0;
+  white-space: nowrap;
+}
+pre code{
+  width: 100%;
+}
+
+article{
+  user-select: text;
   
+}
+article p img{
+  margin: 0 auto;
+  display: block;
+}
+article h2{
+margin: 18px 0;
+font-size: 26px;
+}
+
+article h3{
+margin: 15px 0;
+font-size: 22px;
+}
+
+article h4{
+  margin: 15px 0;
+}
+
+article h5{
+  margin: 15px 0;
+}
+
+article p,article ul{
+  margin: 20px 5px;
+}
+

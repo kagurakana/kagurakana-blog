@@ -1,19 +1,19 @@
 <template>
   <v-container class="mx-auto" max-width="50%">
     <v-row>
-      <v-col v-for="(quickShow, index) in quickShows" :key="index" md="4" cols="12">
+      <v-col v-for="(quickShow, index1) in quickShows" :key="index1" md="4" cols="12">
         <v-hover v-slot:default="{ hover }" close-delay="200" open-delay="100">
           <v-card
             :elevation="hover?12:2"
-            :class="{'on-hover':hover}"
             min-height="100%"
-            @click="pushRouter(quickShow.id)"
+            @click.native="pushRouter(quickShow.id)"
           >
             <v-img
               :src="quickShow.headPic"
               height="256px"
               :max-width="isMobile?'100vw':'50vw'"
               lazy-src="~assets/img/loading.gif"
+              @load="isMounted = true"
             >
               <template v-slot:placeholder>
                 <v-row
@@ -31,7 +31,7 @@
               <v-chip
                 class="mx-1 my-1"
                 v-for="(tag, index) in quickShow.tags"
-                :color="randomColor()"
+                :refs="`chip-${index1}-${index}`"
                 :key="index"
                 @click.stop="pushRouterTag(tag)"
               >{{tag}}</v-chip>
@@ -40,19 +40,32 @@
         </v-hover>
       </v-col>
     </v-row>
+    <v-snackbar color="blue" :timeout="timeout" v-model="routerErrTip" :top="isMobile">
+      现在已经是{{nowRoute}}页了！！！ ({{second}})
+      <v-btn color="gray" text @click="routerErrTip = false">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import routerErrTipMixin from "@/mixins/routerErrTipMixin";
+
 import _ from "lodash";
 export default {
   name: "",
+  mixins: [routerErrTipMixin],
   data() {
     return {
-      isBind: false
+      isBind: false,
+      isMounted: false
     };
   },
+  // updated(){
+  //   this.isMounted = true
+  // },
   props: {
     //前三个博客的id,title,tags,headPic
     quickShows: {
@@ -63,17 +76,13 @@ export default {
     ...mapGetters(["isMobile"])
   },
   methods: {
-    randomColor() {
-      return `rgb(${_.random(200, 255)},${_.random(200, 255)},${_.random(
-        200,
-        255
-      )})`;
-    },
     pushRouter(id) {
       this.$router.push("/detail/" + id);
     },
-    pushRouterTag(tag){
-      this.$router.push('/list/' + tag)
+    pushRouterTag(tag) {
+      this.$router.push("/list/" + tag).catch(err => {
+        this.debouncedShowErrTip(tag);
+      });
     }
   }
 };

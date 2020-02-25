@@ -24,8 +24,8 @@ export default {
   created() {
     this.getListData().then(res => {
       this.swiperData = this.listData.slice(0, 3);
-      this.quickShowData = this.listData.slice(3, 7);
-      this.blogListData = this.listData.slice(7);
+      this.quickShowData = this.listData.slice(3, 6);
+      this.blogListData = this.listData.slice(6);
     });
   },
   data() {
