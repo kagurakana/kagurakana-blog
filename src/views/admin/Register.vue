@@ -16,8 +16,10 @@
                     v-model="username"
                     :rules="nameRule"
                     counter="15"
+                    autoComplete='new-password'
                     aria-required
                     label="用户名"
+                    
                     :hint="usernameHint"
                     :loading="usernameLoading"
                     @input="debouncedCheckUsername()"
@@ -36,6 +38,7 @@
                   <v-text-field
                     v-model="password"
                     aria-required
+                    autoComplete='new-password'
                     label="密码(已使用HMAC-SHA-512加密)"
                     hint="暂时不提供修改密码功能，一定要记住密码哦~"
                     type="password"
@@ -66,7 +69,7 @@
                     :disabled="haveAvatar||useDefaultAvator"
                     :rules="avatarRule"
                     label="头像URL"
-                    hint="要确保头像可以被外站应用哦"
+                    hint="要确保头像可以被外站引用哦"
                     :loading="realAvator!=''&&!avatarPrased"
                     :error-messages="avatarErr"
                   ></v-text-field>
@@ -144,7 +147,7 @@ export default {
 
       email: "",
       emailRule: [
-        v => !!v || "填入邮箱，才能即使获得回复哦，放心吧，邮箱不会外泄的~",
+        v => !!v || "填入邮箱，才能及时获得回复哦，放心吧，邮箱不会外泄的~",
         v => /.+@.+\..+/.test(v) || "无效的邮箱❌"
       ],
       emailHint: "",
@@ -200,7 +203,6 @@ export default {
       this.loading = true;
       postRegister(this.username, this.password, this.email, this.avatar).then(
         res => {
-          console.log(res);
           this.successRegiste = true;
           this.second = this.timeout / 1000;
           let timer = setInterval(() => {
@@ -230,7 +232,6 @@ export default {
         this.usernameErr = "";
         this.usernameLoading = true;
         getValidUsername(this.username).then(res => {
-          // console.log(res);
           this.usernameLoading = false;
           if (res.errno === -1) {
             this.usernameErr = res.message;
@@ -248,7 +249,6 @@ export default {
         this.emailLoading = true;
         this.emailHint = "...验证中...";
         getValidEmail(this.email).then(res => {
-          // console.log(res);
           this.emailLoading = false;
           if (res.errno === -1) {
             this.emailErr = res.message;
@@ -264,11 +264,6 @@ export default {
       this.realAvator = "";
     }
   },
-  watch: {
-    avatarPrased() {
-      console.log(this.avatarPrased);
-    }
-  }
 };
 </script>
 

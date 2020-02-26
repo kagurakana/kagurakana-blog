@@ -21,14 +21,13 @@ const routes = [
     component:()=>import('views/admin/Register')
   },
   {
-    path:'/admin/postblog',
+    path:'/admin/new',
     component:()=>import('views/admin/BlogPost')
   },
   {
-    path:'/admin/blogpost',
-    component:()=>import('views/admin/BlogPost')
+    path:'/admin/detail',
+    component:()=>import('views/admin/BlogCtrlDetail')
   },
-  
   {
     path:'/list/朋友',
     // redirect:'/home'
@@ -37,8 +36,7 @@ const routes = [
 
   {
     path:'/list/关于',
-    // redirect:'/home'
-    component:()=>import('views/Building')
+    redirect:'/about'
   },
   
   {
@@ -51,12 +49,10 @@ const routes = [
     component:()=>import('views/blogs/BlogDetail')
   },
 
-
-  {
-    path:'/test',
-    component:()=>import('views/Test')
-  }
- 
+ {
+   path:'/about',
+   component:()=>import('views/about/About')
+ }
 ]
 
 const router = new VueRouter({

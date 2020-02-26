@@ -77,10 +77,8 @@ export default {
       this.second = this.timeout / 1000;
       this[tip] = true;
       // this.newUserRegisterTip = true;
-      console.log(tip)
       let timer = setInterval(() => {
         this.second -= 1;
-        console.log(this.second)
       }, 1000);
       setTimeout(() => {
         clearInterval(timer);

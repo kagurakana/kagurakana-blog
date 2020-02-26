@@ -73,7 +73,6 @@ export default {
     postData() {
       this.checkedUsername = "";
       postLogin(this.username, this.password).then(res => {
-        // console.log(res)
         if (res.errno === 0) {
           this.checkedUsername = res.data.username;
           this.showBar();

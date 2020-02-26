@@ -7,7 +7,13 @@ export function request(config){
     timeout:50000
   })
   instance.interceptors.response.use(res=>{
-    return res.data;
+    console.log(res.data.errno)
+    if(res.data.errno!=404){
+      return res.data;
+    }else{
+      console.log('1111111111111111111')
+      window.location.replace('/home')
+    }
   })
   return instance(config)
 }

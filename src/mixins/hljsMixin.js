@@ -1,6 +1,7 @@
 import marked from "marked";
 import hljs from "highlight.js";
 import('highlight.js/styles/solarized-light.css');
+// import('highlight.js/styles/darcula.css');
 
 export default {
   data() {
@@ -10,9 +11,8 @@ export default {
   },
   computed: {
     compiledMarkdown() {
-      console.log(this.blog.content)
       // this.articleDetail.context数据
-      if(this.blog.content){
+      if(this.blog&&this.blog.content){
         return marked(this.htmlRestore(this.blog.content))
       }else{
         return marked(this.content)

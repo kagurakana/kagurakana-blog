@@ -51,7 +51,6 @@ export default {
 
   created() {
     getLoginCheck().then(res => {
-      console.log(res);
       if (res.data.isAdmin) {
         this.isAdmin = true;
         this.loginCheckMessage = "今天要写点什么呢...";
@@ -61,8 +60,6 @@ export default {
   methods: {
     post() {
       if (this.title && this.headPic && this.desc && this.content) {
-        console.log(this.tags);
-        console.log(this.title, this.tags, this.desc, this.content);
         postNewBlog(
           this.headPic,
           this.title,

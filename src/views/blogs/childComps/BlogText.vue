@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     date() {
-      return moment(this.blog.createTime).format("YYYY/MM/DD hh:mm:ss");
+      return moment(this.blog.createTime).format("YYYY/MM/DD HH:mm:ss");
     }
     
   }
@@ -49,5 +49,10 @@ export default {
 <style lang='scss' scoped>
 .heads {
   margin-bottom: 5px;
+}
+.desc{
+  display: block;
+  background-color: $base-lightgray-color;
+  padding: 10px 0;
 }
 </style>

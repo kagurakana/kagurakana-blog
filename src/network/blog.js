@@ -30,3 +30,13 @@ export function getBlogDetail(id) {
     }
   })
 }
+
+export function postDeleteBlog(id){
+  return request({
+    method:"post",
+    url:'blog/delete',
+    data:{
+      id
+    }
+  })
+}

@@ -27,9 +27,7 @@ export default {
     getBlogDetail(this.id).then(blog => {
       blog.data[0].tags = blog.data[0].tags.split(',')
       this.blogDetail = blog.data[0]
-      console.log(this.blogDetail)
     }).catch(err=>{
-      console.log(err)
     });
   },
   data() {

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "clipboard": "^2.0.4",
     "cnpm": "^6.1.1",
     "core-js": "^3.6.4",
     "crypto.js": "^1.3.1",

@@ -10,6 +10,7 @@ module.exports = {
       }
     }
   },
+
   "css": {
     "loaderOptions": {
       "scss": {
@@ -17,8 +18,20 @@ module.exports = {
       }
     }
   },
+
   "publicPath": "/",
+
   "transpileDependencies": [
     "vuetify"
-  ]
+  ],
+
+  productionSourceMap: false,
+
+  css: {
+    loaderOptions: {
+      scss: {
+        prependData: '@import "~@/assets/css/var.scss";'
+      }
+    }
+  }
 }
