@@ -5,7 +5,8 @@
       <template v-slot:mid>
         <BlogText :blog="blogDetail" />
         <v-divider class="my-3"></v-divider>
-        <BlogComment :id="id"/>
+        <BlogComment :blogId="id"/>
+        <BlogCommentList :blogId="id"/>
       </template>
     </Content>
   </div>
@@ -16,6 +17,7 @@ import HomeNav from "views/home/childComps/HomeNav";
 import Content from "components/common/content/Content";
 import BlogText from "./childComps/BlogText";
 import BlogComment from "components/common/comment/Comment";
+import BlogCommentList from 'components/common/comment/CommentList'
 import { getBlogDetail } from "network/blog";
 export default {
   name: "BlogDetail",
@@ -23,7 +25,8 @@ export default {
     Content,
     HomeNav,
     BlogText,
-    BlogComment
+    BlogComment,
+    BlogCommentList
   },
   created() {
     this.id = this.$route.params.id;

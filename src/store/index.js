@@ -9,7 +9,7 @@ export default new Vuex.Store({
     WIN_HEIGHT: window.screen.height,
     CLI_WIDTH: document.body.offsetWidth,
     CLI_HEIGHT: document.body.offsetHeight,
-    search:''
+    search:'',
   },
   mutations: {
     resize(state,payload) {

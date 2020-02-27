@@ -12,7 +12,7 @@
     <v-col
     class="mid"
     cols="12"
-    sm="6"
+    md="6"
     >
 
       <slot name="mid"></slot>

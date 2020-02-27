@@ -85,8 +85,9 @@
         </v-row>
       </v-card>
       <TimeLine @imgClick="showBigImg" />
+      
     </v-col>
-    <v-img  src="~assets/img/love-down.png"></v-img>
+    <v-img eager  src="~assets/img/love-down.png"></v-img>
     <div class="text-center imgBig">
       <v-dialog  v-model="dialog"  max-width="70vw">
         <v-img :src="imgSrc" max-height="75vh" max-width="70vw">
