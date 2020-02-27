@@ -108,7 +108,8 @@ article p,article ul{
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
-  background-color: rgb(161, 161, 161);
+  /* background-color: rgb(161, 161, 161); */
+  background-color: #0277BD;
 }
 ::-webkit-scrollbar-track {
   background-color: transparent;

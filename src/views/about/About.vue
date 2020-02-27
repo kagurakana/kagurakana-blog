@@ -4,7 +4,7 @@
     <v-img src="~assets/img/love-up.jpg" width="100vw" min-height="100vh" class="img-fixed"></v-img>
     <v-col cols="11" md="8" class="mx-auto about-container">
       <v-card class="mx-auto myInfo text-center" outlined>
-        <v-row class="pa-0 ma-0 ">
+        <v-row class="pa-0 ma-0">
           <v-col cols="12" sm="auto">
             <v-img
               class="mx-auto head-img"
@@ -13,7 +13,7 @@
               width="225px"
             ></v-img>
           </v-col>
-          <v-col class="text-center " >
+          <v-col class="text-center">
             <h1></h1>
             <h2>就读于武汉工程大学[大三]</h2>
             <p class="py-2 ma-0">喜欢的事情:睡觉，看番，玩怪猎，逛b站</p>
@@ -84,9 +84,16 @@
           </v-col>
         </v-row>
       </v-card>
-      <TimeLine />
+      <TimeLine @imgClick="showBigImg" />
     </v-col>
-    <v-img src="~assets/img/love-down.png"></v-img>
+    <v-img  src="~assets/img/love-down.png"></v-img>
+    <div class="text-center imgBig">
+      <v-dialog  v-model="dialog"  max-width="70vw">
+        <v-img :src="imgSrc" max-height="75vh" max-width="70vw">
+
+        </v-img>
+      </v-dialog>
+    </div>
   </div>
 </template>
 
@@ -105,6 +112,8 @@ export default {
   },
   data() {
     return {
+      dialog: false,
+      imgSrc:'',
       textEmail: "点击拷贝:kagurakanaofficial☆qq.com",
       textQq: "点击拷贝:1278820830",
       textGithub: "点击拷贝:https://github.com/kagurakana",
@@ -115,6 +124,10 @@ export default {
   methods: {
     copy(content) {
       this[content] = "以拷贝到剪贴板";
+    },
+    showBigImg(src) {
+      this.imgSrc = src
+      this.dialog = true;
     }
   }
 };
@@ -127,6 +140,9 @@ export default {
 .bili {
   width: 28px;
   height: 28px;
+}
+.imgBig{
+  z-index: 99999;
 }
 .icons {
   font-size: 28px;

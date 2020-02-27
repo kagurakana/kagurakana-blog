@@ -89,6 +89,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+*{
+  cursor: pointer;
+}
 .one-line {
   display: flex;
 }

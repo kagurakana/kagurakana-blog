@@ -43,7 +43,9 @@ export default {
 <style lang='scss' scoped>
 .nav {
   box-shadow: 2px 5px 2px 1px rgba($devide-line-color, 0.5);
-
+  *{
+     cursor: pointer;
+  }
   height: $home-nav-height;
   display: flex;
   flex-wrap: nowrap;

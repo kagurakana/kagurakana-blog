@@ -10,7 +10,9 @@
           :src="item.headPic"
           :key="index"
           @click="pushRoute(item)"
-        ></v-carousel-item>
+        >
+        <div class="text-center  title">{{item.title}}</div>
+        </v-carousel-item>
       </v-carousel>
     </v-card>
   </v-col>
@@ -46,5 +48,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-
+.title{
+  background-color: rgba(#000,0.8);
+  line-height:50px;
+  color:#fff;
+}
 </style>
