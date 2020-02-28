@@ -19,3 +19,13 @@ export function getCommentList(id) {
     }
   })
 }
+//通过审核和删除评论
+export function controlComment(passlist, deleteList) {
+  return request({
+    method: 'post',
+    url: '/comment/controlComment',
+    data: {
+      passlist, deleteList
+    }
+  })
+}

@@ -29,16 +29,26 @@ const routes = [
     component:()=>import('views/admin/BlogCtrlDetail')
   },
   {
+    path:'/admin/comment',
+    component:()=>import('views/admin/CommentVerify')
+  },
+  {
     path:'/list/朋友',
-    // redirect:'/home'
-    component:()=>import('views/Building')
+    redirect:'/friends'
+  },
+  {
+    path:'/friends',
+    component:()=>import('views/friends/Friends')
   },
 
   {
     path:'/list/关于',
     redirect:'/about'
   },
-  
+  {
+    path:'/about',
+    component:()=>import('views/about/About')
+  },
   {
     path:'/list/:tag',
     component:()=>import('views/blogs/List')
@@ -49,10 +59,7 @@ const routes = [
     component:()=>import('views/blogs/BlogDetail')
   },
 
- {
-   path:'/about',
-   component:()=>import('views/about/About')
- }
+
 ]
 
 const router = new VueRouter({

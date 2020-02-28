@@ -16,10 +16,9 @@
                     v-model="username"
                     :rules="nameRule"
                     counter="15"
-                    autoComplete='new-password'
+                    autocomplete="new-password"
                     aria-required
                     label="用户名"
-                    
                     :hint="usernameHint"
                     :loading="usernameLoading"
                     @input="debouncedCheckUsername()"
@@ -38,7 +37,7 @@
                   <v-text-field
                     v-model="password"
                     aria-required
-                    autoComplete='new-password'
+                    autocomplete="new-password"
                     label="密码(已使用HMAC-SHA-512加密)"
                     hint="暂时不提供修改密码功能，一定要记住密码哦~"
                     type="password"
@@ -106,7 +105,7 @@
         </v-col>
       </v-hover>
     </v-row>
-    <v-snackbar color="blue" :timeout="timeout" v-model="successRegiste" :top='isMobile'>
+    <v-snackbar color="blue" :timeout="timeout" v-model="successRegiste" :top="isMobile">
       注册成功 {{second}} 秒后跳转登录
       <v-btn color="lime" text @click="snackbar = false">Close</v-btn>
     </v-snackbar>
@@ -201,6 +200,7 @@ export default {
   methods: {
     postRegister() {
       this.loading = true;
+      this.avatar = this.useDefaultAvator ? "default" : this.avatar;
       postRegister(this.username, this.password, this.email, this.avatar).then(
         res => {
           this.successRegiste = true;
@@ -263,7 +263,7 @@ export default {
       this.avatar = "";
       this.realAvator = "";
     }
-  },
+  }
 };
 </script>
 

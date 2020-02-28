@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-form v-model="valid">
-      <v-row>
+      <v-row class="pa-0 ma-0">
         <v-col class="mx-auto" cols="11" md="6">
-          <v-text-field label="昵称" :rules="usernameRule" :disabled="getUsername" v-model="username"></v-text-field>
+          <v-text-field dense label="昵称" :rules="usernameRule" :disabled="getUsername" v-model="username"></v-text-field>
         </v-col>
         <v-col class="mx-auto" cols="11" md="6">
-          <v-text-field label="邮箱" :rules="emailRule" :disabled="getEmail" v-model="email"></v-text-field>
+          <v-text-field dense  label="邮箱" :rules="emailRule" :disabled="getEmail" v-model="email"></v-text-field>
         </v-col>
       </v-row>
       <v-col cols="12">
