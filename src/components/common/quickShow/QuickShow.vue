@@ -11,7 +11,7 @@
             <v-img
               :src="quickShow.headPic"
               height="256px"
-              :max-width="isMobile?'100vw':'50vw'"
+              max-width='100%'
               lazy-src="~assets/img/loading.gif"
               @load="isMounted = true"
             >

@@ -50,20 +50,29 @@
   font-family: 'Fira Mono','Fira Code' ,'Roboto'!important;
   font-weight: normal !important;
   font-size: large;
-  padding: 10px;
+  padding: 0;
   margin: 5px 0;
   line-height: 1rem;
-  white-space: nowrap;
+ 
+}
+.code::before, .kbd::before,code::before{
+  content: '' !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 pre code{
   width: 100%;
+  white-space: pre !important;
+  padding: 10px;
   line-height: unset;
   border-radius: 10px!important;
   -webkit-border-radius: 10px!important;
   -moz-border-radius: 10px!important;
   -ms-border-radius: 10px!important;
   -o-border-radius: 10px!important;
+  overflow-x: auto;
 }
+
 
 article{
   user-select: text;
@@ -98,8 +107,9 @@ article p,article ul{
 
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 
-  background-color: #fff;
+  background-color: rgb(243, 243, 243);
 }
 
 ::-webkit-scrollbar-thumb{

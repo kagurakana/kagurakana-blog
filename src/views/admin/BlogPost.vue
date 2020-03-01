@@ -11,7 +11,9 @@
         <v-col cols="11" class="mx-auto">
           <v-textarea v-model="desc" label="desc"></v-textarea>
           <v-row>
+             <input type="text " @paste="pasted" />
             <v-col cols="6">
+              <input type="text " @paste="pasted" />
               <v-textarea v-model="content" auto-grow outlined label="content"></v-textarea>
             </v-col>
             <v-col cols="6">
@@ -29,14 +31,14 @@
 <script>
 import { postNewBlog } from "network/blog.js";
 import { getLoginCheck } from "network/user";
-import hljsMixin from '@/mixins/hljsMixin'
+import hljsMixin from "@/mixins/hljsMixin";
 // import marked from "marked";
 // import hljs from "highlight.js";
 // import('highlight.js/styles/pojoaque.css')
 
 export default {
   name: "BlogPost",
-  mixins:[hljsMixin],
+  mixins: [hljsMixin],
   data() {
     return {
       title: "",
@@ -45,7 +47,7 @@ export default {
       // content: "",
       headPic: "",
       loginCheckMessage: "验证权限中...",
-      isAdmin: false,
+      isAdmin: false
     };
   },
 
@@ -54,6 +56,8 @@ export default {
       if (res.data.isAdmin) {
         this.isAdmin = true;
         this.loginCheckMessage = "今天要写点什么呢...";
+      } else {
+        this.loginCheckMessage = "权限不足✖";
       }
     });
   },
@@ -71,11 +75,12 @@ export default {
         });
       }
     },
+    pasted(e) {
+      console.log(e);
+    }
   }
 };
 </script>
 
 <style lang='scss' scoped>
-
-
 </style>

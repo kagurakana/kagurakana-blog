@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <Nav class="nav" />
-    <v-img src="~assets/img/love-up.jpg" width="100vw" min-height="100vh" class="img-fixed"></v-img>
+    <v-img :src="bgcImg" width="100vw" min-height="100vh" class="img-fixed"></v-img>
     <v-col cols="11" md="8" class="mx-auto about-container">
       <v-card class="mx-auto myInfo text-center" outlined>
         <v-row class="pa-0 ma-0">
@@ -85,14 +85,11 @@
         </v-row>
       </v-card>
       <TimeLine @imgClick="showBigImg" />
-      
     </v-col>
-    <v-img eager  src="~assets/img/love-down.png"></v-img>
+    <v-img eager v-if="!isMobile" src="http://q61pr9lzt.bkt.clouddn.com/love-down.png"></v-img>
     <div class="text-center imgBig">
-      <v-dialog  v-model="dialog"  max-width="70vw">
-        <v-img :src="imgSrc" max-height="75vh" max-width="70vw">
-
-        </v-img>
+      <v-dialog v-model="dialog" max-width="70vw">
+        <v-img :src="imgSrc" max-height="75vh" max-width="70vw"></v-img>
       </v-dialog>
     </div>
   </div>
@@ -102,11 +99,20 @@
 import ClipBoard from "clipboard";
 import TimeLine from "./TimeLine";
 import Nav from "views/home/childComps/HomeNav";
+import { mapGetters } from "vuex";
 export default {
   name: "About",
   components: {
     Nav,
     TimeLine
+  },
+  computed: {
+    ...mapGetters(["isMobile"]),
+    bgcImg() {
+      return this.isMobile
+        ? "https://i.loli.net/2020/02/28/pOByiEdtJMmazxq.jpg"
+        : "https://i.loli.net/2020/02/28/YGmDf3UtqBCThLi.jpg";
+    }
   },
   mounted() {
     let clipboard = new ClipBoard(".icons");
@@ -114,7 +120,7 @@ export default {
   data() {
     return {
       dialog: false,
-      imgSrc:'',
+      imgSrc: "",
       textEmail: "点击拷贝:kagurakanaofficial☆qq.com",
       textQq: "点击拷贝:1278820830",
       textGithub: "点击拷贝:https://github.com/kagurakana",
@@ -127,7 +133,7 @@ export default {
       this[content] = "以拷贝到剪贴板";
     },
     showBigImg(src) {
-      this.imgSrc = src
+      this.imgSrc = src;
       this.dialog = true;
     }
   }
@@ -142,7 +148,7 @@ export default {
   width: 28px;
   height: 28px;
 }
-.imgBig{
+.imgBig {
   z-index: 99999;
 }
 .icons {

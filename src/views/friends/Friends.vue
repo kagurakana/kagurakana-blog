@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <Nav class="nav" />
-    <v-img src="~assets/img/love-up.jpg" width="100vw" min-height="100vh" class="img-fixed"></v-img>
+    <v-img :src="bgcImg" width="100vw" min-height="100vh" class="img-fixed"></v-img>
     <v-col cols="11" md="8" class="mx-auto">
       <v-card class="mx-auto friendsLink text-center" outlined>
         <v-card-title class="d-block">友链</v-card-title>
@@ -10,13 +10,13 @@
           <v-col>暂无╮(￣▽￣)╭</v-col>
         </v-row>
       </v-card>
-       <v-card class="mx-auto my-3 friendsLink" outlined>
-      <Comment />
-      <CommentList :blogID="''" />
-       </v-card>
+      <v-card class="mx-auto my-3 friendsLink" outlined>
+        <Comment />
+        <CommentList :blogID="''" />
+      </v-card>
     </v-col>
 
-    <v-img eager src="~assets/img/love-down.png"></v-img>
+    <v-img eager v-if="!isMobile" src="http://q61pr9lzt.bkt.clouddn.com/love-down.png"></v-img>
   </div>
 </template>
 
@@ -24,6 +24,7 @@
 import Comment from "components/common/comment/Comment";
 import CommentList from "components/common/comment/CommentList";
 import Nav from "views/home/childComps/HomeNav";
+import { mapGetters } from "vuex";
 export default {
   name: "About",
   components: {
@@ -33,6 +34,14 @@ export default {
   },
   data() {
     return {};
+  },
+  computed: {
+    ...mapGetters(["isMobile"]),
+    bgcImg() {
+      return this.isMobile
+        ? "https://i.loli.net/2020/02/28/pOByiEdtJMmazxq.jpg"
+        : "https://i.loli.net/2020/02/28/YGmDf3UtqBCThLi.jpg";
+    }
   },
   methods: {}
 };

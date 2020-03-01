@@ -12,7 +12,6 @@
           <div>blogTitle:{{item.title}}</div>
           <router-link :to="'/detail/'+item.blogId"><div>blogId:{{item.blogId}}</div></router-link>
           <div>isShow:{{item.isShow}}</div>
-          <div>isShow:{{item.avatar}}</div>
           <v-btn color="success" class="mx-3" @click.once="$emit('addToList',item)">通过</v-btn>
           <v-btn color="error" class="mx-3"  @click.once="$emit('deleteComment',item)">删除</v-btn>
         </v-col>
@@ -22,6 +21,7 @@
 </template>
 
 <script>
+import gravatar from 'gravatar'
 import { getCommentList } from "network/comment";
 import moment from "moment";
 export default {
@@ -51,7 +51,10 @@ export default {
   methods: {
     avatarSrc(item) {
       console.log(item.avatar)
-      return (item.avatar == null||item.avatar === "default")
+      if(item.avatar== null){
+        return gravatar.url(item.email, { s: '400', r: 'pg', d: 'mm' })
+      }
+      return item.avatar === "default"
         ? require("assets/img/default.png")
         : item.avatar;
     },

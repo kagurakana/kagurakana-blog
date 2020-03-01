@@ -11,11 +11,11 @@
             @click="pushRouter(blogShotCut.id)"
           >
             <v-row>
-              <v-col cols="3">
+              <v-col cols="12" sm="3">
                 <v-img
                   :src="blogShotCut.headPic"
-                  height="100px"
-                  width="150px"
+                  :height="isMobile?'256px':'100%'"
+                  :max-width="isMobile?'100%':'100%'"
                   lazy-src="~assets/img/loading.gif"
                 >
                   <template v-slot:placeholder>
@@ -30,24 +30,25 @@
                   </template>
                 </v-img>
               </v-col>
-              <v-col>
-                <div>{{blogShotCut.desc}}</div>
+              <v-col cols="12" sm="9">
+                <v-card-title class="title" tag="div" text-truncate>{{blogShotCut.title}}</v-card-title>
+                <v-card-subtitle>
+                  <div>{{blogShotCut.desc}}</div>
+                  <v-divider class="my-3"></v-divider>
+                  <v-chip
+                    class="mx-1 my-1"
+                    v-for="(tag, index) in blogShotCut.tags"
+                    :key="index"
+                    @click.native="pushRouterTag(tag)"
+                  >{{tag}}</v-chip>
+                </v-card-subtitle>
               </v-col>
             </v-row>
-            <v-card-title class="title" tag="div" text-truncate>{{blogShotCut.title}}</v-card-title>
-            <v-card-subtitle>
-              <v-chip
-                class="mx-1 my-1"
-                v-for="(tag, index) in blogShotCut.tags"
-                :key="index"
-                @click.native="pushRouterTag(tag)"
-              >{{tag}}</v-chip>
-            </v-card-subtitle>
           </v-card>
         </v-hover>
       </v-col>
     </v-row>
-    <v-snackbar color="blue" :timeout="timeout" v-model="routerErrTip" :top='isMobile'>
+    <v-snackbar color="blue" :timeout="timeout" v-model="routerErrTip" :top="isMobile">
       现在已经是{{nowRoute}}页了！！！ ({{second}})
       <v-btn color="gray" text @click="routerErrTip = false">
         <v-icon>mdi-close</v-icon>
@@ -58,18 +59,18 @@
 
 <script>
 import _ from "lodash";
-import {mapGetters} from 'vuex'
-import routerErrTipMixin from '@/mixins/routerErrTipMixin'
+import { mapGetters } from "vuex";
+import routerErrTipMixin from "@/mixins/routerErrTipMixin";
 export default {
   name: "BlogList",
-  mixins:[routerErrTipMixin],
+  mixins: [routerErrTipMixin],
   props: {
     blogList: {
-     type:Array
+      type: Array
     }
   },
   computed: {
-    ...mapGetters(['isMobile'])
+    ...mapGetters(["isMobile"])
   },
 
   methods: {
@@ -77,10 +78,9 @@ export default {
       this.$router.push("/detail/" + id);
     },
 
-
-    pushRouterTag(tag){
-      this.$router.push("/list/" + tag).catch(err=>{
-        this.debouncedShowErrTip(tag)
+    pushRouterTag(tag) {
+      this.$router.push("/list/" + tag).catch(err => {
+        this.debouncedShowErrTip(tag);
       });
     }
   }
