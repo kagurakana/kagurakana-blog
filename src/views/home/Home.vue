@@ -1,8 +1,9 @@
 <template>
   <div>
-    <HomeHeadPic />
+   <v-img width="100vw" class="background" height="100vh" src="https://i.loli.net/2020/03/02/1TzncGo2R3xwsuI.jpg"></v-img>
+      <HomeHeadPic />
     <HomeNav class="home-nav" />
-    <Content>
+    <Content id="content">
       <template v-slot:left>
         <LeftContent />
       </template>
@@ -30,6 +31,7 @@
 
 <script>
 import HomeHeadPic from "./childComps/HomeHeadPic";
+import _ from 'lodash'
 import HomeNav from "./childComps/HomeNav";
 import Content from "components/common/content/Content";
 import LeftContent from "./childComps/HomeContent/LeftContent";
@@ -56,17 +58,28 @@ export default {
         this.showTip('newUserRegisterTip');
       }
     });
+  
   },
   mounted() {
     this.$store.commit("resize");
-  },
+
+  //   window.onscroll =()=>{ 
+  //     this.debouncedScrollToContent()
+  // }
+      // window.addEventListener('scroll')
+      
+  }
+  ,
   data() {
     return {
       newUserRegisterTip: false,
       welcomeTip: false,
       checkedUsername: "",
       second: 0,
-      timeout: 6000
+      timeout: 6000,
+      top:0,
+      oldTop : 0,
+      debouncedScrollToContent :  _.debounce(()=>{this.scrollToContent()},500,{leading:true})
     };
   },
   computed:{
@@ -83,9 +96,21 @@ export default {
       setTimeout(() => {
         clearInterval(timer);
       }, this.timeout);
+    },
+      scrollToContent(){
+        this.top = document.scrollingElement.scrollTop
+      //位于主图
+      if(this.top < window.innerHeight){
+        // 向下滚动
+        if(this.top > this.oldTop){
+          this.$vuetify.goTo('#content', {duration:1000})
+        }
+      }
+      this.oldTop = this.top
     }
-  }
-};
+      
+    }
+  };
 </script>
 
 <style lang='scss' scoped>
@@ -93,5 +118,10 @@ export default {
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+.background{
+  position: fixed;
+  top: 0;
+  z-index: 0;
 }
 </style>

@@ -3,14 +3,14 @@
     <Nav class="nav" />
     <v-img :src="bgcImg" width="100vw" min-height="100vh" class="img-fixed"></v-img>
     <v-col cols="11" md="8" class="mx-auto">
-      <v-card class="mx-auto friendsLink text-center" outlined>
+      <v-card class="mx-auto friendsLink text-center" color="rgba(255,255,255,0.8)" outlined>
         <v-card-title class="d-block">友链</v-card-title>
         <v-card-text>可在评论区告诉我你的博客地址</v-card-text>
         <v-row class="pa-0 ma-0 text-center">
           <v-col>暂无╮(￣▽￣)╭</v-col>
         </v-row>
       </v-card>
-      <v-card class="mx-auto my-3 friendsLink" outlined>
+      <v-card color="rgba(255,255,255,0.8)" class="mx-auto my-3 friendsLink" outlined>
         <Comment />
         <CommentList :blogID="''" />
       </v-card>

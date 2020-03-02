@@ -3,7 +3,7 @@
     <Nav class="nav" />
     <v-img :src="bgcImg" width="100vw" min-height="100vh" class="img-fixed"></v-img>
     <v-col cols="11" md="8" class="mx-auto about-container">
-      <v-card class="mx-auto myInfo text-center" outlined>
+      <v-card color="rgba(255,255,255,0.8)" class="mx-auto myInfo text-center" outlined>
         <v-row class="pa-0 ma-0">
           <v-col cols="12" sm="auto">
             <v-img

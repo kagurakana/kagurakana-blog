@@ -4,7 +4,7 @@
     bottom
     right
     direction="top"
-    :open-on-hover="!isMobile"
+    :open-on-hover="false"
     transition="scale-transition"
   >
     <template v-slot:activator>
@@ -61,7 +61,7 @@ export default {
   name: "FloatingButton",
   data() {
     return {
-      fab: false,
+      fab: this.isMobile ? false : true,
       tab: null
     };
   },

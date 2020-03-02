@@ -4,6 +4,7 @@
 
 <script>
 import _ from "lodash";
+import { mapGetters } from 'vuex';
 export default {
   name: "",
   mounted() {
@@ -18,18 +19,22 @@ export default {
   data() {
     return {
       offsetTop: 0,
-      percent: 0
+      percent: 0,
     };
+  },
+
+  computed:{
+    ...mapGetters(['scrollData'])
   },
 
   methods: {
     scrollhandler() {
-      this.offsetTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
+      // this.offsetTop =
+      //   window.pageYOffset ||
+      //   document.documentElement.scrollTop ||
+      //   document.body.scrollTop;
       this.percent =
-        ((this.offsetTop + window.innerHeight) / document.body.offsetHeight) *
+        ((this.scrollData.top + window.innerHeight) / document.body.offsetHeight) *
         100;
     }
   }

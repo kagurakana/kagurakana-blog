@@ -19,6 +19,8 @@
           v-model="comment"
           color="indigo"
           auto-grow
+          :rows="rows"
+          :placeholder="replyPlaceholder"
           label="评论"
         ></v-textarea>
         <v-btn color="orange darken-1" @click="commitComment" :disabled="!valid" outlined>
@@ -44,7 +46,12 @@ export default {
   name: "Comment",
   props: {
     blogId: "",
-    replyId: ""
+    replyId: "",
+    rows:{
+      default:5
+    },
+    replyPlaceholder:'',
+    replyUsername:'',
   },
   data() {
     return {
@@ -80,7 +87,7 @@ export default {
   },
   created() {
     getLoginCheck().then(res => {
-      console.log(res);
+      // console.log(res);
       if (res.errno !== -1) {
         this.getUsername = true;
         this.getEmail = true;
@@ -97,9 +104,10 @@ export default {
         this.email,
         this.comment,
         this.replyId,
-        this.getEmail
+        this.replyUsername,
+        this.getEmail,//isRegisted
       ).then(res => {
-        console.log(res);
+        // console.log(res);
         if (res.data.errno !== -1) {
           this.comment = "";
           this.isShowTip = true;

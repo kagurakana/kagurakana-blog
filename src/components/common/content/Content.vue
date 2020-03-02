@@ -50,6 +50,7 @@ export default {
     flex: 1;
     // height: 50vh;
     background-color:$base-lightgray-color;
+    opacity: 0.2;
     // background-color: red;
     position: relative;
     z-index: 2;
@@ -59,6 +60,7 @@ export default {
     // height: 50vh;
     z-index: 2;
     position: relative;
+    opacity: 0.2;
     // background-color: red;
       background-color:$base-lightgray-color;
   }
@@ -67,6 +69,7 @@ export default {
     flex: 2;
     // background: blue;
     background-color: #fff;
+    
   
     // height: 100vh;
   }

@@ -4,7 +4,9 @@
 
     <Content>
       <template v-slot:mid>
-         <h1>{{tag}}</h1>
+        <v-img  class="align-center justify-center d-flex text-center" height="400px" src="https://i.loli.net/2020/03/01/pnsZHyfKrl5LR46.jpg">
+          <v-row class="justify-center"><h1 class="align-center d-flex text-center list-title justify-center">{{tag}}</h1></v-row>
+        </v-img>
         <!-- TODO：在这绑定数据 -->
         <QuickShow :quickShows="quickShowData" />
         <BlogList :blogList="blogListData" />
@@ -91,5 +93,11 @@ export default {
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+.list-title{
+  height: 200px;
+  width: 300px;
+  background-color: rgba($color: #fff, $alpha: 0.5);
+  border-radius: 25px;
 }
 </style>

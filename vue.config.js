@@ -8,7 +8,8 @@ module.exports = {
         "components": "@/components",
         "views": "@/views"
       }
-    }
+    },
+    "externals": { 'moment': 'moment' }
   },
 
   "css": {
@@ -25,7 +26,7 @@ module.exports = {
     "vuetify"
   ],
 
-  productionSourceMap: false,
+  productionSourceMap: true,
 
   css: {
     loaderOptions: {

@@ -1,11 +1,11 @@
 import { request } from './request'
 
-export function addComment(blogId, username, email, comment, replyId, isRegisted) {
+export function addComment(blogId, username, email, comment, replyId, replyUsername , isRegisted) {
   return request({
     url: '/comment/new',
     method: 'post',
     data: {
-      blogId, username, email, comment, replyId, isRegisted
+      blogId, username, email, comment, replyId, replyUsername , isRegisted
     }
   })
 }

@@ -10,10 +10,8 @@
         </v-col>
         <v-col cols="11" class="mx-auto">
           <v-textarea v-model="desc" label="desc"></v-textarea>
-          <v-row>
-             <input type="text " @paste="pasted" />
-            <v-col cols="6">
-              <input type="text " @paste="pasted" />
+          <v-row>  
+            <v-col cols="6">       
               <v-textarea v-model="content" auto-grow outlined label="content"></v-textarea>
             </v-col>
             <v-col cols="6">
@@ -75,9 +73,6 @@ export default {
         });
       }
     },
-    pasted(e) {
-      console.log(e);
-    }
   }
 };
 </script>

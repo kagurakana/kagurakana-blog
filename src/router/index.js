@@ -33,31 +33,34 @@ const routes = [
     component:()=>import('views/admin/CommentVerify')
   },
   {
+    path:'/detail/:id',
+    component:()=>import('views/blogs/BlogDetail')
+  },
+
+  {
     path:'/list/朋友',
     redirect:'/friends'
+  },
+  {
+    path:'/list/关于',
+    redirect:'/about'
+  },
+  {
+    path:'/list/:tag',
+    component:()=>import('views/blogs/List')
   },
   {
     path:'/friends',
     component:()=>import('views/friends/Friends')
   },
 
-  {
-    path:'/list/关于',
-    redirect:'/about'
-  },
+ 
   {
     path:'/about',
     component:()=>import('views/about/About')
   },
-  {
-    path:'/list/:tag',
-    component:()=>import('views/blogs/List')
-  },
+ 
   
-  {
-    path:'/detail/:id',
-    component:()=>import('views/blogs/BlogDetail')
-  },
 
 
 ]
