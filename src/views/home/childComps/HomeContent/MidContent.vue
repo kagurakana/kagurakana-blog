@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-mid">
     <!-- TODO 绑定数据 -->
     <MidSwapper :swiperData="swiperData" />
     <QuickShow :quickShows="quickShowData" />
@@ -22,6 +22,7 @@ export default {
     BlogList
   },
   created() {
+    //listData位于getListDataMixin中,为返回的博客list(title,desc,createTime,tags)数据
     this.getListData().then(res => {
       this.swiperData = this.listData.slice(0, 3);
       this.quickShowData = this.listData.slice(3, 6);
@@ -40,4 +41,7 @@ export default {
 </script>
 
 <style lang='scss'>
+.home-mid{
+  // padding-top: 10vh
+}
 </style>

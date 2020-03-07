@@ -4,11 +4,17 @@
 
     <Content>
       <template v-slot:mid>
-        <v-img  class="align-center justify-center d-flex text-center" height="400px" src="https://i.loli.net/2020/03/01/pnsZHyfKrl5LR46.jpg">
-          <v-row class="justify-center"><h1 class="align-center d-flex text-center list-title justify-center">{{tag}}</h1></v-row>
+        <v-img
+          class="align-center justify-center d-flex text-center"
+          height="400px"
+          src="https://i.loli.net/2020/03/01/pnsZHyfKrl5LR46.jpg"
+        >
+          <v-row class="justify-center">
+            <h1 class="align-center d-flex text-center list-title justify-center">{{tag}}</h1>
+          </v-row>
         </v-img>
         <!-- TODO：在这绑定数据 -->
-        <QuickShow :quickShows="quickShowData" />
+        <!-- <QuickShow :quickShows="quickShowData" /> -->
         <BlogList :blogList="blogListData" />
       </template>
     </Content>
@@ -18,7 +24,7 @@
 <script>
 import HomeNav from "views/home/childComps/HomeNav";
 import Content from "components/common/content/Content";
-import QuickShow from "components/common/quickShow/QuickShow";
+// import QuickShow from "components/common/quickShow/QuickShow";
 import BlogList from "components/common/blogList/BlogList";
 import { mapGetters } from "vuex";
 
@@ -28,22 +34,26 @@ export default {
   mixins: [getListDataMixin],
   created() {
     this.getUrlTag();
+    //listData位于getListDataMixin中,为返回的博客list(title,desc,createTime,tags)数据
     this.getListData(this.tag).then(res => {
-      this.quickShowData = this.listData.slice(0, 3);
-      this.blogListData = this.listData.slice(3);
+      this.blogListData = this.listData;
+      // if ((this.listData.length > 3)) {
+      //   this.quickShowData = this.listData.slice(0, 3);
+      //   this.blogListData = this.listData.slice(3);
+      // } else {
+      //   this.blogListData = this.listData
+      // }
     });
   },
   components: {
     Content,
-    QuickShow,
+    // QuickShow,
     HomeNav,
     BlogList
   },
   data() {
     return {
-      // tag: "",
-      // listData: [],
-      quickShowData: [],
+      // quickShowData: [],
       blogListData: []
     };
   },
@@ -73,8 +83,13 @@ export default {
     next();
     this.getUrlTag();
     this.getListData(this.tag).then(res => {
-      this.quickShowData = this.listData.slice(0, 3);
-      this.blogListData = this.listData.slice(3);
+      this.blogListData = this.listData;
+      // if ((this.listData.length > 3)) {
+      //   this.quickShowData = this.listData.slice(0, 3);
+      //   this.blogListData = this.listData.slice(3);
+      // } else {
+      //   this.blogListData = this.listData
+      // }
     });
   }
   // watch: {
@@ -94,7 +109,7 @@ export default {
   top: 0;
   z-index: 1000;
 }
-.list-title{
+.list-title {
   height: 200px;
   width: 300px;
   background-color: rgba($color: #fff, $alpha: 0.5);

@@ -9,10 +9,9 @@ export default new Vuex.Store({
     WIN_HEIGHT: window.screen.height,
     CLI_WIDTH: document.body.offsetWidth,
     CLI_HEIGHT: document.body.offsetHeight,
-    scrollData:{
-      top:0,
-      e:{},
-      direction:'',//up ,down, left, right 
+    user:{
+      username:'',
+      email:'',
     },
     search:'',
   },
@@ -24,11 +23,15 @@ export default new Vuex.Store({
     search(state,payload){
       state.search = payload.trim()
     },
-    scrolled(state,payload){
-      state.scrollData.TOP = payload.top
-      state.scrollData.e = payload.e
-      console.log(state.scrollData.TOP)
+    storeUserData(state,payload){
+      state.user.username = payload.username
+      state.user.email = payload.email
     }
+    // scrolled(state,payload){
+    //   state.scrollData.TOP = payload.top
+    //   state.scrollData.e = payload.e
+    //   console.log(state.scrollData.TOP)
+    // }
   },
   actions: {
   },

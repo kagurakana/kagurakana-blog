@@ -86,7 +86,7 @@
       </v-card>
       <TimeLine @imgClick="showBigImg" />
     </v-col>
-    <v-img eager v-if="!isMobile" src="http://q61pr9lzt.bkt.clouddn.com/love-down.png"></v-img>
+    <v-img eager v-if="!isMobile" src="https://i.loli.net/2020/02/28/WRBzpFoZVlHuC4S.png"></v-img>
     <div class="text-center imgBig">
       <v-dialog v-model="dialog" max-width="70vw">
         <v-img :src="imgSrc" max-height="75vh" max-width="70vw"></v-img>

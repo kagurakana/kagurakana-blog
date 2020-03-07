@@ -3,10 +3,16 @@
     <v-form v-model="valid">
       <v-row class="pa-0 ma-0">
         <v-col class="mx-auto" cols="11" md="6">
-          <v-text-field dense label="昵称" :rules="usernameRule" :disabled="getUsername" v-model="username"></v-text-field>
+          <v-text-field
+            dense
+            label="昵称"
+            :rules="usernameRule"
+            :disabled="getUsername"
+            v-model="username"
+          ></v-text-field>
         </v-col>
         <v-col class="mx-auto" cols="11" md="6">
-          <v-text-field dense  label="邮箱" :rules="emailRule" :disabled="getEmail" v-model="email"></v-text-field>
+          <v-text-field dense label="邮箱" :rules="emailRule" :disabled="getEmail" v-model="email"></v-text-field>
         </v-col>
       </v-row>
       <v-col cols="12">
@@ -47,18 +53,18 @@ export default {
   props: {
     blogId: "",
     replyId: "",
-    rows:{
-      default:5
+    rows: {
+      default: 5
     },
-    replyPlaceholder:'',
-    replyUsername:'',
+    replyPlaceholder: "",
+    replyUsername: ""
   },
   data() {
     return {
       valid: false,
-      username: "",
-      email: "",
       getEmail: false,
+      username: "",
+      email:'',
       getUsername: false,
       timeout: 6000,
       isShowTip: false,
@@ -83,18 +89,31 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["isMobile"])
+    ...mapGetters(["isMobile", "loginCheckUsername", "loginCheckEmail"])
   },
   created() {
-    getLoginCheck().then(res => {
-      // console.log(res);
-      if (res.errno !== -1) {
-        this.getUsername = true;
-        this.getEmail = true;
-        this.username = res.data.username;
-        this.email = res.data.email;
-      }
-    });
+    if (this.loginCheckUsername === "") {
+      //未登录,发送登陆请求
+      getLoginCheck().then(res => {
+        if (res.errno !== -1) {
+          //登陆成功
+          this.getUsername = true;
+          this.getEmail = true;
+          this.username = res.data.username;
+          this.email = res.data.email;
+          this.$store.commit("storeUserData", {
+            username: res.data.username,
+            email: res.data.email
+          });
+        }
+      });
+    } else {
+      //已登录过,从vuex中获取登录信息
+      this.getUsername = true;
+      this.getEmail = true;
+      this.username = this.loginCheckUsername;
+      this.email = this.loginCheckEmail;
+    }
   },
   methods: {
     commitComment() {
@@ -105,7 +124,7 @@ export default {
         this.comment,
         this.replyId,
         this.replyUsername,
-        this.getEmail,//isRegisted
+        this.getEmail //isRegisted
       ).then(res => {
         // console.log(res);
         if (res.data.errno !== -1) {

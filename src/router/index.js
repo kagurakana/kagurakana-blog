@@ -6,7 +6,10 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '',
-    redirect:'/home'
+    redirect:'/home',
+    meta:{
+      title:'神楽花菜OFFICIAL'
+    }
   },
   {
     path:'/home',
@@ -64,6 +67,8 @@ const routes = [
 
 
 ]
+
+document.title = "神楽花菜OFFICIAL";
 
 const router = new VueRouter({
   mode: 'history',

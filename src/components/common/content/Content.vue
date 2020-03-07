@@ -49,8 +49,8 @@ export default {
   .left {
     flex: 1;
     // height: 50vh;
-    background-color:$base-lightgray-color;
-    opacity: 0.2;
+     background-color:rgba($base-lightgray-color,0.2);
+    // opacity: 0.2;
     // background-color: red;
     position: relative;
     z-index: 2;
@@ -60,15 +60,17 @@ export default {
     // height: 50vh;
     z-index: 2;
     position: relative;
-    opacity: 0.2;
+    // opacity: 0.2;
     // background-color: red;
-      background-color:$base-lightgray-color;
+      background-color:rgba($base-lightgray-color,0.2);
   }
   .mid {
     padding-top: 10px;
     flex: 2;
+    // opacity: 0.5;
+    background-color: rgba(#fff,0.4);
     // background: blue;
-    background-color: #fff;
+    // background-color: #fff;
     
   
     // height: 100vh;

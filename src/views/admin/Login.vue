@@ -28,11 +28,10 @@
         </v-hover>
       </v-row>
 
-      <v-snackbar color="blue" :timeout="timeout" v-model="successRegiste" :top='isMobile'>
+      <v-snackbar color="blue" :timeout="timeout" v-model="successRegiste" :top="isMobile">
         {{checkedUsername}}欢迎回来~~ {{second}} 秒后跳转首页
         <v-btn color="lime" text @click="successRegiste = false">Close</v-btn>
       </v-snackbar>
-
     </v-img>
   </div>
 </template>
@@ -45,29 +44,38 @@ export default {
   data() {
     return {
       valid: false,
-      password: "",
+      password: "", //text绑定的用户名
       username: "",
       pcSrc: require("assets/img/home_head_pic.jpg"),
       mobileSrc: require("assets/img/head_pic_mobile.jpg"),
-      second: 0,
-      timeout: 3000,
-      checkedUsername: "",
-      successRegiste: false
+      second: 0, //tip显示的时间
+      timeout: 3000, //tip的超时时间
+      checkedUsername: "", //成功注册的用户名
+      successRegiste: false //注册成功,显示tip
     };
   },
   computed: {
-    ...mapGetters(["isMobile"]),
+    ...mapGetters(["isMobile", "loginCheckUsername"]),
     imgSrc() {
       return this.isMobile ? this.mobileSrc : this.pcSrc;
     }
   },
   created() {
-    getLoginCheck().then(res => {
-      if (res.errno !== -1) {
-        this.checkedUsername = res.data.username;
-        this.showBar();
-      }
-    });
+    if (this.loginCheckUsername === "") {
+      getLoginCheck().then(res => {
+        if (res.errno !== -1) {
+          this.checkedUsername = res.data.username;
+          this.$store.commit("storeUserData", {
+            username: res.data.username,
+            email: res.data.email
+          });
+          this.showBar();
+        }
+      });
+    } else {
+      this.checkedUsername = this.loginCheckUsername;
+      this.showBar();
+    }
   },
   methods: {
     postData() {
@@ -80,6 +88,7 @@ export default {
       });
     },
     showBar() {
+      //显示tip
       this.successRegiste = true;
       this.second = this.timeout / 1000;
       let timer = setInterval(() => {
@@ -94,6 +103,7 @@ export default {
       this.$router.push("/register");
     },
     submitByEnter() {
+      //监听回车按键
       this.$refs.login.$el.click();
     }
   }

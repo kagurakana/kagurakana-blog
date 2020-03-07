@@ -26,7 +26,7 @@ module.exports = {
     "vuetify"
   ],
 
-  productionSourceMap: true,
+  // productionSourceMap: true,
 
   css: {
     loaderOptions: {

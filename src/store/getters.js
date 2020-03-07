@@ -1,3 +1,5 @@
+import { getValidUsername } from "@/network/user"
+
 export default {
   winWidth(state) {
     return state.WIN_WIDTH
@@ -14,5 +16,11 @@ export default {
   },
   scrollData(state){
     return state.scrollData
+  },
+  loginCheckUsername(state){
+    return state.user.username
+  },
+  loginCheckEmail(state){
+    return state.user.email
   }
 }

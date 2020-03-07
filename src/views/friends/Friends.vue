@@ -16,7 +16,7 @@
       </v-card>
     </v-col>
 
-    <v-img eager v-if="!isMobile" src="http://q61pr9lzt.bkt.clouddn.com/love-down.png"></v-img>
+    <v-img eager v-if="!isMobile" src="https://i.loli.net/2020/02/28/WRBzpFoZVlHuC4S.png"></v-img>
   </div>
 </template>
 

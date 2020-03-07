@@ -1,4 +1,5 @@
 <template>
+<!-- 后台管理页 -->
   <div>
     <h1>{{text}}</h1>
     <v-col cols="12" md="4">

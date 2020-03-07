@@ -58,10 +58,6 @@
                     </template>
                   </v-checkbox>
                   <v-checkbox @click="clearAvatar" label="使用默认头像" v-model="useDefaultAvator"></v-checkbox>
-                  <!-- <v-row v-if="useDefaultAvator" class="default-avatar">
-                    <v-img class="mx-2" width="60px" max-height="60px" max-width="60px" height="60px" src="~assets/img/default1.jpg"></v-img>
-                    <v-img  class="mx-2" width="60px" height="60px" max-height="60px" max-width="60px" src="~assets/img/default2.jpg"></v-img>
-                  </v-row>-->
                   <v-text-field
                     v-model="avatar"
                     @input="setRealAvator"
@@ -135,7 +131,7 @@ export default {
 
       username: "",
       usernameHint: "中文√英文√数字√下划线√",
-      usernameLoading: false,
+      usernameLoading: false, //检查是否重复中的loading样式
       nameRule: [
         v => !!v || "输入你的名字(=・ω・=)",
         v => (v && v.length < 15) || "名字太长啦，要被挤爆啦(╯°口°)╯(┴—┴",
@@ -150,7 +146,7 @@ export default {
         v => /.+@.+\..+/.test(v) || "无效的邮箱❌"
       ],
       emailHint: "",
-      emailLoading: false,
+      emailLoading: false, //检查是否重复中的loading样式
       emailErr: "",
       avatarRule: [
         v =>
@@ -158,16 +154,16 @@ export default {
           v == false ||
           "格式不正确(.png|.jpg|.jpeg|.webp)"
       ],
-      haveAvatar: false,
-      useDefaultAvator: false,
-      avatar: "",
-      realAvator: "",
-      avatarPrased: false,
+      haveAvatar: false, //拥有gravatar
+      useDefaultAvator: false, //使用默认头像
+      avatar: "", //v-moudle绑定的输入内容
+      realAvator: "", //用于解析的头像,在头像url输入框失焦时绑定
+      avatarPrased: false, //已经解析好的头像,准备展示在界面上
       avatarErr: "",
       loading: false,
       //验证重复
-      validUserName: false,
-      validEmail: false,
+      validUserName: false, //用户名可用
+      validEmail: false, //邮箱可用
 
       successRegiste: false,
       timeout: 3000,
@@ -188,6 +184,7 @@ export default {
         ? require("assets/img/head_pic_mobile.jpg")
         : require("assets/img/home_head_pic.jpg");
     },
+    //注册按钮可用
     btnValid() {
       return (
         this.valid &&
@@ -198,6 +195,7 @@ export default {
     }
   },
   methods: {
+    //注册成功,返回成功信息,展示tip并设置关闭延迟和路由跳转
     postRegister() {
       this.loading = true;
       this.avatar = this.useDefaultAvator ? "default" : this.avatar;
@@ -218,6 +216,7 @@ export default {
     pushRouterLogin() {
       this.$router.push("/login");
     },
+    //头像url失焦绑定解析所用的url
     setRealAvator() {
       if (/\.(png|jpg|gif|jpeg|webp)$/.test(this.avatar)) {
         this.realAvator = this.avatar;
@@ -225,6 +224,7 @@ export default {
         this.realAvator = "";
       }
     },
+    //username input检测用户名是否可用
     checkUsername() {
       if (this.username) {
         this.validUserName = false;
@@ -242,6 +242,7 @@ export default {
         });
       }
     },
+    //email input检测用户名是否可用
     checkEmail() {
       if (this.email) {
         this.validEmail = false;
@@ -259,6 +260,7 @@ export default {
         });
       }
     },
+    //点击拥有gravatar或默认头像CheckBox后清空头像,以免后台存储错误数据
     clearAvatar() {
       this.avatar = "";
       this.realAvator = "";

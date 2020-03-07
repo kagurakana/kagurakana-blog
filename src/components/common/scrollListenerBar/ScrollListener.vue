@@ -22,19 +22,14 @@ export default {
       percent: 0,
     };
   },
-
-  computed:{
-    ...mapGetters(['scrollData'])
-  },
-
   methods: {
     scrollhandler() {
-      // this.offsetTop =
-      //   window.pageYOffset ||
-      //   document.documentElement.scrollTop ||
-      //   document.body.scrollTop;
+      this.offsetTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
       this.percent =
-        ((this.scrollData.top + window.innerHeight) / document.body.offsetHeight) *
+        ((this.offsetTop + window.innerHeight) / document.body.offsetHeight) *
         100;
     }
   }

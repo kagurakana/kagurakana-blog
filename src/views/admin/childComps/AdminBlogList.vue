@@ -91,6 +91,7 @@ export default {
       postDeleteBlog(id).then(res => {
         if (res.errno !== -1) {
           if (index !== -1) {
+            //数组响应式方法
             this.blogList.splice(index, 1);
           }
         }

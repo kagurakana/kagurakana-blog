@@ -7,8 +7,8 @@
           <div class="comment-detail">
             <div class="username">{{item.username}}</div>
             <div class="date">{{fommatTime(item.createTime)}}</div>
-            <router-link v-if="item.blogId!=null"  :to="'/detail/'+item.blogId">
-            <div class="blogID-text">回复的博客ID:{{item.blogId}}</div>
+            <router-link v-if="item.blogId!=null" :to="'/detail/'+item.blogId">
+              <div class="blogID-text">回复的博客ID:{{item.blogId}}</div>
             </router-link>
             <div class="comment">{{item.comment}}</div>
             <v-btn
@@ -98,36 +98,39 @@ export default {
     blogId: "",
     isAdmin: false
   },
-  data() {
-    return {
-      commentLists: [],
-      replyShowPosition: {},
-      replyUsername: ""
-    };
-  },
-  computed: {
-    // 取得所有激活(显示的)评论
-    activeComment() {
-      return this.isAdmin
-        ? this.commentLists
-        : this.commentLists.filter(e => e.isShow === 1);
-    },
-    // 取得显示评论中的主题评论(区别于回复)
-    activeCommentComment() {
-      return this.activeComment.filter(e => e.replyId == "");
-    }
-  },
   created() {
     getCommentList(this.blogId).then(res => {
       // console.log(res);
       this.commentLists = res.data;
     });
   },
+  data() {
+    return {
+      commentLists: [],
+      replyShowPosition: {}, //决定了哪个评论主题下的回复框显示
+      replyUsername: ""
+    };
+  },
+  computed: {
+    // 取得所有激活(显示通过审核的)评论
+    activeComment() {
+      return this.isAdmin
+        ? this.commentLists
+        : this.commentLists.filter(e => e.isShow === 1);
+    },
+    // 取得显示评论中的主题评论(区别于回复),若为主题评论而不是回复,replyId=''
+    activeCommentComment() {
+      return this.activeComment.filter(e => e.replyId == "");
+    }
+  },
+
   methods: {
     avatarSrc(item) {
       if (item.avatar == null) {
+        //未注册用户在评论时头像从gravatar获取.
         return gravatar.url(item.email, { s: "400", r: "pg", d: "mm" });
       }
+      //选择默认头像的注册用户
       return item.avatar === "default"
         ? require("assets/img/default.png")
         : item.avatar;
@@ -135,11 +138,13 @@ export default {
     fommatTime(date) {
       return moment(date).format("YYYY-MM-DD HH:mm:ss");
     },
+    /*根据不同的replyID显示不同位置的回复框*/
     setReply(id, username) {
-      this.replyShowPosition = {};
-      this.replyUsername = username;
-      this.replyShowPosition[id] = true;
+      this.replyShowPosition = {}; //重置对象
+      this.replyUsername = username; //重置回复target名字
+      this.replyShowPosition[id] = true; //显示对应评论主题id下的回复框
     },
+    /** 获取对应评论主题下的回复列表 */
     getReplys(item) {
       if (this.isAdmin) {
         return this.commentLists.filter(e => e.replyId === item.id);
@@ -183,8 +188,8 @@ export default {
   color: darkgray;
   padding-bottom: 5px;
 }
-.blogID-text{
-    font-size: 1rem;
+.blogID-text {
+  font-size: 1rem;
   color: rgb(152, 152, 250);
   padding-bottom: 5px;
 }

@@ -44,12 +44,6 @@ export default {
     window.onresize = () => {
       commitResize();
     };
-    // 全局滚动监听
-    window.onscroll = (e) => {
-      console.log('aaaa');
-      // this.$store.commit('scrolled',{e,top:document.scrollingElement.scrollTop})
-    }
-    this.$nextTick()
   },
 
   components: {
@@ -58,9 +52,4 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.liner-bar {
-  position: fixed;
-  top: 0;
-  z-index: 10000;
-}
 </style>
