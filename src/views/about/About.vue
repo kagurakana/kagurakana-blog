@@ -14,7 +14,6 @@
             ></v-img>
           </v-col>
           <v-col class="text-center">
-            <h1></h1>
             <h2>就读于武汉工程大学[大三]</h2>
             <p class="py-2 ma-0">喜欢的事情:睡觉，看番，玩怪猎，逛b站</p>
             <p class="py-1 ma-0">单推凑阿库娅</p>
@@ -51,7 +50,7 @@
                       v-on="on"
                       class="icons"
                       data-clipboard-text="https://github.com/kagurakana"
-                    >mdi-github-circle</v-icon>
+                    >mdi-github</v-icon>
                   </template>
                   <span>{{textGithub}}</span>
                 </v-tooltip>
@@ -81,12 +80,13 @@
                 </v-tooltip>
               </v-row>
             </v-card-actions>
+            <v-card-text>本站文章全部采用知识共享署名-非商业性使用-相同方式共享4.0许可协议进行许可。</v-card-text>
           </v-col>
-        </v-row>
+        </v-row> 
       </v-card>
       <TimeLine @imgClick="showBigImg" />
     </v-col>
-    <v-img eager v-if="!isMobile" src="https://i.loli.net/2020/02/28/WRBzpFoZVlHuC4S.png"></v-img>
+    <v-img eager v-if="!isMobile" src="https://cdn.kagurakana.xyz/love-down.png"></v-img>
     <div class="text-center imgBig">
       <v-dialog v-model="dialog" max-width="70vw">
         <v-img :src="imgSrc" max-height="75vh" max-width="70vw"></v-img>
@@ -110,8 +110,8 @@ export default {
     ...mapGetters(["isMobile"]),
     bgcImg() {
       return this.isMobile
-        ? "https://i.loli.net/2020/02/28/pOByiEdtJMmazxq.jpg"
-        : "https://i.loli.net/2020/02/28/YGmDf3UtqBCThLi.jpg";
+        ? "https://cdn.kagurakana.xyz/head_pic_mobile.jpg"
+        : "https://cdn.kagurakana.xyz/about-up.jpg";
     }
   },
   mounted() {
@@ -119,7 +119,7 @@ export default {
   },
   data() {
     return {
-      dialog: false,
+      dialog: false,//点击查看大图
       imgSrc: "",
       textEmail: "点击拷贝:kagurakanaofficial☆qq.com",
       textQq: "点击拷贝:1278820830",

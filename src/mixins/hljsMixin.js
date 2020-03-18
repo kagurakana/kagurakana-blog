@@ -12,10 +12,10 @@ export default {
   },
   computed: {
     compiledMarkdown() {
-      // this.articleDetail.context数据
-      if(this.blog&&this.blog.content){
-        return marked(htmlRestore(this.blog.content))
-      }else{
+      // this.articleDetail.context数据 和post中的实时markdown解析
+      if (this.blog && this.blog.content) {
+        return marked(this.blog.content)
+      } else {
         return marked(this.content)
       }
     }

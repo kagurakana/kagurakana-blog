@@ -1,13 +1,13 @@
 import { request } from './request'
 import { hmacSha } from '@/utils/cryp'
-  class User {
-    constructor(username, password, email, avatar) {
-      this.username = username
-      this.password = password
-      this.email = email
-      this.avatar = avatar
-    }
+class User {
+  constructor(username, password, email, avatar) {
+    this.username = username
+    this.password = password
+    this.email = email
+    this.avatar = avatar
   }
+}
 //测试用户名唯一性
 export function getValidUsername(username) {
   return request({
@@ -53,10 +53,28 @@ export function postRegister(username, password, email, avatar) {
     }
   })
 }
-//前台登录认证
-export function getLoginCheck(){
+//添加友链
+export function postAddFriendLink(avatar, name, URL, bio) {
   return request({
-    method:'get',
-    url:'user/logincheck'
+    method: 'post',
+    url: '/user/addlink',
+    data: {
+      avatar, name, URL, bio
+    }
+  })
+}
+//get友链
+export function getFriendLink() {
+  return request({
+    method: 'get',
+    url: '/user/getlink',
+  })
+}
+
+//前台登录认证res.data.isAdmin
+export function getLoginCheck() {
+  return request({
+    method: 'get',
+    url: 'user/logincheck'
   })
 }

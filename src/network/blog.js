@@ -10,6 +10,15 @@ export function postNewBlog(headPic, title, tags, desc, content) {
   })
 }
 
+export function postUpdateBlog(id, headPic, title, tags, desc, content) {
+  return request({
+    method: 'post',
+    url: '/blog/update',
+    data: {
+      id, headPic, title, tags, desc, content
+    }
+  })
+}
 export function getBlogList(tags, search) {
   return request({
     method: 'get',
@@ -31,11 +40,11 @@ export function getBlogDetail(id) {
   })
 }
 
-export function postDeleteBlog(id){
+export function postDeleteBlog(id) {
   return request({
-    method:"post",
-    url:'blog/delete',
-    data:{
+    method: "post",
+    url: '/blog/delete',
+    data: {
       id
     }
   })

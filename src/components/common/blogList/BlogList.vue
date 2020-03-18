@@ -4,6 +4,7 @@
       <v-col v-for="(blogShotCut, index)  in blogList" :key="index" sm="12" cols="12">
         <v-hover v-slot:default="{ hover }" close-delay="200" open-delay="100">
           <v-card
+            color="rgba(255,255,255,0.85)"
             class="pa-2"
             :elevation="hover?12:2"
             :class="{'on-hover':hover}"
@@ -39,7 +40,7 @@
                     class="mx-1 my-1"
                     v-for="(tag, index) in blogShotCut.tags"
                     :key="index"
-                    @click.native="pushRouterTag(tag)"
+                    @click.stop="pushRouterTag(tag)"
                   >{{tag}}</v-chip>
                 </v-card-subtitle>
               </v-col>

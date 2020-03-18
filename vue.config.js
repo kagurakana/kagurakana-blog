@@ -34,5 +34,7 @@ module.exports = {
         prependData: '@import "~@/assets/css/var.scss";'
       }
     }
-  }
+  },
+
+  productionSourceMap: false
 }

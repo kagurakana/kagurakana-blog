@@ -17,6 +17,7 @@
     "install": "^0.13.0",
     "lodash": "^4.17.15",
     "marked": "^0.8.0",
+    "qiniu-js": "^2.5.5",
     "sass": "^1.25.0",
     "sass-loader": "^8.0.2",
     "sass-node": "^4.11.2",

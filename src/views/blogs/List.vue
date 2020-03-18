@@ -1,10 +1,9 @@
 <template>
   <div>
     <HomeNav class="home-nav" />
-
-    <Content>
+    <Content class="content">
       <template v-slot:mid>
-        <v-img
+        <!-- <v-img
           class="align-center justify-center d-flex text-center"
           height="400px"
           src="https://i.loli.net/2020/03/01/pnsZHyfKrl5LR46.jpg"
@@ -12,12 +11,18 @@
           <v-row class="justify-center">
             <h1 class="align-center d-flex text-center list-title justify-center">{{tag}}</h1>
           </v-row>
-        </v-img>
+        </v-img>-->
         <!-- TODO：在这绑定数据 -->
         <!-- <QuickShow :quickShows="quickShowData" /> -->
         <BlogList :blogList="blogListData" />
       </template>
     </Content>
+    <v-img
+      width="100vw"
+      class="background"
+      height="100vh"
+      src="https://cdn.kagurakana.xyz/DpumTcUX4AEvMfp.jpg"
+    ></v-img>
   </div>
 </template>
 
@@ -43,6 +48,9 @@ export default {
       // } else {
       //   this.blogListData = this.listData
       // }
+    });
+    this.$nextTick(() => {
+       window.scrollTo({top:0,behavior:"smooth"})
     });
   },
   components: {
@@ -80,10 +88,13 @@ export default {
   },
 
   beforeRouteUpdate(to, from, next) {
+    
     next();
+    window.scrollTo({ top: 0, behavior: "smooth" });
     this.getUrlTag();
     this.getListData(this.tag).then(res => {
       this.blogListData = this.listData;
+
       // if ((this.listData.length > 3)) {
       //   this.quickShowData = this.listData.slice(0, 3);
       //   this.blogListData = this.listData.slice(3);
@@ -114,5 +125,14 @@ export default {
   width: 300px;
   background-color: rgba($color: #fff, $alpha: 0.5);
   border-radius: 25px;
+}
+.content {
+  position: relative;
+  z-index: 1;
+}
+.background {
+  position: fixed;
+  top: 0;
+  z-index: 0;
 }
 </style>

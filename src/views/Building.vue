@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img src="~assets/img/home_head_pic.jpg" height="100vh">
+    <v-img src="https://cdn.kagurakana.xyz/home_head_pic.jpg" height="100vh">
       <v-row align="center" justify="center" class="fill-height">
         <v-col>
           <v-col cols="12">

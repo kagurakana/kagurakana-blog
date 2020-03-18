@@ -5,7 +5,9 @@
         <v-col cols="12" class="d-flex pa-0 ma-0">
           <v-img width="60px" class="avatar" max-width="60px" height="60px" :src="avatarSrc(item)"></v-img>
           <div class="comment-detail">
-            <div class="username">{{item.username}}</div>
+            <a :href="item.url">
+              <div class="username">{{item.username}}</div>
+            </a>
             <div class="date">{{fommatTime(item.createTime)}}</div>
             <router-link v-if="item.blogId!=null" :to="'/detail/'+item.blogId">
               <div class="blogID-text">回复的博客ID:{{item.blogId}}</div>
@@ -15,7 +17,7 @@
               text
               small
               color="light-blue darken-3"
-              @click="setReply(item.id,item.username)"
+              @click="setReply(item.id,item.id,item.username)"
               class="my-3"
             >回复</v-btn>
           </div>
@@ -36,7 +38,10 @@
           ></v-img>
           <v-col :cols="isAdmin?10:11" class="pl-2 ma-0">
             <div>
-              <div class="username">{{reply.username}}</div>
+              <a :href="item.url">
+                <div class="username">{{reply.username}}</div>
+              </a>
+              <!-- TODO: 绑定id 添加混动 -->
               <div class="reply-span">回复:{{reply.replyUsername}}</div>
               <div class="date">{{fommatTime(reply.createTime)}}</div>
               <div class="comment">{{reply.comment}}</div>
@@ -44,7 +49,7 @@
                 text
                 small
                 color="light-blue darken-3"
-                @click="setReply(item.id,reply.username)"
+                @click="setReply(item.id,reply.id,reply.username)"
                 class="my-3"
               >回复</v-btn>
             </div>
@@ -60,13 +65,15 @@
           </v-col>
         </v-col>
         <!-- 回复input -->
-        <v-col v-if="replyShowPosition[item.id]==true" class="mx-auto pa-0 my-0" cols="12">
+        <v-col  :id="'comment'+item.id" v-show="replyShowPosition[item.id]==true" class="mx-auto pa-0 my-0" cols="12">
           <v-col class="mx-auto pa-0 my-0" cols="10">
             <Comment
+              :blogId="item.blogId"
               :rows="2"
               :replyPlaceholder="'回复 '+replyUsername"
               :replyId="item.id"
               :replyUsername="replyUsername"
+              :replyCommentId="replyCommentId"
             />
           </v-col>
         </v-col>
@@ -108,7 +115,8 @@ export default {
     return {
       commentLists: [],
       replyShowPosition: {}, //决定了哪个评论主题下的回复框显示
-      replyUsername: ""
+      replyUsername: "",
+      replyCommentId: ""
     };
   },
   computed: {
@@ -138,20 +146,29 @@ export default {
     fommatTime(date) {
       return moment(date).format("YYYY-MM-DD HH:mm:ss");
     },
-    /*根据不同的replyID显示不同位置的回复框*/
-    setReply(id, username) {
+    /*根据不同的replyID显示不同位置的回复框,设置回复评论的id*/
+    setReply(mainCommentId, replyCommentId, username) {
+      console.log(this.$refs)
       this.replyShowPosition = {}; //重置对象
       this.replyUsername = username; //重置回复target名字
-      this.replyShowPosition[id] = true; //显示对应评论主题id下的回复框
-    },
+      // this.
+      this.replyCommentId = replyCommentId; //设置回复的评论id
+      this.replyShowPosition[mainCommentId] = true; //显示对应评论主题id下的回复框
+      this.$nextTick(()=>{
+        this.$vuetify.goTo("#comment"+mainCommentId,{
+          duration:1000,
+          offset:80,
+        })
+      })
+   },
     /** 获取对应评论主题下的回复列表 */
     getReplys(item) {
       if (this.isAdmin) {
-        return this.commentLists.filter(e => e.replyId === item.id);
+        return this.commentLists.filter(e => e.replyId === item.id).reverse();
       } else {
-        return this.commentLists.filter(
-          e => e.replyId === item.id && e.isShow == 1
-        );
+        return this.commentLists
+          .filter(e => e.replyId === item.id && e.isShow == 1)
+          .reverse();
       }
     }
   }

@@ -24,6 +24,11 @@ export default {
     return {
       timelines: [
         {
+          img: "https://cdn.kagurakana.xyz/JHCvDCqov7.gif",
+          title: "markdown图片拖拽上传实时解析",
+          date: "2020年3月7日"
+        },
+        {
           img: "https://i.loli.net/2020/02/27/lo2HhjYNg5dEZ8p.jpg",
           title: "关于页面开发完成",
           date: "2020年2月27日"

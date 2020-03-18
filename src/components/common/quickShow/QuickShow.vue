@@ -4,6 +4,7 @@
       <v-col v-for="(quickShow, index1) in quickShows" :key="index1" md="4" cols="12">
         <v-hover v-slot:default="{ hover }" close-delay="200" open-delay="100">
           <v-card
+            color="rgba(255,255,255,0.85)"
             :elevation="hover?12:2"
             min-height="100%"
             @click.native="pushRouter(quickShow.id)"
@@ -11,7 +12,7 @@
             <v-img
               :src="quickShow.headPic"
               height="256px"
-              max-width='100%'
+              max-width="100%"
               lazy-src="~assets/img/loading.gif"
               @load="isMounted = true"
             >
@@ -89,7 +90,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-*{
+* {
   cursor: pointer;
 }
 .one-line {

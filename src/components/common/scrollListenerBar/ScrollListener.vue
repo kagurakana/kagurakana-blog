@@ -4,22 +4,21 @@
 
 <script>
 import _ from "lodash";
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
-  name: "",
+  name: "ScrollListener",
   mounted() {
-    const throttledScrollHandler = _.throttle(() => {
-      this.scrollhandler();
-    }, 50);
+    const throttledScrollHandler = _.throttle(this.scrollhandler, 50);
     window.onscroll = () => {
       // debouncedScrollHandler()
-      throttledScrollHandler()
+      throttledScrollHandler();
     };
+    this.percent = 0;
   },
   data() {
     return {
       offsetTop: 0,
-      percent: 0,
+      percent: 0
     };
   },
   methods: {
@@ -32,7 +31,15 @@ export default {
         ((this.offsetTop + window.innerHeight) / document.body.offsetHeight) *
         100;
     }
-  }
+  },
+  activated() {
+    const throttledScrollHandler = _.throttle(this.scrollhandler, 50);
+    window.onscroll = () => {
+      // debouncedScrollHandler()
+      throttledScrollHandler();
+    };
+    this.percent = 0;
+  },
 };
 </script>
 

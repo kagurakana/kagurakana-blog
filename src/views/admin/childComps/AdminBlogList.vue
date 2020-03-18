@@ -87,6 +87,10 @@ export default {
       });
     },
 
+    updateBlog(id){
+      this.$router.push('/admin/new/'+id)
+    },
+
     deleteBlog(index, id) {
       postDeleteBlog(id).then(res => {
         if (res.errno !== -1) {

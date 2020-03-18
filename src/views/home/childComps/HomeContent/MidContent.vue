@@ -4,6 +4,24 @@
     <MidSwapper :swiperData="swiperData" />
     <QuickShow :quickShows="quickShowData" />
     <BlogList :blogList="blogListData" />
+    <v-col cols="12" class="beian text-center">
+      <a
+        target="_blank"
+        href="http://beian.miit.gov.cn/"
+        style="display:block;text-decoration:none;height:20px;line-height:20px;"
+      >
+        <p style="height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#fff;">鄂ICP备20002676号</p>
+      </a>
+      <a
+        target="_blank"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011502001189"
+        style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"
+      >
+        <p style="height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#fff;">
+          <img src="~assets/img/beian.png" />鄂公网安备 42011502001189号
+        </p>
+      </a>
+    </v-col>
   </div>
 </template>
 
@@ -41,7 +59,11 @@ export default {
 </script>
 
 <style lang='scss'>
-.home-mid{
+.home-mid {
   // padding-top: 10vh
+}
+.beian {
+  position: relative;
+  z-index: 2;
 }
 </style>

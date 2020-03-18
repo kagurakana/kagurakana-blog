@@ -27,6 +27,11 @@ const routes = [
     path:'/admin/new',
     component:()=>import('views/admin/BlogPost')
   },
+  //更新
+  {
+    path:'/admin/new/:id',
+    component:()=>import('views/admin/BlogPost')
+  },
   {
     path:'/admin/detail',
     component:()=>import('views/admin/BlogCtrlDetail')
@@ -34,6 +39,10 @@ const routes = [
   {
     path:'/admin/comment',
     component:()=>import('views/admin/CommentVerify')
+  },
+  {
+    path:'/admin/addlink',
+    component:()=>import('views/admin/AddLink')
   },
   {
     path:'/detail/:id',

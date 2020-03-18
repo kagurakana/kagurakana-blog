@@ -181,8 +181,8 @@ export default {
     ...mapGetters(["isMobile"]),
     imgSrc() {
       return this.isMobile
-        ? require("assets/img/head_pic_mobile.jpg")
-        : require("assets/img/home_head_pic.jpg");
+        ? "https://cdn.kagurakana.xyz/head_pic_mobile.jpg"
+        : "https://cdn.kagurakana.xyz/home_head_pic.jpg";
     },
     //注册按钮可用
     btnValid() {

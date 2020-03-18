@@ -1,8 +1,8 @@
 <template>
   <v-app id="app">
-    <!-- <keep-alive include="Home"> -->
+    <keep-alive include="Home">
     <router-view></router-view>
-    <!-- </keep-alive> -->
+    </keep-alive>
     <!-- <router-view :key="$route.fullPath"></router-view> -->
     <FloatingButton />
   </v-app>
@@ -21,7 +21,7 @@ export default {
         pluginRootPath: "live2dw/",
         pluginJsPath: "lib/",
         pluginModelPath: "live2d-widget-model-koharu/assets/",
-        tagMode: true,
+        tagMode: false, //?
         debug: false,
         display: { position: "left", width: 200, height: 400, vOffset: -120 },
         model: {
@@ -32,8 +32,10 @@ export default {
         log: false
       });
     }, 3000);
-  },
+
   
+  },
+
   mounted() {
     // 防抖 缩放重新计算大小
 
@@ -48,7 +50,8 @@ export default {
 
   components: {
     FloatingButton
-  }
+  },
+
 };
 </script>
 <style lang="scss" scoped>

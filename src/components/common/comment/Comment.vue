@@ -2,7 +2,7 @@
   <div>
     <v-form v-model="valid">
       <v-row class="pa-0 ma-0">
-        <v-col class="mx-auto" cols="11" md="6">
+        <v-col class="mx-auto" cols="11" md="4">
           <v-text-field
             dense
             label="昵称"
@@ -11,16 +11,18 @@
             v-model="username"
           ></v-text-field>
         </v-col>
-        <v-col class="mx-auto" cols="11" md="6">
+        <v-col class="mx-auto" cols="11" md="4">
           <v-text-field dense label="邮箱" :rules="emailRule" :disabled="getEmail" v-model="email"></v-text-field>
+        </v-col>
+                <v-col class="mx-auto" cols="11" md="4">
+          <v-text-field dense label="URL" placeholder="https://" v-model="URL"></v-text-field>
         </v-col>
       </v-row>
       <v-col cols="12">
         <v-textarea
           dense
           :rules="textRule"
-          hint="3~300个字符"
-          counter="300"
+          counter="400"
           outlined
           v-model="comment"
           color="indigo"
@@ -28,6 +30,7 @@
           :rows="rows"
           :placeholder="replyPlaceholder"
           label="评论"
+          ref="comment-text"
         ></v-textarea>
         <v-btn color="orange darken-1" @click="commitComment" :disabled="!valid" outlined>
           <v-icon class="mx-1">mdi-comment-text-outline</v-icon>提交评论
@@ -36,7 +39,6 @@
     </v-form>
     <v-snackbar color="blue" :timeout="timeout" v-model="isShowTip" :top="isMobile">
       评论成功啦!
-      <span v-if="!getUsername">请等待审核.注册之后可以免审核哦~</span>
       <v-btn color="gray" text @click="showTip = false">
         <v-icon>mdi-close</v-icon>
       </v-btn>
@@ -52,21 +54,24 @@ export default {
   name: "Comment",
   props: {
     blogId: "",
-    replyId: "",
+    replyId: "",//决定显示的位置,并不是回复的评论id,是一级评论id
+    replyCommentId:"",//回复的评论id
     rows: {
       default: 5
     },
-    replyPlaceholder: "",
-    replyUsername: ""
+    replyUsername: "",
+    replyPlaceholder:''
   },
   data() {
     return {
       valid: false,
       getEmail: false,
       username: "",
-      email:'',
+      email: "",
+      URL:'',
       getUsername: false,
-      timeout: 6000,
+      timeout: 4000,
+      commented: false,
       isShowTip: false,
       usernameRule: [
         v => !!v || "username is required",
@@ -80,10 +85,7 @@ export default {
         v => /.+@.+\..+/.test(v) || "无效的邮箱❌"
       ],
 
-      textRule: [
-        v => !!v || "你还什么都没有写~~",
-        v => (v && v.length < 300 && v.length > 3) || "长度不符合✖"
-      ],
+      textRule: [v => !!v, v => v.length < 400 || "长度不符合✖"],
 
       comment: ""
     };
@@ -121,8 +123,10 @@ export default {
         this.blogId,
         this.username,
         this.email,
+        this.URL,
         this.comment,
         this.replyId,
+        this.replyCommentId,
         this.replyUsername,
         this.getEmail //isRegisted
       ).then(res => {

@@ -1,25 +1,78 @@
 <template>
-  <transition-group tag="div" class="nav" name="trans-grop">
-    <div class="inline-box" key="left">
-      <transition
-        appear
-        enter-active-class="animated bounceInLeft "
-        leave-active-class="animated bounceOutLeft "
-      >
-        <div v-show="isShow" class="nav-left nav-list-animation">
-          <slot name="left"></slot>
-        </div>
-      </transition>
+  <div>
+    <div v-if="isMobile">
+      <!-- 手机导航 -->
+      <v-toolbar ref="mobileNav">
+        <v-app-bar-nav-icon @click="showDrawer"></v-app-bar-nav-icon>
+        <router-link tag="div" to="/home">
+          <v-toolbar-title>神楽花菜OFFICIAL</v-toolbar-title>
+        </router-link>
+      </v-toolbar>
+      <v-navigation-drawer fixed v-model="isShowDrawer">
+        <v-list>
+          <v-list-item>
+            <v-list-item-content>
+              <router-link to="/home">
+                <v-list-item-title class="title">神楽花菜OFFICIAL</v-list-item-title>
+                <v-list-item-subtitle>轮子真好用</v-list-item-subtitle>
+              </router-link>
+              <v-list>
+                <v-list-item-group v-model="item">
+                  <v-list-group v-for="(item, index) in enextendNav" :key="index+'mobMain'">
+                    <template v-slot:activator>
+                      <v-list-item-title>{{item.name}}</v-list-item-title>
+                    </template>
+                    <v-list-item :to="'/list/'+item.name">
+                      <v-list-item-title>{{'所有'+item.name}}</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item
+                      :to="'/list/'+include"
+                      v-for="(include, index) in item.includes"
+                      :key="index"
+                    >
+                      <v-list-item-title>{{include}}</v-list-item-title>
+                    </v-list-item>
+                  </v-list-group>
+                  <!-- aloneNav -->
+                  <v-list-item
+                    :to="'/list/'+aloneItem.name"
+                    v-for="(aloneItem, index) in aloneNav"
+                    :key="index+'mobAlone'"
+                  >
+                    <v-list-item-title>{{aloneItem.name}}</v-list-item-title>
+                  </v-list-item>
+                </v-list-item-group>
+              </v-list>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
     </div>
+    <div v-else>
+      <!-- PC导航 -->
+      <transition-group tag="div" class="nav" name="trans-grop">
+        <div class="inline-box" key="left">
+          <transition
+            appear
+            enter-active-class="animated bounceInLeft "
+            leave-active-class="animated bounceOutLeft "
+          >
+            <div v-show="isShow" class="nav-left nav-list-animation">
+              <slot name="left"></slot>
+            </div>
+          </transition>
+        </div>
 
-    <div class="nav-right" key="right">
-      <transition appear enter-active-class="animated bounceInRight">
-        <div class="nav-right nav-container">
-          <slot class="nav-right" name="right"></slot>
+        <div class="nav-right" key="right">
+          <transition appear enter-active-class="animated bounceInRight">
+            <div class="nav-right nav-container">
+              <slot class="nav-right" name="right"></slot>
+            </div>
+          </transition>
         </div>
-      </transition>
+      </transition-group>
     </div>
-  </transition-group>
+  </div>
 </template>
 
 <script>
@@ -27,15 +80,37 @@ import { mapGetters } from "vuex";
 export default {
   name: "NavBar",
   computed: {
-    ...mapGetters(["winWidth", "cliWidth"]),
+    ...mapGetters(["winWidth", "cliWidth", "isMobile"]),
     isShow() {
       return this.cliWidth / this.winWidth < 0.48 || this.winWidth < 1000
         ? false
         : true;
+    },
+    enextendNav() {
+      return this.mobileMenuList.filter(val => {
+        return val.includes !== undefined;
+      });
+    },
+    aloneNav() {
+      return this.mobileMenuList.filter(val => val.includes === undefined);
     }
   },
+  props: {
+    mobileMenuList: {
+      type: Array
+    }
+  },
+
   data() {
-    return {};
+    return {
+      isShowDrawer: false,
+      item: 5
+    };
+  },
+  methods: {
+    showDrawer(e) {
+      this.isShowDrawer = !this.isShowDrawer;
+    }
   }
 };
 </script>
@@ -43,14 +118,14 @@ export default {
 <style lang='scss' scoped>
 .nav {
   box-shadow: 2px 5px 2px 1px rgba($devide-line-color, 0.5);
-  *{
-     cursor: pointer;
+  * {
+    cursor: pointer;
   }
   height: $home-nav-height;
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
-  background-color: $base-lightgray-color;
+  background-color: $nav-color;
 }
 .nav-left {
   display: inline-flex;

@@ -8,7 +8,6 @@
         <v-btn color="lime" @click.stop.native="updateBlog">更新</v-btn>
       </v-col>
       <v-col cols="6">
-        <v-btn color="error" @click.stop.native="deleteBlog">删除</v-btn>
       </v-col>
     </v-col>
     <AdminBlogList :blogList="list" />
@@ -43,7 +42,6 @@ export default {
     });
   },
   methods: {
-    updateBlog() {},
     deleteBlog() {
       postDeleteBlog(this.id).then(res => {
         if (res.errno !== -1) {

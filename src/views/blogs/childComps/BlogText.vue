@@ -1,5 +1,5 @@
 <template>
-  <div v-if="Object.keys(blog).length !== 0">
+  <div v-if="Object.keys(blog).length !== 0" class="pa-2">
     <div class="heads">
       <v-img :src="blog.headPic" height="400px"></v-img>
       <h1>{{blog.title}}</h1>
@@ -55,4 +55,6 @@ export default {
   background-color: $base-lightgray-color;
   padding: 10px 0;
 }
+
+
 </style>

@@ -72,7 +72,7 @@ export default {
     top: $home-nav-height;
     height: 60px;
     line-height: 60px;
-    background-color: $base-lightgray-color;
+    background-color: $nav-color;
     border-bottom: 1px solid $devide-line-color;
     width: 100%;
     margin: 0 auto;

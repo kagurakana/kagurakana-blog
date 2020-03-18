@@ -46,8 +46,8 @@ export default {
       valid: false,
       password: "", //text绑定的用户名
       username: "",
-      pcSrc: require("assets/img/home_head_pic.jpg"),
-      mobileSrc: require("assets/img/head_pic_mobile.jpg"),
+      pcSrc: "https://cdn.kagurakana.xyz/home_head_pic.jpg",
+      mobileSrc: "https://cdn.kagurakana.xyz/head_pic_mobile.jpg",
       second: 0, //tip显示的时间
       timeout: 3000, //tip的超时时间
       checkedUsername: "", //成功注册的用户名

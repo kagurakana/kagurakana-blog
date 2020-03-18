@@ -1,40 +1,74 @@
 <template>
   <div>
-    <v-img
-      width="100vw"
-      class="background"
-      height="100vh"
-      src="https://i.loli.net/2020/03/02/1TzncGo2R3xwsuI.jpg"
-    ></v-img>
-    <div>
-      <HomeHeadPic :gettedName="loginCheckUsername===''?'「神楽花菜」':`「${checkedUsername}」`" />
-      <HomeNav class="home-nav" ref="nav" />
-      <Content id="content">
-        <template v-slot:left>
-          <LeftContent />
-        </template>
-        <template v-slot:mid>
-          <MidContent />
-        </template>
-        <template v-slot:right>
-          <RightContent />
-        </template>
-      </Content>
-      <!-- welcomeTip -->
-      <v-snackbar color="blue" :timeout="timeout" v-model="welcomeTip" :top="isMobile">
-        {{checkedUsername}} 欢迎回来~ ({{second}})
-        <v-btn color="gray" text @click="welcomeTip = false">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
-      </v-snackbar>
-      <!-- newUserRegisterTip -->
-      <v-snackbar color="blue" :timeout="timeout" v-model="newUserRegisterTip" :top="isMobile">
-        可以点击右下角的浮动🔑按钮注册哦~ ({{second}})
-        <v-btn color="gray" text @click="newUserRegisterTip = false">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
-      </v-snackbar>
-    </div>
+    <div class="black" v-show="imgLoaded"></div>
+    <transition
+      appear
+      enter-active-class="animated  slideInDown"
+      leave-active-class="animated slideOutUp"
+    >
+      <HomeHeadPic
+        @showImg="showBlog"
+        @hideImg="showWelcome=false"
+        v-show="isMobile||showWelcome"
+        style="z-index:10"
+        :class="{'welcome':!isMobile}"
+        ref="headPic"
+        :gettedName="loginCheckUsername===''?'「神楽花菜」':`「${checkedUsername}」`"
+      />
+    </transition>
+    <transition
+      appear
+      enter-class="enterPosisition"
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
+    >
+      <div class="content" v-show="imgLoaded&&!showWelcome||isMobile">
+        <v-img
+          width="100vw"
+          class="background"
+          height="100vh"
+          src="https://cdn.kagurakana.xyz/DpumTcUX4AEvMfp.jpg"
+        ></v-img>
+        <HomeNav class="home-nav" ref="nav" />
+        <Content id="content">
+          <template v-slot:left>
+            <LeftContent />
+          </template>
+          <template v-slot:mid>
+            <MidContent />
+          </template>
+          <template v-slot:right>
+            <RightContent />
+          </template>
+        </Content>
+        <!-- welcomeTip -->
+      </div>
+    </transition>
+    <v-snackbar
+      class="tool-tip"
+      color="blue"
+      :timeout="timeout"
+      v-model="welcomeTip"
+      :top="isMobile"
+    >
+      {{checkedUsername}} 欢迎回来~ ({{second}})
+      <v-btn color="gray" text @click="welcomeTip = false">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-snackbar>
+    <!-- newUserRegisterTip -->
+    <v-snackbar
+      class="tool-tip"
+      color="blue"
+      :timeout="timeout"
+      v-model="newUserRegisterTip"
+      :top="isMobile"
+    >
+      可以点击右下角的浮动🔑按钮注册哦~ ({{second}})
+      <v-btn color="gray" text @click="newUserRegisterTip = false">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-snackbar>
   </div>
 </template>
 
@@ -85,22 +119,26 @@ export default {
     /**监听并提交resize事件 修改store中的屏幕高宽,重新计算isMobile */
     this.$store.commit("resize");
     /**监听鼠标滚轮事件,全屏滚动 */
-    window.addEventListener("mousewheel", this.imgScroll, {
-      passive: false
-    });
   },
   data() {
     return {
       newUserRegisterTip: false, //未登录,提示可以注册和登陆tip
+      showWelcome: false, //显示最开始的大图
+      imgLoaded: false, //头图是否加载
       welcomeTip: false, //已登录,提示欢迎tip
       checkedUsername: "", //登陆认证返回的用户名或存储在vuex中的用户名
       second: 0, //tip显示的剩余秒数
-      timeout: 6000, //tip超时时间
+      timeout: 3000, //tip超时时间
       top: 0, //滚动位置距离顶部
+      leaveTop: 0,
+      prevented: false,
+      preventScroll: true,
+      oldTime: 0,
+      newTime: 0,
       /* 头图全屏滚动节流 */
       throttledScroll: _.throttle(e => {
         this.scroll(e);
-      }, 500)
+      }, 1000)
     };
   },
   computed: {
@@ -108,6 +146,12 @@ export default {
   },
   methods: {
     /*显示提示 tip值为newUserRegisterTip 或welcomeTip*/
+    showBlog() {
+      this.showWelcome = true;
+      setTimeout(() => {
+        this.imgLoaded = true;
+      }, 500);
+    },
     showTip(tip) {
       this.second = this.timeout / 1000;
       this[tip] = true;
@@ -118,47 +162,54 @@ export default {
         clearInterval(timer);
       }, this.timeout);
     },
-    /* 向下滚动到nav-bar*/
-    scrollDown() {
-      console.log("down");
-      this.$vuetify.goTo(".home-nav", {
-        duration: 500,
-        easing: "easeInOutCubic"
-      });
-    },
-    /*向上滚动到0 */
-    scrollUp() {
-      this.$vuetify.goTo(0, { duration: 500, easing: "easeInOutCubic" });
-    },
-    /** 待节流函数 */
-    scroll(e) {
-      if (e > 0) {
-        this.scrollDown();
-      } else {
-        this.scrollUp();
-      }
-    },
     /** mousewheel处理函数 */
     imgScroll(e) {
       //获取top
       this.top = document.scrollingElement.scrollTop;
-      if (
-        (e.deltaY > 0 && this.top < window.innerHeight - 3) ||
-        (e.deltaY < 0 && this.top < window.innerHeight)
-      ) {
-        // 位于头图范围中,阻止鼠标滚轮默认事件,接管滚动
+      if (this.isMobile) {
+        return;
+      }
+      if (this.$refs.headPic.$el.classList.contains("animated")) {
         e.preventDefault();
-        this.throttledScroll(e.deltaY);
+      }
+      this.throttledScroll(e);
+    },
+    scroll(e) {
+      if (this.top <= 100) {
+        if (e.deltaY > 0) {
+          this.showWelcome = false;
+          // this.preventScroll = true
+        } else {
+          // 向上滚动,展示图片
+          this.showWelcome = true;
+        }
       }
     }
   },
-  beforeDestroy() {
-    window.removeEventListener("mousewheel",this.imgScroll);
+  activated() {
+    this.$vuetify.goTo(this.leaveTop, 500);
+    window.addEventListener("mousewheel", this.imgScroll, {
+      passive: false
+    });
+  },
+  beforeRouteLeave(to, from, next) {
+    this.leaveTop = document.documentElement.scrollTop;
+
+    window.removeEventListener("mousewheel", this.imgScroll);
+    next();
   }
 };
 </script>
 
 <style lang='scss' scoped>
+.black {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  background-color: #000;
+  width: 100vw;
+  height: 100vh;
+}
 .home-nav {
   position: sticky;
   top: 0;
@@ -169,4 +220,19 @@ export default {
   top: 0;
   z-index: 0;
 }
+.slideInDown,
+.slideOutRight,
+.slideInLeft,
+.slideOutUp {
+  animation-duration: 0.5s;
+}
+
+.tool-tip {
+  z-index: 1000001 !important;
+}
+.welcome {
+  position: absolute;
+  z-index: 10000 !important;
+}
 </style>
+
