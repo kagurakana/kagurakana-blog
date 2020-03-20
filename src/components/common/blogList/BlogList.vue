@@ -3,49 +3,57 @@
     <v-row>
       <v-col v-for="(blogShotCut, index)  in blogList" :key="index" sm="12" cols="12">
         <v-hover v-slot:default="{ hover }" close-delay="200" open-delay="100">
-          <v-card
-            color="rgba(255,255,255,0.85)"
-            class="pa-2"
-            :elevation="hover?12:2"
-            :class="{'on-hover':hover}"
-            min-height="100%"
-            @click="pushRouter(blogShotCut.id)"
-          >
-            <v-row>
-              <v-col cols="12" sm="3">
-                <v-img
-                  :src="blogShotCut.headPic"
-                  :height="isMobile?'256px':'100%'"
-                  :max-width="isMobile?'100%':'100%'"
-                  lazy-src="~assets/img/loading.gif"
-                >
-                  <template v-slot:placeholder>
-                    <v-row
-                      class="fill-height ma-0"
-                      align="center"
-                      justify="center"
-                      align-content="center"
+          <v-lazy :options="{
+          threshold: .25
+        }" 
+        min-height="200"
+        >
+            <transition appear enter-active-class="animated zoomIn">
+              <v-card
+                color="rgba(255,255,255,0.85)"
+                class="pa-2"
+                :elevation="hover?12:2"
+                :class="{'on-hover':hover}"
+                min-height="100%"
+                @click="pushRouter(blogShotCut.id)"
+              >
+                <v-row>
+                  <v-col cols="12" sm="3">
+                    <v-img
+                      :src="blogShotCut.headPic"
+                      :height="isMobile?'256px':'100%'"
+                      :max-width="isMobile?'100%':'100%'"
+                      lazy-src="~assets/img/loading.gif"
                     >
-                      <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                    </v-row>
-                  </template>
-                </v-img>
-              </v-col>
-              <v-col cols="12" sm="9">
-                <v-card-title class="title" tag="div" text-truncate>{{blogShotCut.title}}</v-card-title>
-                <v-card-subtitle>
-                  <div>{{blogShotCut.desc}}</div>
-                  <v-divider class="my-3"></v-divider>
-                  <v-chip
-                    class="mx-1 my-1"
-                    v-for="(tag, index) in blogShotCut.tags"
-                    :key="index"
-                    @click.stop="pushRouterTag(tag)"
-                  >{{tag}}</v-chip>
-                </v-card-subtitle>
-              </v-col>
-            </v-row>
-          </v-card>
+                      <template v-slot:placeholder>
+                        <v-row
+                          class="fill-height ma-0"
+                          align="center"
+                          justify="center"
+                          align-content="center"
+                        >
+                          <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                        </v-row>
+                      </template>
+                    </v-img>
+                  </v-col>
+                  <v-col cols="12" sm="9">
+                    <v-card-title class="title" tag="div" text-truncate>{{blogShotCut.title}}</v-card-title>
+                    <v-card-subtitle>
+                      <div>{{blogShotCut.desc}}</div>
+                      <v-divider class="my-3"></v-divider>
+                      <v-chip
+                        class="mx-1 my-1"
+                        v-for="(tag, index) in blogShotCut.tags"
+                        :key="index"
+                        @click.stop="pushRouterTag(tag)"
+                      >{{tag}}</v-chip>
+                    </v-card-subtitle>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </transition>
+          </v-lazy>
         </v-hover>
       </v-col>
     </v-row>
@@ -73,6 +81,11 @@ export default {
   computed: {
     ...mapGetters(["isMobile"])
   },
+  data() {
+    return {
+      isActive: false
+    };
+  },
 
   methods: {
     pushRouter(id) {
@@ -89,4 +102,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.zoomIn{
+  animation-duration: 0.35s;
+}
 </style>

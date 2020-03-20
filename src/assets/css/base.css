@@ -34,9 +34,6 @@
     visibility: hidden;
   }
   
-  .clear-fix {
-    zoom: 1;
-  }
 /* marked style */
 .code,code{
   background-color: floralwhite !important;
@@ -76,7 +73,6 @@ pre code{
 
 article{
   user-select: text;
-  
 }
 article p img{
   margin: 0 auto;
@@ -105,6 +101,65 @@ article p,article ul{
   margin: 20px 5px;
 }
 
+article.context a{
+  color:  rgb(98, 43, 161); 
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+article.context a::after{
+  content:'';
+  display: block;
+  position: absolute;
+  height: 0px;
+  width: 0;
+  bottom: 0;
+  left: 0;
+  /*background-color: rgb(178, 176, 255);*/
+  border-bottom: 2px dotted rgb(98, 43, 161);
+  z-index:-1 ;
+  transition: width 0.3s ease-in-out;
+  -webkit-transition: width 0.3s ease-in-out;
+  -moz-transition: width 0.3s ease-in-out;
+  -ms-transition: width 0.3s ease-in-out;
+  -o-transition: width 0.3s ease-in-out;
+}
+article.context a:hover::after{
+  content:'';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  z-index:-1 ;
+  transition: width 0.3s ease-in-out;
+  -webkit-transition: width 0.3s ease-in-out;
+  -moz-transition: width 0.3s ease-in-out;
+  -ms-transition: width 0.3s ease-in-out;
+  -o-transition: width 0.3s ease-in-out;
+}
+
+article.context strong{
+  position: relative;
+  z-index: 0;
+}
+article.context strong::after{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 6px;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: rgb(255,251,45);
+
+}
+.clear-fix {
+    zoom: 1;
+  }
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -143,3 +198,4 @@ black:hover{
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
 }
+

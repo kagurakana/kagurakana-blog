@@ -57,7 +57,7 @@
       </v-btn>
     </v-snackbar>
     <!-- newUserRegisterTip -->
-    <v-snackbar
+    <!-- <v-snackbar
       class="tool-tip"
       color="blue"
       :timeout="timeout"
@@ -68,7 +68,7 @@
       <v-btn color="gray" text @click="newUserRegisterTip = false">
         <v-icon>mdi-close</v-icon>
       </v-btn>
-    </v-snackbar>
+    </v-snackbar> -->
   </div>
 </template>
 
@@ -106,7 +106,7 @@ export default {
           });
           this.showTip("welcomeTip");
         } else {
-          this.showTip("newUserRegisterTip");
+          // this.showTip("newUserRegisterTip");
         }
       });
     } else {

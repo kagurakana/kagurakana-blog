@@ -11,8 +11,8 @@
       </ul>
       <transition
         appear
-        enter-active-class="animated bounceIn "
-        leave-active-class="animated bounceOut"
+        enter-active-class="animated flipInY "
+        leave-active-class="animated flipOutY"
       >
         <ul class="content" v-show="isShow">
           <li v-for="(include, index) in items.includes" :key="index">
@@ -58,14 +58,14 @@ export default {
 
   .content {
     position: absolute;
-    z-index: 10;
+    // z-index:-1;
     left: 10px;
     right: 10px;
     padding-left: 0;
-    box-shadow: 2px 5px 2px 1px rgba($devide-line-color, 0.5);
+    box-shadow: 0px 1px 5px 0px rgba(#000, 0.5);
     max-width: 200px;
     min-width: 100px;
-    border-radius: 0 0 10px 10px/ 0 0 10px 10px;
+    border-radius: 0 0 3px 3px/ 0 0 3px 3px;
     overflow: hidden;
   }
   li {
@@ -78,9 +78,9 @@ export default {
     margin: 0 auto;
   }
 }
-.bounceOut,
-.bounceIn {
-  animation-duration: 0.45s;
+.flipInY,
+.flipOutY {
+  animation-duration: 0.25s;
 }
 li:hover {
   background-color: #eee;

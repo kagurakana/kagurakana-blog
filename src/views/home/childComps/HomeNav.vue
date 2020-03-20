@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ScrollListenerBar class="scroll-listener"/>
     <NavBar :mobileMenuList="menu">
       <template v-slot:left>
         <img
@@ -20,7 +21,6 @@
         />
       </template>
     </NavBar>
-    <ScrollListenerBar />
   </div>
 </template> 
 
@@ -43,7 +43,7 @@ export default {
         { name: "前端", includes: ["HTML", "CSS", "JS", "Vue"] },
         { name: "后端", includes: ["nodejs", "express", "nginx", "数据库"] },
         {
-          name: "杂物",
+          name: "杂物"
           // includes: ["杂记", "图片", "页面demo", "游戏测评", "番剧测评"]
         },
         { name: "朋友" },
@@ -79,5 +79,9 @@ export default {
 }
 .nav-bar-item {
   flex: 1;
+}
+.scroll-listener{
+  position: absolute;
+  top: 0;
 }
 </style>

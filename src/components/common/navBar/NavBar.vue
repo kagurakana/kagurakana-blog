@@ -117,7 +117,7 @@ export default {
 
 <style lang='scss' scoped>
 .nav {
-  box-shadow: 2px 5px 2px 1px rgba($devide-line-color, 0.5);
+  box-shadow: 0px 1px 5px 0px rgba(#000, 0.5);
   * {
     cursor: pointer;
   }

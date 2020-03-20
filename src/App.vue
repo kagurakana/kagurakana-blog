@@ -16,7 +16,6 @@ export default {
   name: "App",
 
   created() {
-    setTimeout(() => {
       window.L2Dwidget.init({
         pluginRootPath: "live2dw/",
         pluginJsPath: "lib/",
@@ -31,9 +30,6 @@ export default {
         mobile: { show: false },
         log: false
       });
-    }, 3000);
-
-  
   },
 
   mounted() {

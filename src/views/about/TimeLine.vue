@@ -1,17 +1,25 @@
 <template>
   <v-timeline :dense="isMobile">
     <v-timeline-item v-for="(timeline, index) in timelines" :key="index">
-      <v-hover v-slot:default="{ hover }">
-        <v-card
-          :elevation="hover?12:2"
-          color="rgba(255,255,255,0.8)"
-          @click="emitImg(timeline.img)"
-        >
-          <v-img :src="timeline.img" max-width="100%"></v-img>
-          <v-card-title>{{timeline.title}}</v-card-title>
-          <v-card-subtitle>{{timeline.date}}</v-card-subtitle>
-        </v-card>
-      </v-hover>
+      <v-lazy :options="{
+          threshold: .25
+        }" min-height="200">
+        <transition appear enter-active-class="animated zoomIn">
+          <v-hover v-slot:default="{ hover }">
+            <v-card
+              :elevation="hover?12:2"
+              color="rgba(255,255,255,0.8)"
+              @click="emitImg(timeline.img)"
+            >
+              <v-card color="rgba(255,255,255,0.8)" @click="emitImg(timeline.img)">
+                <v-img :src="timeline.img" max-width="100%"></v-img>
+                <v-card-title>{{timeline.title}}</v-card-title>
+                <v-card-subtitle>{{timeline.date}}</v-card-subtitle>
+              </v-card>
+            </v-card>
+          </v-hover>
+        </transition>
+      </v-lazy>
     </v-timeline-item>
   </v-timeline>
 </template>
@@ -114,4 +122,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.zoomIn {
+  animation-duration: 0.5s;
+}
 </style>
