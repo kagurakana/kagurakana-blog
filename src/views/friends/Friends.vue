@@ -5,11 +5,37 @@
     <v-col cols="11" md="8" class="mx-auto">
       <v-card class="mx-auto friendsLink text-center" color="rgba(255,255,255,0.8)" outlined>
         <v-card-title class="d-block">友链</v-card-title>
-        <!-- 友链 -->
+        <!-- 友链-friend -->
         <v-row class="pa-0 ma-0 text-center">
           <v-col>
             <v-row>
-              <v-col cols="12" sm="6" v-for="(item, index) in linkList" :key="index">
+              <v-col cols="12" sm="6" v-for="(item, index) in friendList" :key="index">
+                <v-card
+                  :title="item.bio"
+                  :href="item.url"
+                  color="rgba(255,255,255, 0.5)"
+                  class="link-card"
+                  outlined
+                >
+                  <v-row align="center" class="pa-0 flex-nowrap ma-0">
+                    <div width="80px" class="pl-2" height="80px">
+                      <v-img :src="item.avatar" class="avatar" height="80px" width="80px"></v-img>
+                    </div>
+                    <div class="text-left overflow-hidden .bio-clip">
+                      <v-col cols="12" style="font-size:18px">{{item.name}}</v-col>
+                      <v-col cols="12" class="bio-clip">{{item.bio}}</v-col>
+                    </div>
+                  </v-row>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+        <v-card-title class="d-block">传教</v-card-title>
+                <v-row class="pa-0 ma-0 text-center">
+          <v-col>
+            <v-row>
+              <v-col cols="12" sm="6" v-for="(item, index) in recommendList" :key="index">
                 <v-card
                   :title="item.bio"
                   :href="item.url"
@@ -83,6 +109,17 @@ export default {
       return this.isMobile
         ? "https://cdn.kagurakana.xyz/head_pic_mobile.jpg"
         : "https://cdn.kagurakana.xyz/about-up.jpg";
+    },
+    recommendList() {
+      return this.linkList.filter(val => val.linkType === "recommend");
+    },
+    friendList() {
+      return this.linkList.filter(
+        val => val.linkType === "friend" || val.linkType === null
+      );
+    },
+    fameList() {
+      return this.linkList.filter(val => val.linkType === "fame");
     }
   },
   methods: {}

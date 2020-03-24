@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <keep-alive include="Home">
-    <router-view></router-view>
+      <router-view></router-view>
     </keep-alive>
     <!-- <router-view :key="$route.fullPath"></router-view> -->
     <FloatingButton />
@@ -16,22 +16,22 @@ export default {
   name: "App",
 
   created() {
-      window.L2Dwidget.init({
-        pluginRootPath: "live2dw/",
-        pluginJsPath: "lib/",
-        pluginModelPath: "live2d-widget-model-koharu/assets/",
-        tagMode: false, //?
-        debug: false,
-        display: { position: "left", width: 200, height: 400, vOffset: -120 },
-        model: {
-          jsonPath:
-            "/live2dw/live2d-widget-model-koharu/assets/koharu.model.json"
-        },
-        mobile: { show: false },
-        log: false
-      });
+  //     window.L2Dwidget.init({
+  //       pluginRootPath: "live2dw/",
+  //       pluginJsPath: "lib/",
+  //       pluginModelPath: "live2d-widget-model-koharu/assets/",
+  //       tagMode: false, //?
+  //       debug: false,
+  //       display: { position: "left", width: 200, height: 400, vOffset: -120 },
+  //       model: {
+  //         jsonPath:
+  //           "/live2dw/live2d-widget-model-koharu/assets/koharu.model.json"
+  //       },
+  //       mobile: { show: false },
+  //       log: false
+  //     });
+  // },
   },
-
   mounted() {
     // 防抖 缩放重新计算大小
 

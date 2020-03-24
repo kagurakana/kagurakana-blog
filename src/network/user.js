@@ -54,12 +54,12 @@ export function postRegister(username, password, email, avatar) {
   })
 }
 //添加友链
-export function postAddFriendLink(avatar, name, URL, bio) {
+export function postAddFriendLink(avatar, name, URL, bio, linkType) {
   return request({
     method: 'post',
     url: '/user/addlink',
     data: {
-      avatar, name, URL, bio
+      avatar, name, URL, bio, linkType
     }
   })
 }

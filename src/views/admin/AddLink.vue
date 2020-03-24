@@ -7,6 +7,11 @@
         <v-text-field v-model="name" label="Name"></v-text-field>
         <v-text-field v-model="URL" label="URL"></v-text-field>
         <v-text-field v-model="bio" label="Bio"></v-text-field>
+        <v-radio-group v-model="linkType" :mandatory="false">
+          <v-radio label="传教" value="recommend"></v-radio>
+          <v-radio label="朋友" value="friend"></v-radio>
+          <v-radio label="大佬" value="fame"></v-radio>
+        </v-radio-group>
         <v-btn @click="addFriendsLink">addLink</v-btn>
       </div>
     </v-container>
@@ -28,7 +33,8 @@ export default {
       avatar: "",
       name: "",
       URL: "",
-      bio: ""
+      bio: "",
+      linkType: ""
     };
   },
   created() {
@@ -44,15 +50,19 @@ export default {
 
   methods: {
     addFriendsLink() {
-      postAddFriendLink(this.avatar, this.name, this.URL, this.bio).then(
-        res => {
-          let temp = this.tip;
-          (this.tip = "ok"),
-            setTimeout(() => {
-              this.tip = temp;
-            }, 1000);
-        }
-      );
+      postAddFriendLink(
+        this.avatar,
+        this.name,
+        this.URL,
+        this.bio,
+        this.linkType
+      ).then(res => {
+        let temp = this.tip;
+        (this.tip = "ok"),
+          setTimeout(() => {
+            this.tip = temp;
+          }, 1000);
+      });
     }
   }
 };

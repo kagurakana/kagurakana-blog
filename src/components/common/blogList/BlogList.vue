@@ -11,7 +11,7 @@
             <transition appear enter-active-class="animated zoomIn">
               <v-card
                 color="rgba(255,255,255,0.85)"
-                class="pa-2"
+                class="pa-2 blog-list-item"
                 :elevation="hover?12:2"
                 :class="{'on-hover':hover}"
                 min-height="100%"

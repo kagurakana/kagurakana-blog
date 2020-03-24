@@ -51,7 +51,7 @@
     <div v-else>
       <!-- PC导航 -->
       <transition-group tag="div" class="nav" name="trans-grop">
-        <div class="inline-box" key="left">
+        <div class="inline-box" id="nav-logo" key="left">
           <transition
             appear
             enter-active-class="animated bounceInLeft "

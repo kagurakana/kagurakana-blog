@@ -1,27 +1,23 @@
 <template>
-  <div>
     <div
-      class="menu-item"
+      class="nav-item menu-item"
       @mouseenter="isShow=true"
       @mouseleave="isShow=false"
       @touch="isShow=!isShow"
     >
-      <ul class="title">
-        <router-link :to="'/list/'+ items.name" tag="div">{{items.name}}</router-link>
-      </ul>
+        <router-link class="title menu-item" :to="'/list/'+ items.name" tag="div">{{items.name}}</router-link>
       <transition
         appear
         enter-active-class="animated flipInY "
         leave-active-class="animated flipOutY"
       >
         <ul class="content" v-show="isShow">
-          <li v-for="(include, index) in items.includes" :key="index">
+          <li v-for="(include, index) in items.includes" :key="index" class="nav-item">
             <router-link tag="div" :to="'/list/'+include">{{include}}</router-link>
           </li>
         </ul>
       </transition>
     </div>
-  </div>
 </template>
 
 <script>

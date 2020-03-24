@@ -4,8 +4,8 @@ axios.defaults.withCredentials = true;
 
 export function request(config) {
   const instance = axios.create({
-    // baseURL:'https://www.kagurakana.xyz/api',
-    baseURL: 'http://localhost:8080/api',
+    baseURL:'https://www.kagurakana.xyz/api',
+    // baseURL: 'http://localhost:8080/api',
     timeout: 5000
   })
   instance.interceptors.response.use(res => {

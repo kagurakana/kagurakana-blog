@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
   <meta charset="utf-8">
@@ -8,7 +8,7 @@
   <meta name="keywords" content="kagurakana,神乐花菜,神楽花菜OFFICIAL,神楽花菜">
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
   <title><%= htmlWebpackPlugin.options.title %></title>
-  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SiYuan-Heavy"> -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900">
@@ -18,16 +18,9 @@
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.css" rel="stylesheet">
   <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
   <script src="https://cdn.bootcss.com/moment.js/2.24.0/locale/zh-cn.js"></script>
-  <script src="/live2dw/lib/L2Dwidget.min.js"></script>
 </head>
 
 <body>
-  <h1 class="for-spider" style="display: none;">kagurakana</h1>
-  <h1 class="for-spider" style="display: none;">kagurakana.xyz</h1>
-  <h1 class="for-spider" style="display: none;">神乐花菜</h1>
-  <h1 class="for-spider" style="display: none;">神乐花菜official</h1>
-  <h1 class="for-spider" style="display: none;">神楽花菜</h1>
-  <h1 class="for-spider" style="display: none;">神楽花菜official</h1>
   <noscript>
     <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
       Please enable it to continue.</strong>
@@ -35,5 +28,5 @@
   <div id="app"></div>
   <!-- built files will be auto injected -->
 </body>
-
+<script src="https://cdn.jsdelivr.net/gh/kagurakana/live2d-widget@v0.7.3.4/autoload.js"></script>
 </html>

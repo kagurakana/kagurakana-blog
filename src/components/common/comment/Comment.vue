@@ -6,16 +6,30 @@
           <v-text-field
             dense
             label="昵称"
+            class="comment-input-name"
             :rules="usernameRule"
             :disabled="getUsername"
             v-model="username"
           ></v-text-field>
         </v-col>
         <v-col class="mx-auto" cols="11" sm="4">
-          <v-text-field dense label="邮箱" :rules="emailRule" :disabled="getEmail" v-model="email"></v-text-field>
+          <v-text-field
+            dense
+            label="邮箱"
+            class="comment-input-mail"
+            :rules="emailRule"
+            :disabled="getEmail"
+            v-model="email"
+          ></v-text-field>
         </v-col>
         <v-col class="mx-auto" cols="11" sm="4">
-          <v-text-field dense label="URL" placeholder="https://" v-model="URL"></v-text-field>
+          <v-text-field
+            dense
+            label="URL"
+            class="comment-input-url"
+            placeholder="https://"
+            v-model="URL"
+          ></v-text-field>
         </v-col>
       </v-row>
       <v-col cols="12">
@@ -30,10 +44,11 @@
           :rows="rows"
           :placeholder="replyPlaceholder"
           label="评论"
+          class="comment-input-text"
           ref="comment-text"
         ></v-textarea>
         <v-row align="center" class="px-2 py-0 ma-0" justify="space-between">
-          <v-btn color="orange darken-1" @click="commitComment" :disabled="!valid" outlined>
+          <v-btn class="comment-submit" color="orange darken-1" @click="commitComment" :disabled="!valid" outlined>
             <v-icon class="mx-1">mdi-comment-text-outline</v-icon>提交评论
           </v-btn>
           <v-checkbox v-model="resaveEmail" label="当收到回复时用邮件提醒我"></v-checkbox>
@@ -71,7 +86,7 @@ export default {
       getEmail: false,
       username: "",
       email: "",
-      resaveEmail:true,
+      resaveEmail: true,
       URL: "",
       getUsername: false,
       timeout: 4000,

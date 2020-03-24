@@ -2,7 +2,7 @@
   <v-col sm='12' cols="12">
      <!-- <v-card :max-height="imgHeight" :max-width="imgWidth" -->
      <v-card 
-   class="mx-auto"
+   class="mx-auto home-swiper"
    >
       <v-carousel class="swiper" :height="imgHeight" cycle show-arrows>
         <v-carousel-item

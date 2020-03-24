@@ -32,6 +32,11 @@ export default {
     return {
       timelines: [
         {
+          img:"https://cdn.kagurakana.xyz/QQ截图20200324232940.jpg",
+          title:"更换live2d",
+          date:"2020年3月24日"
+        },
+        {
           img: "https://cdn.kagurakana.xyz/JHCvDCqov7.gif",
           title: "markdown图片拖拽上传实时解析",
           date: "2020年3月7日"
