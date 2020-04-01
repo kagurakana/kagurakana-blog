@@ -63,7 +63,7 @@
           <v-card-text class="pa-1">Name: 神楽花菜</v-card-text>
           <v-card-text class="pa-1">Bio: 凑阿库娅单推人</v-card-text>
           <v-card-text class="pa-1">URL: https://kagurakana.xyz</v-card-text>
-          <v-card-text class="pa-1">Avatar: https://cdn.kagurakana.xyz/eDgkFMqzBHP7UtS.jpg</v-card-text>
+          <v-card-text class="pa-1">Avatar: https://s1.ax1x.com/2020/03/19/8yvQWq.jpg</v-card-text>
         </v-card-text>
       </v-card>
       <v-card color="rgba(255,255,255,0.8)" class="mx-auto my-3 friendsLink" outlined>

@@ -18,14 +18,14 @@
               :src="avatarSrc(item)"
             ></v-img>
             <div class="comment-detail" :id="'comment-'+item.id">
-              <a :href="item.url">
+              <a :href="item.url==''?null:item.url">
                 <span class="username" :class="{'link-style':item.url!==''}">{{item.username}}</span>
               </a>
               <div class="date">{{fommatTime(item.createTime)}}</div>
               <router-link v-if="item.blogId!=null" :to="'/detail/'+item.blogId">
                 <div class="blogID-text">回复的博客ID:{{item.blogId}}</div>
               </router-link>
-              <div class="comment">{{item.comment}}</div>
+              <article class="comment-detail" v-html="item.comment"></article>
               <v-btn
                 text
                 small
@@ -52,8 +52,8 @@
             ></v-img>
             <v-col :cols="isAdmin?10:11" class="pl-2 ma-0">
               <div>
-                <a :href="item.url">
-                  <span class="username" :class="{'link-style':item.url!==''}">{{reply.username}}</span>
+                <a :href="reply.url==''?null:reply.url">
+                  <span class="username" :class="{'link-style':reply.url!==''}">{{reply.username}}</span>
                 </a>
                 <!-- TODO: 绑定id 添加混动 finished -->
                 <div class="date">{{fommatTime(reply.createTime)}}</div>
@@ -61,7 +61,7 @@
                   class="reply-span"
                   @click="goToTarget(reply.replyCommentId)"
                 >@{{reply.replyUsername}}:</div>
-                <div class="comment">{{reply.comment}}</div>
+                <article class="comment-detail" v-html="reply.comment"></article>
                 <v-btn
                   text
                   small
@@ -119,8 +119,11 @@ import gravatar from "gravatar";
 import { getCommentList } from "network/comment";
 import moment from "moment";
 import Comment from "./Comment";
+import hljsMixin from "@/mixins/hljsMixin";
+import _ from "lodash";
 export default {
   name: "CommentList",
+  mixins: [hljsMixin],
   components: {
     Comment
   },
@@ -132,6 +135,12 @@ export default {
     getCommentList(this.blogId).then(res => {
       // console.log(res);
       this.commentLists = res.data;
+    });
+    this.$bus.$on("commentSuccess", () => {
+      getCommentList(this.blogId).then(res => {
+        // console.log(res);
+        this.commentLists = res.data;
+      });
     });
   },
   data() {
@@ -146,8 +155,8 @@ export default {
     // 取得所有激活(显示通过审核的)评论
     activeComment() {
       return this.isAdmin
-        ? this.commentLists
-        : this.commentLists.filter(e => e.isShow === 1);
+        ? this.compiledCommentMarkdownList
+        : this.compiledCommentMarkdownList.filter(e => e.isShow === 1);
     },
     // 取得显示评论中的主题评论(区别于回复),若为主题评论而不是回复,replyId=''
     activeCommentComment() {
@@ -157,14 +166,14 @@ export default {
 
   methods: {
     avatarSrc(item) {
-      if (item.avatar == null) {
+      if (item.commentAvatar == null) {
         //未注册用户在评论时头像从gravatar获取.
         return gravatar.url(item.email, { s: "400", r: "pg", d: "mm" });
       }
       //选择默认头像的注册用户
       return item.avatar === "default"
         ? require("assets/img/default.png")
-        : item.avatar;
+        : item.commentAvatar;
     },
     fommatTime(date) {
       return moment(date).format("YYYY-MM-DD HH:mm:ss");
@@ -177,7 +186,7 @@ export default {
     },
     /*根据不同的replyID显示不同位置的回复框,设置回复评论的id*/
     setReply(mainCommentId, replyCommentId, username) {
-      console.log(this.$refs);
+      // console.log(this.$refs);
       this.replyShowPosition = {}; //重置对象
       this.replyUsername = username; //重置回复target名字
       // this.
@@ -195,9 +204,10 @@ export default {
       if (this.isAdmin) {
         return this.commentLists.filter(e => e.replyId === item.id).reverse();
       } else {
-        return this.commentLists
-          .filter(e => e.replyId === item.id && e.isShow == 1)
-          .reverse();
+        return _.sortBy(
+          this.commentLists.filter(e => e.replyId === item.id && e.isShow == 1),
+          ["createTime"]
+        );
       }
     }
   }
@@ -240,30 +250,48 @@ export default {
   color: rgb(152, 152, 250);
   padding-bottom: 5px;
 }
-.link-style {
+.link-style,
+::v-deep.comment-detail a {
   color: $link-color;
   position: relative;
   transition: all 1s ease-in-out;
 }
-.link-style::after {
+.link-style::after,
+::v-deep.comment-detail a::after {
   content: "";
-  display: block;
+  display: inline-block;
   position: absolute;
   height: 5px;
   bottom: 0;
   background-color: rgba($color: $link-color, $alpha: 0.3);
   width: 0;
-  transition: width 0.3s ease-in-out;
+  left: 50%;
+  transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
 }
-.link-style:hover::after {
+.link-style:hover::after,
+::v-deep.comment-detail a:hover::after {
   content: "";
-  display: block;
+  display: inline-block;
   position: absolute;
   bottom: 0;
+  left: 0;
   height: 5px;
   background-color: rgba($color: $link-color, $alpha: 0.3);
   width: 100%;
-  transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out ,left 0.3s ease-in-out;
+}
+::v-deep.comment-detail {
+  p,
+  a {
+    padding: 0;
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+  img {
+    max-width: 200px;
+  }
 }
 </style>
 

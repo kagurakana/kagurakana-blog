@@ -1,4 +1,4 @@
-export default function htmlRestore(str) {
+export default function htmlCmtRestore(str) {
   var s = "";
   if (str.length === 0) {
     return "";
@@ -9,5 +9,6 @@ export default function htmlRestore(str) {
   s = s.replace(/&nbsp;/g, " ");
   s = s.replace(/&#39;/g, "'");
   s = s.replace(/&quot;/g, '"');
+  // s = s.replace(/\n/g,'<br/>')
   return s;
 }

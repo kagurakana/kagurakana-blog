@@ -1,20 +1,30 @@
 <template>
   <!-- <div class="home-head" :style="{'margin-top':imgMarginTop}"> -->
   <div class="home-head">
-    <div class="imgs-container">
+    <div class="imgs-container" >
       <v-img
         class="back"
+        :class="{'bulr':isBulr}"
         :height="isMobile?'40vh':'100vh'"
-        src="https://cdn.kagurakana.xyz/home_head_pic.jpg"
+        src="https://cdn.kagurakana.xyz/4a1992cc6c992b13994d52193e90028d4ac535bc.png"
         eager
+        ref="back"
         @load="$emit('showImg')"
       ></v-img>
       <div class="flag d-flex align-center justify-center">
         <input type="text" autofocus class="home-text" v-model="showName" />
       </div>
       <v-col v-show="!isMobile" cols="12" class="text-center home-head-btn">
-        <v-btn  fab text color="white" @click="$emit('hideImg')">
-          <v-icon style="font-size:24px">mdi-arrow-down</v-icon>
+        <v-btn
+          class="btn-in"
+          @mouseover="isBulr=true"
+          @mouseleave="isBulr=false"
+          fab
+          text
+          color="white"
+          @click="$emit('hideImg')"
+        >
+          <v-icon class="btn-in" style="font-size:24px">mdi-arrow-down</v-icon>
         </v-btn>
       </v-col>
     </div>
@@ -30,7 +40,8 @@ export default {
   data() {
     return {
       isShow: true,
-      showName: ""
+      showName: "",
+      isBulr: false
       // imgMarginTop: "0",
       // oldTop: 0,
       // moveDown:false,
@@ -39,7 +50,8 @@ export default {
     };
   },
   props: {
-    gettedName: ""
+    gettedName: "",
+    scrollDis: 0
   },
   computed: {
     ...mapGetters(["isMobile"]),
@@ -58,6 +70,9 @@ export default {
         str = "要秃头了!";
       }
       return str + this.gettedName;
+    },
+    dis() {
+      return this.scrollDis;
     }
   },
   mounted() {
@@ -102,6 +117,12 @@ export default {
     //   }
     //   this.oldTop = top;
     // }
+  },
+
+  watch: {
+    // dis(val) {
+    //  this.$refs.back.$el.style['filter']=`blur(${val/70}px)`;
+    // }
   }
 };
 </script>
@@ -111,8 +132,18 @@ export default {
   position: relative;
   transition: margin-top 1.2s ease-in-out;
   width: 100%;
+  overflow: hidden;
   .back {
     width: 100%;
+    transition: transform 0.5s, filter 0.5s;
+  }
+  .bulr {
+    -webkit-filter: blur(4px); /* Chrome, Opera */
+    -moz-filter: blur(4px);
+    -ms-filter: blur(4px);
+    filter: blur(4px);
+    transform: scale(1.1);
+    transition: transform 0.5s, filter 0.5s;
   }
   .fake {
     position: absolute;
@@ -141,8 +172,6 @@ export default {
 .home-head-btn {
   position: absolute;
   bottom: 100px;
-  
-
 }
 .bottom-line {
   width: 0;
@@ -191,7 +220,12 @@ export default {
     outline: none;
   }
 }
-
+// .back{
+//        -webkit-filter: blur(20px); /* Chrome, Opera */
+//     -moz-filter: blur(20px);
+//     -ms-filter: blur(20px);
+//     filter: blur(20px);
+// }
 @media screen and(max-width: 1100px) {
   .home-text {
     font-size: 36px;
@@ -202,5 +236,11 @@ export default {
   .home-text {
     font-size: 22px;
   }
+}
+.btn-in:hover + .back {
+  -webkit-filter: blur(20px); /* Chrome, Opera */
+  -moz-filter: blur(20px);
+  -ms-filter: blur(20px);
+  filter: blur(20px);
 }
 </style>

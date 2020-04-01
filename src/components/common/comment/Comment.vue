@@ -36,7 +36,7 @@
         <v-textarea
           dense
           :rules="textRule"
-          counter="400"
+          counter="1000"
           outlined
           v-model="comment"
           color="indigo"
@@ -44,11 +44,24 @@
           :rows="rows"
           :placeholder="replyPlaceholder"
           label="评论"
+          hint="支持markdown哦"
           class="comment-input-text"
           ref="comment-text"
         ></v-textarea>
+        <v-row class="px-3" justify="end">
+          <v-btn color="blue darken-3" @click="isShowPreview=!isShowPreview" text>预览</v-btn>
+        </v-row>
+        <v-row class="px-3" v-show="isShowPreview">
+          <article class="comment-preview" v-html="compiledCommentInput"></article>
+        </v-row>
         <v-row align="center" class="px-2 py-0 ma-0" justify="space-between">
-          <v-btn class="comment-submit" color="orange darken-1" @click="commitComment" :disabled="!valid" outlined>
+          <v-btn
+            class="comment-submit"
+            color="orange darken-1"
+            @click="commitComment"
+            :disabled="!valid"
+            outlined
+          >
             <v-icon class="mx-1">mdi-comment-text-outline</v-icon>提交评论
           </v-btn>
           <v-checkbox v-model="resaveEmail" label="当收到回复时用邮件提醒我"></v-checkbox>
@@ -68,8 +81,11 @@
 import { getLoginCheck } from "network/user";
 import { addComment } from "network/comment";
 import { mapGetters } from "vuex";
+import gravatar from "gravatar";
+import hljsMixin from "@/mixins/hljsMixin";
 export default {
   name: "Comment",
+  mixins: [hljsMixin],
   props: {
     blogId: "",
     replyId: "", //决定显示的位置,并不是回复的评论id,是一级评论id
@@ -92,6 +108,7 @@ export default {
       timeout: 4000,
       commented: false,
       isShowTip: false,
+      isShowPreview: false,
       usernameRule: [
         v => !!v || "username is required",
         v => (v && v.length < 15) || "名字太长啦，要被挤爆啦(╯°口°)╯(┴—┴",
@@ -104,8 +121,7 @@ export default {
         v => /.+@.+\..+/.test(v) || "无效的邮箱❌"
       ],
 
-      textRule: [v => !!v, v => v.length < 400 || "长度不符合✖"],
-
+      textRule: [v => !!v, v => v.length < 1000 || "长度不符合✖"],
       comment: ""
     };
   },
@@ -138,6 +154,18 @@ export default {
   },
   methods: {
     commitComment() {
+      let commentPayload = {
+        blogId: this.blogId,
+        username: this.username,
+        URL: this.URL,
+        comment: this.comment,
+        replyId: this.replyId,
+        replyCommentId: this.replyCommentId,
+        replyUsername: this.replyUsername,
+        isShow: 1,
+        createTime: Date.now(),
+        avatar: gravatar.url(this.email, { s: "400", r: "pg", d: "mm" })
+      };
       addComment(
         this.blogId,
         this.username,
@@ -154,6 +182,7 @@ export default {
         if (res.data.errno !== -1) {
           this.comment = "";
           this.isShowTip = true;
+          this.$bus.$emit("commentSuccess");
         }
       });
     }
@@ -162,4 +191,46 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+::v-deep.comment-preview a {
+  color: $link-color;
+  position: relative;
+  transition: all 1s ease-in-out;
+}
+.link-style::after,
+::v-deep.comment-preview a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 5px;
+  bottom: 0;
+  background-color: rgba($color: $link-color, $alpha: 0.3);
+  width: 0;
+  left: 0;
+  transition: width 0.3s ease-in-out;
+}
+.link-style:hover::after,
+::v-deep.comment-preview a:hover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background-color: rgba($color: $link-color, $alpha: 0.3);
+  width: 100%;
+  transition: width 0.3s ease-in-out;
+}
+::v-deep.comment-preview {
+  p,
+  a {
+    padding: 0;
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+  img {
+    max-width: 200px;
+  }
+}
 </style>

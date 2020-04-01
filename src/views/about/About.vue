@@ -157,7 +157,8 @@
                 <li>服务器:华为云</li>
                 <li>CDN:百度云加速</li>
                 <li>SMTP支持:zoho</li>
-                <li>图片来源:pixiv,Twitter.(本站不会将图片作为任何形式的商业用途,如有侵权请联系我进行删除)</li>
+                <li>封面来源:感谢:<a href="https://weibo.com/bangqiaoyan">@邦乔彦</a></li>
+                <li>其他图片来源:pixiv,Twitter.(本站不会将图片作为任何形式的商业用途,如有侵权请联系我进行删除)</li>
               </ul>
             </li>
           </ul>

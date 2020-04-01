@@ -3,8 +3,9 @@
     <div class="black" v-show="imgLoaded"></div>
     <transition
       appear
-      enter-active-class="animated  slideInDown"
-      leave-active-class="animated slideOutUp"
+      enter-active-class="animated  slideInDown bulrInDown"
+      leave-active-class="animated slideOutUp bulrOutUp"
+      leave-to-class="bulrOutEnd"
     >
       <HomeHeadPic
         @showImg="showBlog"
@@ -12,6 +13,7 @@
         v-show="isMobile||showWelcome"
         style="z-index:10"
         :class="{'welcome':!isMobile}"
+        :scrollDis="scrollDis"
         ref="headPic"
         :gettedName="loginCheckUsername===''?'「神楽花菜」':`「${checkedUsername}」`"
       />
@@ -32,13 +34,13 @@
         <HomeNav class="home-nav" ref="nav" />
         <Content id="content">
           <template v-slot:left>
-            <LeftContent />
+            <HomeLeftContent />
           </template>
           <template v-slot:mid>
-            <MidContent />
+            <HomeMidContent />
           </template>
           <template v-slot:right>
-            <RightContent />
+            <HomeRightContent />
           </template>
         </Content>
         <!-- welcomeTip -->
@@ -68,7 +70,7 @@
       <v-btn color="gray" text @click="newUserRegisterTip = false">
         <v-icon>mdi-close</v-icon>
       </v-btn>
-    </v-snackbar> -->
+    </v-snackbar>-->
   </div>
 </template>
 
@@ -77,9 +79,9 @@ import HomeHeadPic from "./childComps/HomeHeadPic";
 import _ from "lodash";
 import HomeNav from "./childComps/HomeNav";
 import Content from "components/common/content/Content";
-import LeftContent from "./childComps/HomeContent/LeftContent";
-import MidContent from "./childComps/HomeContent/MidContent";
-import RightContent from "./childComps/HomeContent/RightContent";
+import HomeLeftContent from "./childComps/HomeContent/HomeLeftContent";
+import HomeMidContent from "./childComps/HomeContent/HomeMidContent";
+import HomeRightContent from "./childComps/HomeContent/HomeRightContent";
 import { getLoginCheck } from "network/user";
 import { mapGetters } from "vuex";
 export default {
@@ -88,9 +90,9 @@ export default {
     HomeHeadPic,
     HomeNav,
     Content,
-    LeftContent,
-    MidContent,
-    RightContent
+    HomeLeftContent,
+    HomeMidContent,
+    HomeRightContent
   },
   created() {
     //前台登陆校验,若未记录,后台登陆校验 loginCheckUsername:登陆校验后存储在vuex中
@@ -130,6 +132,7 @@ export default {
       second: 0, //tip显示的剩余秒数
       timeout: 3000, //tip超时时间
       top: 0, //滚动位置距离顶部
+      scrollDis: 0,
       leaveTop: 0,
       prevented: false,
       preventScroll: true,
@@ -166,6 +169,9 @@ export default {
     imgScroll(e) {
       //获取top
       this.top = document.scrollingElement.scrollTop;
+      this.scrollDis = this.scrollDis < 0 ? 0 : this.scrollDis + e.deltaY;
+
+      // console.log(this.scrollDis);
       if (this.isMobile) {
         return;
       }
@@ -221,18 +227,64 @@ export default {
   z-index: 0;
 }
 .slideInDown,
-.slideOutRight,
-.slideInLeft,
 .slideOutUp {
   animation-duration: 0.5s;
 }
-
+.bulrInDown {
+  animation: bulrInDown 0.5s;
+}
+.bulrOutUp {
+  animation: bulrOutUp 0.5s;
+}
+.bulrOutEnd {
+  position: absolute;
+  top: -120vh;
+}
 .tool-tip {
   z-index: 1000001 !important;
 }
 .welcome {
   position: absolute;
   z-index: 10000 !important;
+}
+@keyframes bulrInDown {
+  from {
+    -webkit-filter: blur(20px); /* Chrome, Opera */
+    -moz-filter: blur(20px);
+    -ms-filter: blur(20px);
+    filter: blur(20px);
+
+    top: -100vh;
+  }
+
+  to {
+    -webkit-filter: blur(0px); /* Chrome, Opera */
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter: blur(0px);
+
+    top: 0;
+  }
+}
+
+@keyframes bulrOutUp {
+  from {
+    -webkit-filter: blur(0px); /* Chrome, Opera */
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter: blur(0px);
+    
+    top: 0;
+  }
+
+  to {
+    -webkit-filter: blur(20px); /* Chrome, Opera */
+    -moz-filter: blur(20px);
+    -ms-filter: blur(20px);
+    filter: blur(20px);
+
+    top: -100vh;
+  }
 }
 </style>
 

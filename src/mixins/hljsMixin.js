@@ -1,6 +1,8 @@
 import marked from "marked";
+import markedCmt from "marked";
 import hljs from "highlight.js";
-import htmlRestore from '@/utils/htmlRestore'
+import {filterXSS} from 'xss'
+import htmlCmtRestore from '@/utils/htmlRestore'
 import('highlight.js/styles/solarized-light.css');
 // import('highlight.js/styles/darcula.css');
 
@@ -18,15 +20,46 @@ export default {
       } else {
         return marked(this.content)
       }
+    },
+    compiledCommentMarkdownList() {
+      if (!this.commentLists) {
+        // cmtlist 不存在
+        return
+      }
+      let tempArr = this.commentLists
+      tempArr.forEach(cmt => {
+        cmt.comment = markedCmt(cmt.comment)
+      })
+      return tempArr
+    },
+    compiledCommentInput(){
+      if(!this.comment){
+        return
+      }
+      return markedCmt(filterXSS(this.comment))
     }
   },
   mounted() {
     const renderer = new marked.Renderer()
+    const rendererCmt = new markedCmt.Renderer()
     marked.setOptions({
-      renderer: renderer,
+      renderer: rendererCmt,
       gfm: true,
       tables: true,
       breaks: false,
+      pedantic: false,
+      sanitize: false,
+      smartLists: true,
+      smartypants: false,
+      highlight: function (code) {
+        return hljs.highlightAuto(code).value;
+      }
+    });
+    markedCmt.setOptions({
+      renderer: renderer,
+      gfm: true,
+      tables: true,
+      breaks: true,
       pedantic: false,
       sanitize: false,
       smartLists: true,

@@ -62,11 +62,11 @@ pre code{
   white-space: pre !important;
   padding: 10px;
   line-height: unset;
-  border-radius: 10px!important;
-  -webkit-border-radius: 10px!important;
-  -moz-border-radius: 10px!important;
-  -ms-border-radius: 10px!important;
-  -o-border-radius: 10px!important;
+  border-radius: 4px!important;
+  -webkit-border-radius: 4px!important;
+  -moz-border-radius: 4px!important;
+  -ms-border-radius: 4px!important;
+  -o-border-radius: 4px!important;
   overflow-x: auto;
 }
 
@@ -115,15 +115,15 @@ article.context a::after{
   height: 0px;
   width: 0;
   bottom: 0;
-  left: 0;
-  /*background-color: rgb(178, 176, 255);*/
-  border-bottom: 2px dotted rgb(98, 43, 161);
+  left: 50%;
+  /*background-color: rgb(178, 176, 255);
+  */border-bottom: 2px dotted rgb(98, 43, 161);
   z-index:-1 ;
-  transition: width 0.3s ease-in-out;
-  -webkit-transition: width 0.3s ease-in-out;
-  -moz-transition: width 0.3s ease-in-out;
-  -ms-transition: width 0.3s ease-in-out;
-  -o-transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
+  -webkit-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
+  -moz-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
+  -ms-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
+  -o-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
 }
 article.context a:hover::after{
   content:'';
@@ -134,11 +134,11 @@ article.context a:hover::after{
   width: 100%;
   height: 5px;
   z-index:-1 ;
-  transition: width 0.3s ease-in-out;
-  -webkit-transition: width 0.3s ease-in-out;
-  -moz-transition: width 0.3s ease-in-out;
-  -ms-transition: width 0.3s ease-in-out;
-  -o-transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
+  -webkit-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
+  -moz-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
+  -ms-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
+  -o-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
 }
 
 article.context strong{
