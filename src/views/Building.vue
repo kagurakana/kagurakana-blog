@@ -8,7 +8,7 @@
           </v-col>
           <v-col cols="12" class="justfy-center">
             <v-btn color="rgba(243,243,243,0.8)">
-              <router-link to="/home" tag="div">首页</router-link>
+              <router-link to="/" tag="div">首页</router-link>
             </v-btn>
           </v-col>
         </v-col>

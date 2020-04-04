@@ -98,6 +98,10 @@ export default {
     //   console.log(res);
     // });
   },
+  mounted() {
+    document.dispatchEvent(new Event("render-event"));
+    
+  },
   data() {
     return {
       linkList: []

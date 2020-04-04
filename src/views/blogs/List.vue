@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <HomeNav class="home-nav" />
-    <Content class="content">
-      <template v-slot:mid>
-        <!-- <v-img
+  <BaseLayout>
+    <template v-slot:layout>
+      <Content class="content">
+        <template v-slot:mid>
+          <!-- <v-img
           class="align-center justify-center d-flex text-center"
           height="400px"
           src="https://i.loli.net/2020/03/01/pnsZHyfKrl5LR46.jpg"
@@ -11,25 +11,20 @@
           <v-row class="justify-center">
             <h1 class="align-center d-flex text-center list-title justify-center">{{tag}}</h1>
           </v-row>
-        </v-img>-->
-        <!-- TODO：在这绑定数据 -->
-        <!-- <QuickShow :quickShows="quickShowData" /> -->
-        <BlogList :blogList="blogListData" />
-      </template>
-    </Content>
-    <v-img
-      width="100vw"
-      class="background"
-      height="100vh"
-      src="https://cdn.kagurakana.xyz/DpumTcUX4AEvMfp.jpg"
-    ></v-img>
-  </div>
+          </v-img>-->
+          <!-- TODO：在这绑定数据 -->
+          <!-- <QuickShow :quickShows="quickShowData" /> -->
+          <BlogList :blogList="blogListData" />
+        </template>
+      </Content>
+    </template>
+  </BaseLayout>
 </template>
 
 <script>
-import HomeNav from "views/home/childComps/HomeNav";
-import Content from "components/common/content/Content";
 // import QuickShow from "components/common/quickShow/QuickShow";
+import BaseLayout from "components/common/baseLayout/BaseLayout";
+import Content from "components/common/content/Content";
 import BlogList from "components/common/blogList/BlogList";
 import { mapGetters } from "vuex";
 
@@ -50,14 +45,14 @@ export default {
       // }
     });
     this.$nextTick(() => {
-       window.scrollTo({top:0,behavior:"smooth"})
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   },
   components: {
     Content,
     // QuickShow,
-    HomeNav,
-    BlogList
+    BlogList,
+    BaseLayout
   },
   data() {
     return {
@@ -88,7 +83,6 @@ export default {
   },
 
   beforeRouteUpdate(to, from, next) {
-    
     next();
     window.scrollTo({ top: 0, behavior: "smooth" });
     this.getUrlTag();
@@ -115,11 +109,6 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.home-nav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
 .list-title {
   height: 200px;
   width: 300px;
@@ -129,10 +118,5 @@ export default {
 .content {
   position: relative;
   z-index: 1;
-}
-.background {
-  position: fixed;
-  top: 0;
-  z-index: 0;
 }
 </style>

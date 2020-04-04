@@ -1,18 +1,24 @@
 import axios from 'axios'
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
+
+export const BASE_URL = "https://www.kagurakana.xyz/api"
+// export const BASE_URL = "http://localhost:8080/api"
+export const BASE_URL_OUT = BASE_URL+"/out"
+
 
 export function request(config) {
   const instance = axios.create({
-    baseURL:'https://www.kagurakana.xyz/api',
+    // baseURL:'https://www.kagurakana.xyz/api',
     // baseURL: 'http://localhost:8080/api',
+    baseURL: BASE_URL,
     timeout: 5000
   })
   instance.interceptors.response.use(res => {
     if (res.data.errno != 404) {
       return res.data;
     } else {
-      window.location.replace('/home')
+      window.location.replace('/')
     }
   })
   return instance(config)
@@ -20,7 +26,15 @@ export function request(config) {
 
 export function outRequest(config) {
   const instance = axios.create({
+    baseURL: BASE_URL_OUT,
     timeout: 5000
+  })
+  instance.interceptors.response.use(res => {
+    if (res.data.errno != 404) {
+      return res.data;
+    } else {
+      window.location.replace('/')
+    }
   })
   return instance(config)
 }

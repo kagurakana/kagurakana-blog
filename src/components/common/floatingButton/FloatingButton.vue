@@ -30,7 +30,7 @@
           small
           color="indigo"
           v-on="on"
-          @click="$route.path==='/home'||$router.push('/home')"
+          @click="$route.path==='/'||$router.push('/')"
         >
           <v-icon>mdi-home</v-icon>
         </v-btn>

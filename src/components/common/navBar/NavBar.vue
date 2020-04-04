@@ -4,7 +4,7 @@
       <!-- 手机导航 -->
       <v-toolbar ref="mobileNav">
         <v-app-bar-nav-icon @click="showDrawer"></v-app-bar-nav-icon>
-        <router-link tag="div" to="/home">
+        <router-link tag="div" to="/">
           <v-toolbar-title>神楽花菜OFFICIAL</v-toolbar-title>
         </router-link>
       </v-toolbar>
@@ -12,7 +12,7 @@
         <v-list>
           <v-list-item>
             <v-list-item-content>
-              <router-link to="/home">
+              <router-link to="/">
                 <v-list-item-title class="title">神楽花菜OFFICIAL</v-list-item-title>
                 <v-list-item-subtitle>轮子真好用</v-list-item-subtitle>
               </router-link>

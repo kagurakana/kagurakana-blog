@@ -118,6 +118,8 @@ export default {
     }
   },
   mounted() {
+    document.dispatchEvent(new Event("render-event"));
+
     /**监听并提交resize事件 修改store中的屏幕高宽,重新计算isMobile */
     this.$store.commit("resize");
     /**监听鼠标滚轮事件,全屏滚动 */
@@ -273,7 +275,7 @@ export default {
     -moz-filter: blur(0px);
     -ms-filter: blur(0px);
     filter: blur(0px);
-    
+
     top: 0;
   }
 

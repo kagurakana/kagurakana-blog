@@ -201,6 +201,8 @@ export default {
   },
   mounted() {
     let clipboard = new ClipBoard(".icons");
+    document.dispatchEvent(new Event("render-event"));
+
   },
   data() {
     return {

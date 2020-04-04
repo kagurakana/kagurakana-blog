@@ -96,7 +96,7 @@ export default {
       }, 1000);
       setTimeout(() => {
         clearInterval(timer);
-        this.$router.push("/home");
+        this.$router.push("/");
       }, this.timeout);
     },
     pushRouterRegister() {
