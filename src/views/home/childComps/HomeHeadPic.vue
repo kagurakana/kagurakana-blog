@@ -13,9 +13,27 @@
       ></v-img>
       <div class="flag d-flex align-center justify-center">
         <!-- <input type="text" autofocus class="home-text" v-model="showName" /> -->
-        <section>
-          <h1 class="p-0 m-0 home-text">{{name}}{{showName}}</h1>
-          <p class="p-0 ma-0 text-center">sadsad</p>
+        <section class="flex-fill">
+          <h1 class="p-0 m-0 home-text">{{welcomeTip}}</h1>
+
+          <div v-if="!isMobile">
+            <transition-group name="topic-transistion" class="topic">
+              <v-card
+                class="topic-card"
+                width="345px"
+                v-for="(topic, index) in topics"
+                :key="topic.date"
+              >
+                <p class="topic-text">{{topic.content}}</p>
+                <v-divider></v-divider>
+                <v-card-text>{{topic.date}}</v-card-text>
+              </v-card>
+            </transition-group>
+            <div class="text-center">
+              <v-btn class="ma-2" @click="loadNext" key="left-btn">下一个</v-btn>
+              <v-btn class="ma-2" @click="loadPrevious" key="right-btn">上一个</v-btn>
+            </div>
+          </div>
         </section>
       </div>
       <v-col v-show="!isMobile" cols="12" class="text-center home-head-btn">
@@ -38,20 +56,30 @@
 <script>
 import { mapGetters } from "vuex";
 import moment from "moment";
-// import _ from "lodash";
 export default {
   name: "HomeHeadPic",
   data() {
     return {
       isShow: true,
-      showName: "",
       isBulr: false,
-      gettedName: "这里是「神楽花菜」"
-      // imgMarginTop: "0",
-      // oldTop: 0,
-      // moveDown:false,
-      // moveUp:false,
-      // debouncedImgScroll: _.debounce(this.imgScroll, 500, { leading: true })
+      gettedName: "这里是「神楽花菜」",
+      topics: [
+        {
+          content:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum saepe est laudantium deserunt harum eligendi odit aperiam recusandae impedit.",
+          date: "2020-12-5"
+        },
+        {
+          content:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum saepe est laudantium deserunt harum eligendi odit aperiam recusandae impedit.",
+          date: "2020-13-5"
+        },
+        {
+          content:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum saepe est laudantium deserunt harum eligendi odit aperiam recusandae impedit.",
+          date: "2020-11-5"
+        }
+      ]
     };
   },
   props: {
@@ -60,7 +88,7 @@ export default {
   },
   computed: {
     ...mapGetters(["isMobile"]),
-    name() {
+    welcomeTip() {
       let now = moment().format("HH");
       let str = "";
       if (now >= 6 && now < 12) {
@@ -75,59 +103,26 @@ export default {
         str = "晚安!";
       }
       return str + this.gettedName;
-    },
-    dis() {
-      return this.scrollDis;
     }
   },
-  // mounted() {
-  //   // window.addEventListener("scroll", () => {
-  //   //   this.debouncedImgScroll();
-  //   // });
-  //   let i = 0;
-  //   let timer = setInterval(() => {
-  //     this.showName += this.name[i] ? this.name[i++] : "";
-  //   }, 150);
-  //   setTimeout(() => {
-  //     clearInterval(timer);
-  //     // console.log('timer cleared')
-  //   }, 500 * this.name.length);
-  // },
 
   methods: {
-    // imgScroll() {
-    //   console.log("aaaaaaaa");
-    //   let top = document.scrollingElement.scrollTop;
-    //   if (top > this.oldTop) {
-    //     //向下滚动
-    //     if (top < window.innerHeight) {
-    //       //位于头图范围中
-    //       this.moveDown = true;
-    //       this.moveUp = false;
-    //     }else{
-    //       //不位于头图范围中
-    //       this.moveDown = false;
-    //       this.moveUp = false;
-    //     }
-    //   } else {
-    //     //向上滚动
-    //     if (top == 0) {
-    //       //位于顶部,将返回头图
-    //       this.moveUp = true
-    //       this.moveDown = false;
-    //     }else{
-    //       this.moveUp = false
-    //       this.moveDown = false
-    //     }
-    //   }
-    //   this.oldTop = top;
-    // }
-  },
-
-  watch: {
-    // dis(val) {
-    //  this.$refs.back.$el.style['filter']=`blur(${val/70}px)`;
-    // }
+    loadNext() {
+      this.topics.shift();
+      this.topics.push({
+        content:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum saepe est laudantium deserunt harum eligendi odit aperiam recusandae impedit.",
+         date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss:SSS")
+      });
+    },
+    loadPrevious() {
+      this.topics.unshift({
+        content:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum saepe est laudantium deserunt harum eligendi odit aperiam recusandae impedit.",
+        date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss:SSS")
+      });
+      this.topics.pop();
+    }
   }
 };
 </script>
@@ -225,12 +220,26 @@ export default {
     outline: none;
   }
 }
-// .back{
-//        -webkit-filter: blur(20px); /* Chrome, Opera */
-//     -moz-filter: blur(20px);
-//     -ms-filter: blur(20px);
-//     filter: blur(20px);
-// }
+.topic {
+  display: block;
+  text-align: center;
+}
+.topic-text {
+  padding: 5px 30px;
+  color: #000;
+}
+.topic-card {
+  transition: all 1s;
+  display: inline-block;
+  margin-left: 30px;
+}
+.topic-transistion-enter,
+.topic-transistion-leave-active {
+  position: absolute !important;
+  transition: all 1s;
+  transform: scale(0.1);
+}
+
 @media screen and(max-width: 1300px) {
   .home-text {
     font-size: 36px;

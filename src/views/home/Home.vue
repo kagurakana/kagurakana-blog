@@ -7,15 +7,13 @@
       leave-active-class="bulrOutUp"
       leave-to-class="bulrOutEnd"
       @after-leave="showBodyOverflow"
-      :duration="{leave: 200}"
+      :duration="{leave: 500}"
     >
       <HomeHeadPic
         @showImg="showBlog"
         @hideImg="hideImg"
         v-show="isMobile||showWelcome"
         style="z-index:10"
-        @animationend.native="animating=false"
-        @animationstart.native="animating=true"
         :class="{'welcome':!isMobile}"
         :scrollDis="scrollDis"
         ref="headPic"
@@ -132,11 +130,8 @@ export default {
       second: 0, //tip显示的剩余秒数
       timeout: 3000, //tip超时时间
       top: 0, //滚动位置距离顶部
-      animating: false,
       scrollDis: 0,
       leaveTop: 0,
-      prevented: false,
-      preventScroll: true,
       oldTime: 0,
       newTime: 0,
       /* 头图全屏滚动节流 */
@@ -157,15 +152,17 @@ export default {
       }, 0);
     },
     hideImg() {
-      !this.animating && (this.showWelcome = false);
+      this.showWelcome = false;
     },
-    hideBodyOverflow(){
-      document.body.style.height="100vh"
-      document.body.style.overflow="hidden"
+    hideBodyOverflow() {
+      if (!this.isMobile) {
+        document.body.style.height = "100vh";
+        document.body.style.overflow = "hidden";
+      }
     },
-    showBodyOverflow(){
-      document.body.style.height="unset"
-      document.body.style.overflow="unset"
+    showBodyOverflow() {
+      document.body.style.height = "unset";
+      document.body.style.overflow = "unset";
     },
     showTip(tip) {
       this.second = this.timeout / 1000;
@@ -181,14 +178,8 @@ export default {
     imgScroll(e) {
       //获取top
       this.top = document.scrollingElement.scrollTop;
-      this.scrollDis = this.scrollDis < 0 ? 0 : this.scrollDis + e.deltaY;
-
-      // console.log(this.scrollDis);
       if (this.isMobile) {
         return;
-      }
-      if (this.animating) {
-        e.preventDefault();
       }
       this.throttledScroll(e);
     },
@@ -196,7 +187,6 @@ export default {
       if (this.top <= 100) {
         if (e.deltaY > 0) {
           this.showWelcome = false;
-          // this.preventScroll = true
         } else {
           // 向上滚动,展示图片
           this.showWelcome = true;
@@ -206,13 +196,10 @@ export default {
   },
   activated() {
     this.$vuetify.goTo(this.leaveTop, 500);
-    window.addEventListener("mousewheel", this.imgScroll, {
-      passive: false
-    });
+    window.addEventListener("mousewheel", this.imgScroll);
   },
   beforeRouteLeave(to, from, next) {
     this.leaveTop = document.documentElement.scrollTop;
-
     window.removeEventListener("mousewheel", this.imgScroll);
     next();
   }
@@ -238,14 +225,11 @@ export default {
   top: 0;
   z-index: 0;
 }
-.fakeAnimate {
-  animation: 0.1s;
-}
 .bulrInDown {
-  animation: bulrInDown .2s linear;
+  animation: bulrInDown 0.5s linear;
 }
 .bulrOutUp {
-  animation: bulrOutUp .2s linear;
+  animation: bulrOutUp 0.5s linear;
 }
 .bulrOutEnd {
   clip-path: circle(0 at 50% 85%);
