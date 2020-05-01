@@ -1,7 +1,7 @@
 <template>
   <!-- <div class="home-head" :style="{'margin-top':imgMarginTop}"> -->
   <div class="home-head">
-    <div class="imgs-container" >
+    <div class="imgs-container">
       <v-img
         class="back"
         :class="{'bulr':isBulr}"
@@ -17,10 +17,7 @@
           <h1 class="p-0 m-0 home-text">{{name}}{{showName}}</h1>
           <p class="p-0 ma-0 text-center">sadsad</p>
         </section>
-
-       
       </div>
-       <div>sadsadsa</div>
       <v-col v-show="!isMobile" cols="12" class="text-center home-head-btn">
         <v-btn
           class="btn-in"
@@ -49,7 +46,7 @@ export default {
       isShow: true,
       showName: "",
       isBulr: false,
-      gettedName: "这里是「神楽花菜」", 
+      gettedName: "这里是「神楽花菜」"
       // imgMarginTop: "0",
       // oldTop: 0,
       // moveDown:false,

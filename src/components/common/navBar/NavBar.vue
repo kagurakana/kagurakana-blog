@@ -14,7 +14,7 @@
             <v-list-item-content>
               <router-link to="/">
                 <v-list-item-title class="title">神楽花菜OFFICIAL</v-list-item-title>
-                <v-list-item-subtitle>轮子真好用</v-list-item-subtitle>
+                <v-list-item-subtitle>（￣▽￣）</v-list-item-subtitle>
               </router-link>
               <v-list>
                 <v-list-item-group v-model="item">

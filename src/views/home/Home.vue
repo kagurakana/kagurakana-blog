@@ -1,51 +1,49 @@
 <template>
   <div>
-    <div class="black" v-show="imgLoaded"></div>
     <transition
       appear
-      enter-active-class="animated  slideInDown bulrInDown"
-      leave-active-class="animated slideOutUp bulrOutUp"
+      @before-enter="hideBodyOverflow"
+      enter-active-class="bulrInDown"
+      leave-active-class="bulrOutUp"
       leave-to-class="bulrOutEnd"
+      @after-leave="showBodyOverflow"
+      :duration="{leave: 200}"
     >
       <HomeHeadPic
         @showImg="showBlog"
-        @hideImg="showWelcome=false"
+        @hideImg="hideImg"
         v-show="isMobile||showWelcome"
         style="z-index:10"
+        @animationend.native="animating=false"
+        @animationstart.native="animating=true"
         :class="{'welcome':!isMobile}"
         :scrollDis="scrollDis"
         ref="headPic"
       />
       <!-- :gettedName="loginCheckUsername===''?'「神楽花菜」':`「${checkedUsername}」`" -->
     </transition>
-    <transition
-      appear
-      enter-class="enterPosisition"
-      enter-active-class="animated fadeIn"
-      leave-active-class="animated fadeOut"
-    >
-      <div class="content" v-show="imgLoaded&&!showWelcome||isMobile">
-        <v-img
-          width="100vw"
-          class="background"
-          height="100vh"
-          src="https://cdn.kagurakana.xyz/DpumTcUX4AEvMfp.jpg"
-        ></v-img>
-        <HomeNav class="home-nav" ref="nav" />
-        <Content id="content">
-          <template v-slot:left>
-            <HomeLeftContent />
-          </template>
-          <template v-slot:mid>
-            <HomeMidContent />
-          </template>
-          <template v-slot:right>
-            <HomeRightContent />
-          </template>
-        </Content>
-        <!-- welcomeTip -->
-      </div>
-    </transition>
+    <div class="content" v-show="imgLoaded||isMobile">
+      <v-img
+        width="100vw"
+        class="background"
+        height="100vh"
+        src="https://cdn.kagurakana.xyz/DpumTcUX4AEvMfp.jpg"
+      ></v-img>
+      <HomeNav class="home-nav" ref="nav" />
+      <Content id="content">
+        <template v-slot:left>
+          <HomeLeftContent />
+        </template>
+        <template v-slot:mid>
+          <HomeMidContent />
+        </template>
+        <template v-slot:right>
+          <HomeRightContent />
+        </template>
+      </Content>
+      <!-- welcomeTip -->
+    </div>
+
     <v-snackbar
       class="tool-tip"
       color="blue"
@@ -134,6 +132,7 @@ export default {
       second: 0, //tip显示的剩余秒数
       timeout: 3000, //tip超时时间
       top: 0, //滚动位置距离顶部
+      animating: false,
       scrollDis: 0,
       leaveTop: 0,
       prevented: false,
@@ -143,7 +142,7 @@ export default {
       /* 头图全屏滚动节流 */
       throttledScroll: _.throttle(e => {
         this.scroll(e);
-      }, 1000)
+      }, 200)
     };
   },
   computed: {
@@ -155,7 +154,18 @@ export default {
       this.showWelcome = true;
       setTimeout(() => {
         this.imgLoaded = true;
-      }, 500);
+      }, 0);
+    },
+    hideImg() {
+      !this.animating && (this.showWelcome = false);
+    },
+    hideBodyOverflow(){
+      document.body.style.height="100vh"
+      document.body.style.overflow="hidden"
+    },
+    showBodyOverflow(){
+      document.body.style.height="unset"
+      document.body.style.overflow="unset"
     },
     showTip(tip) {
       this.second = this.timeout / 1000;
@@ -177,7 +187,7 @@ export default {
       if (this.isMobile) {
         return;
       }
-      if (this.$refs.headPic.$el.classList.contains("animated")) {
+      if (this.animating) {
         e.preventDefault();
       }
       this.throttledScroll(e);
@@ -228,19 +238,17 @@ export default {
   top: 0;
   z-index: 0;
 }
-.slideInDown,
-.slideOutUp {
-  animation-duration: 0.5s;
+.fakeAnimate {
+  animation: 0.1s;
 }
 .bulrInDown {
-  animation: bulrInDown 0.5s;
+  animation: bulrInDown .2s linear;
 }
 .bulrOutUp {
-  animation: bulrOutUp 0.5s;
+  animation: bulrOutUp .2s linear;
 }
 .bulrOutEnd {
-  position: absolute;
-  top: -120vh;
+  clip-path: circle(0 at 50% 85%);
 }
 .tool-tip {
   z-index: 1000001 !important;
@@ -255,8 +263,9 @@ export default {
     -moz-filter: blur(20px);
     -ms-filter: blur(20px);
     filter: blur(20px);
+    clip-path: circle(0 at 50% 85%);
 
-    top: -100vh;
+    // top: -100vh;
   }
 
   to {
@@ -264,8 +273,9 @@ export default {
     -moz-filter: blur(0px);
     -ms-filter: blur(0px);
     filter: blur(0px);
+    clip-path: circle(100% at 50% 85%);
 
-    top: 0;
+    // top: 0;
   }
 }
 
@@ -275,8 +285,8 @@ export default {
     -moz-filter: blur(0px);
     -ms-filter: blur(0px);
     filter: blur(0px);
-
-    top: 0;
+    // top: 0;
+    clip-path: circle(100% at 50% 85%);
   }
 
   to {
@@ -284,8 +294,8 @@ export default {
     -moz-filter: blur(20px);
     -ms-filter: blur(20px);
     filter: blur(20px);
-
-    top: -100vh;
+    clip-path: circle(0 at 50% 85%);
+    // top: -100vh;
   }
 }
 </style>
