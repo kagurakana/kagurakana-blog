@@ -12,17 +12,23 @@ const routes = [
       title: '神楽花菜OFFICIAL'
     }
   },
-  {
-    path: '/home',
-    component: () => import('views/home/Home')
-  },
+  // {
+  //   path: '/home',
+  //   component: () => import('views/home/Home')
+  // },
   {
     path: '/login',
-    component: () => import('views/admin/Login')
+    component: () => import('views/admin/Login'),
+    meta: {
+      title: '神楽花菜OFFICIAL|登陆'
+    }
   },
   {
     path: '/register',
-    component: () => import('views/admin/Register')
+    component: () => import('views/admin/Register'),
+    meta: {
+      title: '神楽花菜OFFICIAL|注册'
+    }
   },
   {
     path: '/admin/new',
@@ -60,25 +66,37 @@ const routes = [
   },
   {
     path: '/list/追番',
-    redirect:'/bangumi'
+    redirect: '/bangumi'
   },
   {
-    path:'/bangumi',
-    component:()=>import('views/bangumi/Bangumi')
+    path: '/bangumi',
+    component: () => import('views/bangumi/Bangumi'),
+    meta: {
+      title: '神楽花菜OFFICIAL|追番'
+    }
   },
   {
     path: '/list/:tag',
-    component: () => import('views/blogs/List')
+    component: () => import('views/blogs/List'),
+    meta: {
+      title: '神楽花菜OFFICIAL'
+    }
   },
   {
     path: '/friends',
-    component: () => import('views/friends/Friends')
+    component: () => import('views/friends/Friends'),
+    meta: {
+      title: '神楽花菜OFFICIAL|小伙伴'
+    }
   },
 
 
   {
     path: '/about',
-    component: () => import('views/about/About')
+    component: () => import('views/about/About'),
+    meta: {
+      title: '神楽花菜OFFICIAL|(=・ω・=)'
+    }
   },
 
 
@@ -92,6 +110,11 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  next();
 })
 
 export default router

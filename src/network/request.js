@@ -2,9 +2,9 @@ import axios from 'axios'
 
 // axios.defaults.withCredentials = true;
 
-export const BASE_URL = "https://www.kagurakana.xyz/api"
-// export const BASE_URL = "http://localhost:8080/api"
-export const BASE_URL_OUT = BASE_URL+"/out"
+// export const BASE_URL = "https://www.kagurakana.xyz/api"
+export const BASE_URL = "http://localhost:8080/api"
+export const BASE_URL_OUT = BASE_URL + "/out"
 
 
 export function request(config) {
@@ -12,7 +12,7 @@ export function request(config) {
     // baseURL:'https://www.kagurakana.xyz/api',
     // baseURL: 'http://localhost:8080/api',
     baseURL: BASE_URL,
-    timeout: 5000
+    timeout: 20000
   })
   instance.interceptors.response.use(res => {
     if (res.data.errno != 404) {
@@ -27,7 +27,7 @@ export function request(config) {
 export function outRequest(config) {
   const instance = axios.create({
     baseURL: BASE_URL_OUT,
-    timeout: 5000
+    timeout: 20000
   })
   instance.interceptors.response.use(res => {
     if (res.data.errno != 404) {

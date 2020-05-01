@@ -86,6 +86,7 @@ export default {
     next();
     window.scrollTo({ top: 0, behavior: "smooth" });
     this.getUrlTag();
+    document.title = '神楽花菜OFFICIAL|'+this.tag;
     this.getListData(this.tag).then(res => {
       this.blogListData = this.listData;
 

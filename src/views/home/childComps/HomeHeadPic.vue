@@ -12,8 +12,15 @@
         @load="$emit('showImg')"
       ></v-img>
       <div class="flag d-flex align-center justify-center">
-        <input type="text" autofocus class="home-text" v-model="showName" />
+        <!-- <input type="text" autofocus class="home-text" v-model="showName" /> -->
+        <section>
+          <h1 class="p-0 m-0 home-text">{{name}}{{showName}}</h1>
+          <p class="p-0 ma-0 text-center">sadsad</p>
+        </section>
+
+       
       </div>
+       <div>sadsadsa</div>
       <v-col v-show="!isMobile" cols="12" class="text-center home-head-btn">
         <v-btn
           class="btn-in"
@@ -41,7 +48,8 @@ export default {
     return {
       isShow: true,
       showName: "",
-      isBulr: false
+      isBulr: false,
+      gettedName: "这里是「神楽花菜」", 
       // imgMarginTop: "0",
       // oldTop: 0,
       // moveDown:false,
@@ -50,7 +58,7 @@ export default {
     };
   },
   props: {
-    gettedName: "",
+    //deprecate
     scrollDis: 0
   },
   computed: {
@@ -67,7 +75,7 @@ export default {
       } else if (now >= 20 && now < 23) {
         str = "晚上好!";
       } else {
-        str = "要秃头了!";
+        str = "晚安!";
       }
       return str + this.gettedName;
     },
@@ -75,19 +83,19 @@ export default {
       return this.scrollDis;
     }
   },
-  mounted() {
-    // window.addEventListener("scroll", () => {
-    //   this.debouncedImgScroll();
-    // });
-    let i = 0;
-    let timer = setInterval(() => {
-      this.showName += this.name[i] ? this.name[i++] : "";
-    }, 150);
-    setTimeout(() => {
-      clearInterval(timer);
-      // console.log('timer cleared')
-    }, 500 * this.name.length);
-  },
+  // mounted() {
+  //   // window.addEventListener("scroll", () => {
+  //   //   this.debouncedImgScroll();
+  //   // });
+  //   let i = 0;
+  //   let timer = setInterval(() => {
+  //     this.showName += this.name[i] ? this.name[i++] : "";
+  //   }, 150);
+  //   setTimeout(() => {
+  //     clearInterval(timer);
+  //     // console.log('timer cleared')
+  //   }, 500 * this.name.length);
+  // },
 
   methods: {
     // imgScroll() {
@@ -226,7 +234,7 @@ export default {
 //     -ms-filter: blur(20px);
 //     filter: blur(20px);
 // }
-@media screen and(max-width: 1100px) {
+@media screen and(max-width: 1300px) {
   .home-text {
     font-size: 36px;
   }

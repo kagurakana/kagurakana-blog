@@ -81,7 +81,6 @@ import Comment from "components/common/comment/Comment";
 import CommentList from "components/common/comment/CommentList";
 import Nav from "views/home/childComps/HomeNav";
 import { getFriendLink } from "network/user";
-// import { getQqInfo } from "network/out";
 import { mapGetters } from "vuex";
 export default {
   name: "About",
@@ -94,9 +93,7 @@ export default {
     getFriendLink().then(result => {
       this.linkList = result.data;
     });
-    // getQqInfo("1278820830").then(res => {
-    //   console.log(res);
-    // });
+
   },
   mounted() {
     document.dispatchEvent(new Event("render-event"));
@@ -168,6 +165,7 @@ export default {
 .avatar {
   transition: all 1.25s cubic-bezier(0, 0, 0, 1);
   border-radius: 50%;
+  border : 2px solid #F06292;
 }
 .bio-clip {
   text-overflow: ellipsis;

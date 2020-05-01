@@ -286,6 +286,7 @@ export default {
 }
 .avatar {
   border-radius: 50%;
+  border : 2px solid #F06292;
 }
 // .default-avatar{
 //   .mx-2{

@@ -1,23 +1,23 @@
 <template>
-    <div
-      class="nav-item menu-item"
-      @mouseenter="isShow=true"
-      @mouseleave="isShow=false"
-      @touch="isShow=!isShow"
+  <div
+    class="nav-item menu-item"
+    @mouseenter="isShow=true"
+    @mouseleave="isShow=false"
+    @touch="isShow=!isShow"
+  >
+    <router-link class="title menu-item" :to="'/list/'+ items.name" tag="div">{{items.name}}</router-link>
+    <transition
+      appear
+      enter-active-class="animated flipInY "
+      leave-active-class="animated flipOutY"
     >
-        <router-link class="title menu-item" :to="'/list/'+ items.name" tag="div">{{items.name}}</router-link>
-      <transition
-        appear
-        enter-active-class="animated flipInY "
-        leave-active-class="animated flipOutY"
-      >
-        <ul class="content" v-show="isShow">
-          <li v-for="(include, index) in items.includes" :key="index" class="nav-item">
-            <router-link tag="div" :to="'/list/'+include">{{include}}</router-link>
-          </li>
-        </ul>
-      </transition>
-    </div>
+      <ul class="content" v-show="isShow">
+        <li v-for="(include, index) in items.includes" :key="index" class="nav-item">
+          <router-link tag="div" :to="'/list/'+include">{{include}}</router-link>
+        </li>
+      </ul>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -41,37 +41,54 @@ export default {
   height: 100%;
   line-height: $home-nav-height;
   padding-left: 0;
+  width: 100%;
+  display: block;
+  text-align: center;
 }
 .text {
   width: 200px;
 }
-.menu-item {
-  flex: 1;
+.nav-item {
   max-width: 800px;
   font-size: 1.2rem;
   list-style: none;
-  position: relative;
-
+  text-align: center;
+  display: flex;
+  // position: relative;
+}
+.nav-bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .content {
-    position: absolute;
-    // z-index:-1;
-    left: 10px;
-    right: 10px;
-    padding-left: 0;
-    box-shadow: 0px 1px 5px 0px rgba(#000, 0.5);
     max-width: 200px;
     min-width: 100px;
-    border-radius: 0 0 3px 3px/ 0 0 3px 3px;
-    overflow: hidden;
-  }
-  li {
-    top: $home-nav-height;
-    height: 60px;
-    line-height: 60px;
-    background-color: $nav-color;
-    border-bottom: 1px solid $devide-line-color;
+    background-color: #fff;
+    padding: 0;
+    margin-top: 15px;
     width: 100%;
-    margin: 0 auto;
+    position: relative;
+    border-radius: 0 0 4px 4px/ 0 0 4px 4px;
+    box-shadow: 0 0 30px 4px rgba(0,0,0,.2);
+    &::before{
+      content: '';
+      border-top: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 15px solid #fff;
+      position: absolute;
+      left: 50%;
+      top: -15px;
+      transform: translate(-50%,0);
+
+    }
+    li {
+      display: block;
+      height: $home-nav-height;
+      text-align: center;
+      border-bottom: 1px solid $devide-line-color;
+      line-height: $home-nav-height;
+    }
   }
 }
 .flipInY,

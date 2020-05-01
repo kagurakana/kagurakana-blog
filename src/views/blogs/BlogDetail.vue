@@ -43,6 +43,7 @@ export default {
         blog.data[0].tags = blog.data[0].tags.split(",");
         this.blogDetail = blog.data[0];
         this.loading = false;
+        document.title = '神楽花菜OFFICIAL|'+blog.data[0].title
       })
       .catch(err => {});
   },

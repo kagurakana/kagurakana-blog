@@ -1,36 +1,45 @@
 <template>
   <div>
-    <v-form v-model="valid">
-      <v-row class="pa-0 ma-0">
-        <v-col class="mx-auto" cols="11" sm="4">
-          <v-text-field
-            dense
-            label="昵称"
-            class="comment-input-name"
-            :rules="usernameRule"
-            :disabled="getUsername"
-            v-model="username"
-          ></v-text-field>
-        </v-col>
-        <v-col class="mx-auto" cols="11" sm="4">
-          <v-text-field
-            dense
-            label="邮箱"
-            class="comment-input-mail"
-            :rules="emailRule"
-            :disabled="getEmail"
-            v-model="email"
-          ></v-text-field>
-        </v-col>
-        <v-col class="mx-auto" cols="11" sm="4">
-          <v-text-field
-            dense
-            label="URL"
-            class="comment-input-url"
-            placeholder="https://"
-            v-model="URL"
-          ></v-text-field>
-        </v-col>
+    <v-form v-model="valid" lazy-validation>
+      <v-row class="px-1 ma-0">
+        <v-img
+          class="pa-2 my-2 mx-auto round"
+          :src="commentAvatar"
+          max-width="60px"
+          min-width="60px"
+          max-height="60px"
+          min-height="60px"
+        ></v-img>
+        <v-row class="mx-1">
+          <v-col class="mx-auto" cols="11" sm="4">
+            <v-text-field
+              label="昵称*/QQ号"
+              hint="输入QQ号会自动获得昵称~"
+              class="comment-input-name"
+              :rules="usernameRule"
+              :disabled="getUsername"
+              v-model="username"
+              @blur="getQQInfo"
+            ></v-text-field>
+          </v-col>
+          <v-col class="mx-auto" cols="11" sm="4">
+            <v-text-field
+              label="邮箱*"
+              class="comment-input-mail"
+              :rules="emailRule"
+              :disabled="getEmail"
+              v-model="email"
+            ></v-text-field>
+          </v-col>
+          <v-col class="mx-auto" cols="11" sm="4">
+            <v-text-field
+              label="URL"
+              class="comment-input-url"
+              placeholder="https://"
+              v-model="URL"
+            ></v-text-field>
+          </v-col>
+        </v-row>
       </v-row>
       <v-col cols="12">
         <v-textarea
@@ -80,6 +89,7 @@
 <script>
 import { getLoginCheck } from "network/user";
 import { addComment } from "network/comment";
+import { getqqInfo } from "network/out";
 import { mapGetters } from "vuex";
 import gravatar from "gravatar";
 import hljsMixin from "@/mixins/hljsMixin";
@@ -103,6 +113,8 @@ export default {
       username: "",
       email: "",
       resaveEmail: true,
+      commentAvatar: "https://cdn.kagurakana.xyz/default.png",
+      defaultAvatar: "https://cdn.kagurakana.xyz/default.png",
       URL: "",
       getUsername: false,
       timeout: 4000,
@@ -185,12 +197,36 @@ export default {
           this.$bus.$emit("commentSuccess");
         }
       });
+    },
+    getQQInfo() {
+      let jsondata = {};
+      getqqInfo(this.username).then(res => {
+        // console.log(res);
+        // if (typeof res === "string") {
+        //   var reg = /\{.*\}/;
+        //   var matches = res.match(reg);
+        //   if (matches) {
+        //     jsondata = JSON.parse(matches[0]);
+        //     console.log(jsondata);
+        //     this.username = jsondata[6];
+        //   } else {
+        //     console.log("??");
+        //   }
+        // }
+      });
     }
   }
 };
 </script>
 
 <style lang='scss' scoped>
+.round {
+  border-radius: 50%;
+  border: 2px solid #f06292;
+}
+.fill-width {
+  width: 100%;
+}
 ::v-deep.comment-preview a {
   color: $link-color;
   position: relative;

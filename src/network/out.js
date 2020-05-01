@@ -18,12 +18,13 @@ export function getBangumi(pn,sn) {
 }
 
 
-// export function getQqInfo(qqNum) {
-//   return outRequest({
-//     method: 'get',
-//     url: "http://users.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg",
-//     data: {
-//       uins: qqNum
-//     }
-//   })
-// }
+export function getqqInfo(qqNum) {
+  return outRequest({
+    method: 'get',
+    url: "/qqinfo",
+    params: {
+      uins: qqNum,
+      g_tk:'1518561325'
+    }
+  })
+}

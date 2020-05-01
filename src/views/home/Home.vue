@@ -15,8 +15,8 @@
         :class="{'welcome':!isMobile}"
         :scrollDis="scrollDis"
         ref="headPic"
-        :gettedName="loginCheckUsername===''?'「神楽花菜」':`「${checkedUsername}」`"
       />
+      <!-- :gettedName="loginCheckUsername===''?'「神楽花菜」':`「${checkedUsername}」`" -->
     </transition>
     <transition
       appear

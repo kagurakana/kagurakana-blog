@@ -217,7 +217,7 @@ export default {
 <style lang='scss' scoped>
 .avatar {
   border-radius: 50%;
-  border: $devide-line-color 1px solid;
+  border : 2px solid #F06292;
 }
 .username,
 .comment {
