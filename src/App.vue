@@ -42,6 +42,18 @@ export default {
     window.onresize = () => {
       commitResize();
     };
+    console.log(`%c
+created by                                                                    
+           _                               _                                  
+          | |                             | |                                 
+          | | ____ _  __ _ _   _ _ __ __ _| | ____ _ _ __   __ _              
+          | |/ / _\` |/ _\` | | | | '__/ _\` | |/ / _\` | '_ \\ / _\` |             
+          |   | (_| | (_| | |_| | | | (_| |   | (_| | | | | (_| |             
+          |_|\\_\\__,_|\\__, |\\__,_|_|  \\__,_|_|\\_\\__,_|_| |_|\\__,_|             
+                      __| |                                                   
+                     |___/                                                    
+                                                                     with ♥   
+`,'color:#fff;background-color:#FFA726;display:block')
   },
 
   components: {

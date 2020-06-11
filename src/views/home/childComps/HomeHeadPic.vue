@@ -12,11 +12,10 @@
         @load="$emit('showImg')"
       ></v-img>
       <div class="flag d-flex align-center justify-center">
-        <!-- <input type="text" autofocus class="home-text" v-model="showName" /> -->
         <section class="flex-fill">
           <h1 class="p-0 m-0 home-text">{{welcomeTip}}</h1>
 
-          <div v-if="!isMobile">
+          <!-- <div v-if="!isMobile">
             <transition-group name="topic-transistion" class="topic">
               <v-card
                 class="topic-card"
@@ -29,11 +28,12 @@
                 <v-card-text>{{topic.date}}</v-card-text>
               </v-card>
             </transition-group>
+
             <div class="text-center">
               <v-btn class="ma-2" @click="loadNext" key="left-btn">下一个</v-btn>
               <v-btn class="ma-2" @click="loadPrevious" key="right-btn">上一个</v-btn>
             </div>
-          </div>
+          </div> -->
         </section>
       </div>
       <v-col v-show="!isMobile" cols="12" class="text-center home-head-btn">
@@ -112,7 +112,7 @@ export default {
       this.topics.push({
         content:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum saepe est laudantium deserunt harum eligendi odit aperiam recusandae impedit.",
-         date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss:SSS")
+        date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss:SSS")
       });
     },
     loadPrevious() {

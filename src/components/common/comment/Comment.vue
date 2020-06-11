@@ -17,7 +17,6 @@
               hint="输入QQ号会自动获得昵称~"
               class="comment-input-name"
               :rules="usernameRule"
-              :disabled="getUsername"
               v-model="username"
               @blur="getQQInfo"
             ></v-text-field>
@@ -26,8 +25,8 @@
             <v-text-field
               label="邮箱*"
               class="comment-input-mail"
+              @blur="getGravatar"
               :rules="emailRule"
-              :disabled="getEmail"
               v-model="email"
             ></v-text-field>
           </v-col>
@@ -53,7 +52,7 @@
           :rows="rows"
           :placeholder="replyPlaceholder"
           label="评论"
-          hint="支持markdown哦"
+          hint="(´；ω；`)请不要打广告~ 支持markdown哦"
           class="comment-input-text"
           ref="comment-text"
         ></v-textarea>
@@ -91,6 +90,8 @@ import { getLoginCheck } from "network/user";
 import { addComment } from "network/comment";
 import { getqqInfo } from "network/out";
 import { mapGetters } from "vuex";
+import { BASE_URL_OUT } from "network/request";
+
 import gravatar from "gravatar";
 import hljsMixin from "@/mixins/hljsMixin";
 export default {
@@ -116,7 +117,9 @@ export default {
       commentAvatar: "https://cdn.kagurakana.xyz/default.png",
       defaultAvatar: "https://cdn.kagurakana.xyz/default.png",
       URL: "",
+      baseurlOut: BASE_URL_OUT,
       getUsername: false,
+      getQQname: false,
       timeout: 4000,
       commented: false,
       isShowTip: false,
@@ -176,7 +179,9 @@ export default {
         replyUsername: this.replyUsername,
         isShow: 1,
         createTime: Date.now(),
-        avatar: gravatar.url(this.email, { s: "400", r: "pg", d: "mm" })
+        avatar: this.getQQname
+          ? this.commentAvatar
+          : gravatar.url(this.email, { s: "400", r: "pg", d: "mm" })
       };
       addComment(
         this.blogId,
@@ -188,10 +193,11 @@ export default {
         this.replyId,
         this.replyCommentId,
         this.replyUsername,
-        this.getEmail //isRegisted
+        this.getEmail, //isRegisted
+        this.commentAvatar
       ).then(res => {
         // console.log(res);
-        if (res.data.errno !== -1) {
+        if (res.errno !== -1) {
           this.comment = "";
           this.isShowTip = true;
           this.$bus.$emit("commentSuccess");
@@ -201,19 +207,20 @@ export default {
     getQQInfo() {
       let jsondata = {};
       getqqInfo(this.username).then(res => {
-        // console.log(res);
-        // if (typeof res === "string") {
-        //   var reg = /\{.*\}/;
-        //   var matches = res.match(reg);
-        //   if (matches) {
-        //     jsondata = JSON.parse(matches[0]);
-        //     console.log(jsondata);
-        //     this.username = jsondata[6];
-        //   } else {
-        //     console.log("??");
-        //   }
-        // }
+        if (res.errno !== -1) {
+          console.log(res);
+          this.username = res.data.nickName;
+          this.commentAvatar = `${this.baseurlOut}/${res.data.avatar}`;
+          this.getQQname = true;
+        } else {
+          this.getQQname = false;
+        }
       });
+    },
+    getGravatar() {
+      this.commentAvatar = this.getQQname
+        ? this.commentAvatar
+        : gravatar.url(this.email, { s: "400", r: "pg", d: "mm" });
     }
   }
 };

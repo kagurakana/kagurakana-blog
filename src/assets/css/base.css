@@ -1,115 +1,128 @@
 @import "./normalize.css";
 @import './animate.css';
-:root{
+
+:root {
   font-size: 16px;
   overflow-x: hidden;
   width: 100vw;
 }
-  *,
-  *::before,
-  *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    list-style-type: none;
-  }
-  body {
-    font-family: "Noto Sans SC","Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
-    user-select: none; /* 禁止用户鼠标在页面上选中文字/图片等 */
-    -webkit-tap-highlight-color: transparent; /* webkit是苹果浏览器引擎，tap点击，highlight背景高亮，color颜色，颜色用数值调节 */
-    background: var(--color-background);
-    color: var(--color-text);
-    width: 100%;
-  }
-  
-  a {
-    text-decoration: none;
-  }
-  .clear-fix::after {
-    clear: both;
-    content: '';
-    display: block;
-    width: 0;
-    height: 0;
-    visibility: hidden;
-  }
-  
-/* marked style */
-.code,code{
-  background-color: floralwhite !important;
-  /* background-color: rgb(43, 43, 43) !important; */
-  color:unset;
-  box-shadow: none !important;
- 
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
 }
 
-.code, .kbd,code{
-  font-family: 'Fira Mono','Fira Code' ,'Roboto'!important;
+body {
+  /* font-family: "","Noto Sans SC","Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif; */
+  user-select: none;
+  /* 禁止用户鼠标在页面上选中文字/图片等 */
+  -webkit-tap-highlight-color: transparent;
+  /* webkit是苹果浏览器引擎，tap点击，highlight背景高亮，color颜色，颜色用数值调节 */
+  background: var(--color-background);
+  color: var(--color-text);
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.clear-fix::after {
+  clear: both;
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+/* marked style */
+.code,
+code {
+  background-color: floralwhite !important;
+  /* background-color: rgb(43, 43, 43) !important; */
+  color: unset;
+  box-shadow: none !important;
+
+}
+
+.code,
+.kbd,
+code {
+  font-family: 'Fira Mono', 'Fira Code', 'Roboto' !important;
   font-weight: normal !important;
   font-size: large;
   padding: 0;
   margin: 5px 0;
   line-height: 1rem;
- 
+
 }
-.code::before, .kbd::before,code::before{
+
+.code::before,
+.kbd::before,
+code::before {
   content: '' !important;
   width: 0 !important;
   height: 0 !important;
 }
-pre code{
+
+pre code {
   width: 100%;
   white-space: pre !important;
   padding: 10px;
+  margin: 0 0;
   line-height: unset;
-  border-radius: 4px!important;
-  -webkit-border-radius: 4px!important;
-  -moz-border-radius: 4px!important;
-  -ms-border-radius: 4px!important;
-  -o-border-radius: 4px!important;
+  display: block !important;
   overflow-x: auto;
 }
 
 
-article{
+article {
   user-select: text;
 }
-article p img{
+
+article p img {
   margin: 0 auto;
   display: block;
   max-width: 100%;
 }
-article h2{
-margin: 18px 0;
-font-size: 26px;
+
+article h2 {
+  margin: 18px 0;
+  font-size: 26px;
 }
 
-article h3{
-margin: 15px 0;
-font-size: 22px;
+article h3 {
+  margin: 15px 0;
+  font-size: 22px;
 }
 
-article h4{
+article h4 {
   margin: 15px 0;
 }
 
-article h5{
+article h5 {
   margin: 15px 0;
 }
 
-article p,article ul{
+article p,
+article ul {
   margin: 20px 5px;
 }
 
-article.context a{
-  color:  rgb(98, 43, 161); 
+article.context a {
+  color: rgb(98, 43, 161);
   font-weight: 600;
   position: relative;
   z-index: 1;
 }
 
-article.context a::after{
-  content:'';
+article.context a::after {
+  content: '';
   display: block;
   position: absolute;
   height: 0px;
@@ -117,35 +130,38 @@ article.context a::after{
   bottom: 0;
   left: 50%;
   /*background-color: rgb(178, 176, 255);
-  */border-bottom: 2px dotted rgb(98, 43, 161);
-  z-index:-1 ;
-  transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
-  -webkit-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
-  -moz-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
-  -ms-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
-  -o-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
+  */
+  border-bottom: 2px dotted rgb(98, 43, 161);
+  z-index: -1;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  -webkit-transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  -moz-transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  -ms-transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  -o-transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
-article.context a:hover::after{
-  content:'';
+
+article.context a:hover::after {
+  content: '';
   display: block;
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 5px;
-  z-index:-1 ;
-  transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
-  -webkit-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
-  -moz-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
-  -ms-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
-  -o-transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
+  z-index: -1;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  -webkit-transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  -moz-transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  -ms-transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  -o-transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
 
-article.context strong{
+article.context strong {
   position: relative;
   z-index: 0;
 }
-article.context strong::after{
+
+article.context strong::after {
   content: '';
   position: absolute;
   display: block;
@@ -154,12 +170,14 @@ article.context strong::after{
   left: 0;
   bottom: 0;
   z-index: -1;
-  background-color: rgb(255,251,45);
+  background-color: rgb(255, 251, 45);
 
 }
+
 .clear-fix {
-    zoom: 1;
-  }
+  zoom: 1;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -167,7 +185,7 @@ article.context strong::after{
   background-color: rgb(243, 243, 243);
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -176,11 +194,12 @@ article.context strong::after{
   /* background-color: rgb(161, 161, 161); */
   background-color: rgb(218, 152, 20);
 }
+
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
-black{
+black {
   background-color: #000;
   color: #000;
   transition: all 0.5s ease-in-out;
@@ -189,7 +208,8 @@ black{
   -ms-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
 }
-black:hover{
+
+black:hover {
   transition: all 0.3s ease-in-out;
   background-color: #000;
   color: #fff;
@@ -198,4 +218,3 @@ black:hover{
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
 }
-

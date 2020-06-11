@@ -44,7 +44,7 @@ module.exports = {
     // ],
 
 
-    
+
     "resolve": {
       "alias": {
         "assets": "@/assets",
@@ -94,5 +94,24 @@ module.exports = {
   //     }
   //   }
   // },
+
+
+
+
+  // devServer: {
+  //   proxy: {
+  //     '/api': {
+  //       target: 'https://www.kagurakana.xyz',
+  //     }
+  //   }
+  // },
+
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+      }
+    }
+  },
   productionSourceMap: false,
 }

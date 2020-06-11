@@ -24,7 +24,7 @@
         <div class="desc">{{blog.desc}}</div>
       </v-card>
     </div>
-    <article class="context" v-html="compiledMarkdown"></article>
+    <article class="context" ref="context" v-html="compiledMarkdown"></article>
   </div>
 </template>
 
@@ -38,6 +38,23 @@ export default {
     blog: {
       type: Object
     }
+  },
+  mounted() {
+    let trs = document.querySelectorAll("tbody tr");
+    trs.forEach(tr => {
+      tr.children.forEach((td, indexCl) => {
+        td.addEventListener("mouseover", () => {
+          trs.forEach((tr, index) => {
+            tr.children[indexCl].style.backgroundColor = "#ddd";
+          });
+        });
+        td.addEventListener("mouseout", () => {
+          trs.forEach((tr, index) => {
+            tr.children[indexCl].style.backgroundColor = "unset";
+          });
+        });
+      });
+    });
   },
   methods: {
     pushRoute(tag) {
@@ -75,5 +92,71 @@ export default {
   display: block;
   // background-color: $base-lightgray-color;
   padding: 10px 0;
+}
+::v-deep .context {
+  margin-top: 25px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px 2px rgba(48, 48, 48, 0.25);
+  padding: 8px;
+  pre {
+    position: relative;
+    z-index: 2;
+    margin: 40px 20px;
+    padding: 25px 0 0 0;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 0 20px 0px rgba(45, 45, 45, 0.2);
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 25px;
+      border-radius: 4px 4px 0 0;
+      background-color: rgb(255, 205, 72);
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 15px;
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+      background-color: #fc625d;
+      box-shadow: 20px 0 0 0 #fdbc40, 40px 0 #35cd4b;
+    }
+  }
+  table {
+    border:1px solid #000;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 4px;
+    box-shadow: 0 0 12px 0px rgba(45, 45, 45, 0.2);
+    overflow: hidden;
+    border-collapse: collapse;
+    thead {
+      background-color: rgb(255, 205, 72);
+    }
+    tr {
+      &:nth-child(2n) {
+        background-color: #eee;
+      }
+      &:hover {
+        background-color: #ddd;
+      }
+      td {
+        border: 1px solid #000;
+      }
+      cursor: cell;
+    }
+  }
+  img {
+    margin: 1rem auto;
+    box-shadow: 0 0 8px 1px rgba(25, 25, 25, 0.3);
+  }
 }
 </style>
