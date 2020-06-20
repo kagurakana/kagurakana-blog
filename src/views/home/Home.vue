@@ -39,6 +39,44 @@
           <HomeRightContent />
         </template>
       </Content>
+
+      <div cols="12" class="beian d-flex flex-column justify-lg-space-around text-center pa-5">
+        <div class="d-lg-flex justify-center cn-beian">
+          <a
+            target="_blank"
+            href="http://beian.miit.gov.cn/"
+            style="display:block;text-decoration:none;height:20px;line-height:20px;"
+          >
+            <p style="height:20px;line-height:20px;margin: 0px 0px 0px 5px;">鄂ICP备20002676号</p>
+          </a>
+          <a
+            target="_blank"
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011502001189"
+            style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"
+          >
+            <p style="height:20px;line-height:20px;margin: 0px 0px 0px 5px;">
+              <img src="~assets/img/beian.png" />鄂公网安备 42011502001189号
+            </p>
+          </a>
+        </div>
+        <p class="ma-0 moe-icp">
+          <i class="moe-icp-icon"></i>
+          <a href="https://icp.gov.moe" target="_blank">萌ICP备</a>
+          <!-- <img width="30px" src="https://cdn.kagurakana.xyz/icon120.png" alt /> -->
+
+          <a href="https://icp.gov.moe/?keyword=20200233" target="_blank">
+            <span>2</span>
+            <span>0</span>
+            <span>2</span>
+            <span>0</span>
+            <span>0</span>
+            <span>2</span>
+            <span>3</span>
+            <span>3</span>
+            <span>号</span>
+          </a>
+        </p>
+      </div>
       <!-- welcomeTip -->
     </div>
 
@@ -207,6 +245,11 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@font-face {
+  font-family: "icomoon";
+  src: url("~assets/font/icomoon.ttf");
+}
+
 .black {
   position: absolute;
   top: 0;
@@ -241,6 +284,57 @@ export default {
   position: absolute;
   z-index: 10000 !important;
 }
+
+.beian {
+  height: 100px;
+  background-image: linear-gradient(
+    rgba(#222, 0),
+    rgba(#222, 0.6),
+    rgba(#222, 0.7),
+    rgba(#222, 0.8)
+  );
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  .cn-beian * {
+    color: #eeeeee;
+  }
+  .moe-icp {
+    * {
+      color: #FCE4EC;
+      vertical-align: middle;
+      font-size: 18px;
+    }
+    span {
+      font-size: 24px;
+      font-family: "Times New Roman", Times, serif;
+    }
+    span:nth-child(3n) {
+      color: #FCE4EC;
+    }
+    span:nth-child(3n + 1) {
+      color: #E8EAF6;
+    }
+    span:nth-child(3n + 2) {
+      color: #b2ff59;
+    }
+    span:last-child {
+      font-family: "Noto Sans SC", "Helvetica Neue", Helvetica, "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+      font-size: 18px;
+      font-weight: normal;
+    }
+    .moe-icp-icon {
+      &:before {
+        color: #FCE4EC;
+        font: normal normal normal 30px/1 "icomoon" !important;
+        content: "\e900";
+      }
+    }
+  }
+}
+
 @keyframes bulrInDown {
   from {
     -webkit-filter: blur(20px); /* Chrome, Opera */

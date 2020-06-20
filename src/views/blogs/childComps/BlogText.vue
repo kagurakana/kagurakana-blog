@@ -95,9 +95,17 @@ export default {
 }
 ::v-deep .context {
   margin-top: 25px;
-  border-radius: 4px;
-  box-shadow: 0 0 5px 2px rgba(48, 48, 48, 0.25);
+  // border-radius: 4px;
+  // box-shadow: 0 0 5px 2px rgba(48, 48, 48, 0.25);
   padding: 8px;
+  font-family: source-han-serif-sc, serif !important;
+  font-style: normal;
+  font-weight: 200;
+  ul,
+  li {
+    list-style: circle;
+    list-style-type: disc;
+  }
   pre {
     position: relative;
     z-index: 2;
@@ -130,7 +138,7 @@ export default {
     }
   }
   table {
-    border:1px solid #000;
+    border: 1px solid #000;
     width: 100%;
     padding: 0;
     margin: 0;

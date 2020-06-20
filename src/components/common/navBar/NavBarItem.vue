@@ -1,8 +1,8 @@
 <template>
   <div
     class="nav-item menu-item"
-    @mouseenter="isShow=true"
-    @mouseleave="isShow=false"
+    @mouseenter="debouncedShow(true)"
+    @mouseleave="debouncedShow(false)"
     @touch="isShow=!isShow"
   >
     <router-link class="title menu-item" :to="'/list/'+ items.name" tag="div">{{items.name}}</router-link>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import _ from "lodash";
 export default {
   name: "NavBarItem",
   props: {
@@ -30,8 +31,20 @@ export default {
   },
   data() {
     return {
-      isShow: false
+      isShow: false,
+      debouncedShow: _.debounce(
+        show => {
+          this.delayShow(show);
+        },
+        150,
+        { leading: false }
+      )
     };
+  },
+  methods: {
+    delayShow(show) {
+      this.isShow = show;
+    }
   }
 };
 </script>
@@ -54,6 +67,7 @@ export default {
   list-style: none;
   text-align: center;
   display: flex;
+
   // position: relative;
 }
 .nav-bar-item {
@@ -69,9 +83,9 @@ export default {
     width: 100%;
     position: relative;
     border-radius: 0 0 4px 4px/ 0 0 4px 4px;
-    box-shadow: 0 0 30px 4px rgba(0,0,0,.2);
-    &::before{
-      content: '';
+    box-shadow: 0 0 30px 4px rgba(0, 0, 0, 0.2);
+    &::before {
+      content: "";
       border-top: 0;
       border-left: 15px solid transparent;
       border-right: 15px solid transparent;
@@ -79,8 +93,7 @@ export default {
       position: absolute;
       left: 50%;
       top: -15px;
-      transform: translate(-50%,0);
-
+      transform: translate(-50%, 0);
     }
     li {
       display: block;
