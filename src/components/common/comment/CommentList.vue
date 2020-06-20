@@ -215,9 +215,10 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "~assets/css/blog.scss";
 .avatar {
   border-radius: 50%;
-  border : 2px solid #F06292;
+  border: 2px solid #f06292;
 }
 .username,
 .comment {
@@ -266,7 +267,7 @@ export default {
   background-color: rgba($color: $link-color, $alpha: 0.3);
   width: 0;
   left: 50%;
-  transition: width 0.3s ease-in-out,left 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
 .link-style:hover::after,
 ::v-deep.comment-detail a:hover::after {
@@ -278,9 +279,14 @@ export default {
   height: 5px;
   background-color: rgba($color: $link-color, $alpha: 0.3);
   width: 100%;
-  transition: width 0.3s ease-in-out ,left 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
-::v-deep.comment-detail {
+::v-deep article {
+  @include blog;
+  margin-top: 0!important;
+  h1,h2,h3,h4,h5{
+    margin-left: 0px!important;
+  }
   p,
   a {
     padding: 0;

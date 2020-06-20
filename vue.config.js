@@ -97,7 +97,7 @@ module.exports = {
 
 
 
-  // ---dev---
+  // ---dev online api---
   // devServer: {
   //   proxy: {
   //     '/api': {
@@ -106,6 +106,8 @@ module.exports = {
   //   }
   // },
   //--------
+
+  //  ---dev local api---
 
   devServer: {
     proxy: {

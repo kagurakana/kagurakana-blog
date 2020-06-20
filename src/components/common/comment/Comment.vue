@@ -53,7 +53,7 @@
           :placeholder="replyPlaceholder"
           label="评论"
           hint="(´；ω；`)请不要打广告~ 支持markdown哦"
-          class="comment-input-text"
+          class="comment-area"
           ref="comment-text"
         ></v-textarea>
         <v-row class="px-3" justify="end">
@@ -250,36 +250,14 @@ export default {
     max-width: 200px;
   }
 }
-
-// ::v-deep.comment-preview a {
-//   color: $link-color;
-//   position: relative;
-//   transition: all 1s ease-in-out;
-// }
-// .link-style::after,
-// ::v-deep.comment-preview a::after {
-//   content: "";
-//   display: block;
-//   position: absolute;
-//   height: 5px;
-//   bottom: 0;
-//   background-color: rgba($color: $link-color, $alpha: 0.3);
-//   width: 0;
-//   left: 0;
-//   transition: width 0.3s ease-in-out;
-// }
-// .link-style:hover::after,
-// ::v-deep.comment-preview a:hover::after {
-//   content: "";
-//   display: block;
-//   position: absolute;
-//   bottom: 0;
-//   left: 0;
-//   height: 5px;
-//   background-color: rgba($color: $link-color, $alpha: 0.3);
-//   width: 100%;
-//   transition: width 0.3s ease-in-out;
-// }
-// ::v-deep.comment-preview {
-// }
+.comment-area{
+  position: relative;
+  &::after{
+    position: absolute;
+    right: 15px;
+    bottom: 30px;
+    content: "\e635";
+    font-family: "iconfont";
+  }
+}
 </style>
