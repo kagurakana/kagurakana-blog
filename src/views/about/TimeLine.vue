@@ -12,7 +12,7 @@
               @click="emitImg(timeline.img)"
             >
               <v-card color="rgba(255,255,255,0.8)" @click="emitImg(timeline.img)">
-                <v-img :src="timeline.img" max-width="100%"></v-img>
+                <v-img :src="timeline.img" max-width="100%" min-height="450px"></v-img>
                 <v-card-title>{{timeline.title}}</v-card-title>
                 <v-card-subtitle>{{timeline.date}}</v-card-subtitle>
               </v-card>

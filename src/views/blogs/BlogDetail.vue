@@ -1,27 +1,26 @@
 <template>
   <div>
     <HomeNav class="home-nav" />
-    <Content>
-      <template v-slot:mid>
-        <v-scale-transition hide-on-leave>
-          <v-skeleton-loader
-            v-if="loading"
-            height="100vh"
-            type="image,article,paragraph,paragraph,paragraph,paragraph,paragraph,paragraph"
-          ></v-skeleton-loader>
-          <BlogText v-else :blog="blogDetail" />
-        </v-scale-transition>
+    <div class="content">
+      <v-scale-transition hide-on-leave>
+        <v-skeleton-loader
+          v-if="loading"
+          height="100vh"
+          type="image,article,paragraph,paragraph,paragraph,paragraph,paragraph,paragraph"
+        ></v-skeleton-loader>
+        <BlogText v-else :blog="blogDetail" />
+      </v-scale-transition>
+      <div class="mx-auto col-12 col-lg-7">
         <v-divider class="my-3"></v-divider>
         <BlogComment :blogId="id" />
         <BlogCommentList :blogId="id" />
-      </template>
-    </Content>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import HomeNav from "views/home/childComps/HomeNav";
-import Content from "components/common/content/Content";
 import BlogText from "./childComps/BlogText";
 import BlogComment from "components/common/comment/Comment";
 import BlogCommentList from "components/common/comment/CommentList";
@@ -29,7 +28,6 @@ import { getBlogDetail } from "network/blog";
 export default {
   name: "BlogDetail",
   components: {
-    Content,
     HomeNav,
     BlogText,
     BlogComment,
@@ -43,7 +41,7 @@ export default {
         blog.data[0].tags = blog.data[0].tags.split(",");
         this.blogDetail = blog.data[0];
         this.loading = false;
-        document.title = '神楽花菜OFFICIAL|'+blog.data[0].title
+        document.title = "神楽花菜OFFICIAL|" + blog.data[0].title;
       })
       .catch(err => {});
   },
@@ -62,5 +60,8 @@ export default {
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+.content{
+    background-color: #fafbf1;
 }
 </style>
