@@ -4,6 +4,7 @@
     <div class="content">
       <v-scale-transition hide-on-leave>
         <v-skeleton-loader
+        class="mx-auto col-12 col-lg-7"
           v-if="loading"
           height="100vh"
           type="image,article,paragraph,paragraph,paragraph,paragraph,paragraph,paragraph"

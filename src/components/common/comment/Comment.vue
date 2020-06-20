@@ -227,6 +227,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "~assets/css/blog.scss";
 .round {
   border-radius: 50%;
   border: 2px solid #f06292;
@@ -234,36 +235,9 @@ export default {
 .fill-width {
   width: 100%;
 }
-::v-deep.comment-preview a {
-  color: $link-color;
-  position: relative;
-  transition: all 1s ease-in-out;
-}
-.link-style::after,
-::v-deep.comment-preview a::after {
-  content: "";
-  display: block;
-  position: absolute;
-  height: 5px;
-  bottom: 0;
-  background-color: rgba($color: $link-color, $alpha: 0.3);
-  width: 0;
-  left: 0;
-  transition: width 0.3s ease-in-out;
-}
-.link-style:hover::after,
-::v-deep.comment-preview a:hover::after {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 5px;
-  background-color: rgba($color: $link-color, $alpha: 0.3);
-  width: 100%;
-  transition: width 0.3s ease-in-out;
-}
 ::v-deep.comment-preview {
+  width: 100%;
+  @include blog;
   p,
   a {
     padding: 0;
@@ -276,4 +250,36 @@ export default {
     max-width: 200px;
   }
 }
+
+// ::v-deep.comment-preview a {
+//   color: $link-color;
+//   position: relative;
+//   transition: all 1s ease-in-out;
+// }
+// .link-style::after,
+// ::v-deep.comment-preview a::after {
+//   content: "";
+//   display: block;
+//   position: absolute;
+//   height: 5px;
+//   bottom: 0;
+//   background-color: rgba($color: $link-color, $alpha: 0.3);
+//   width: 0;
+//   left: 0;
+//   transition: width 0.3s ease-in-out;
+// }
+// .link-style:hover::after,
+// ::v-deep.comment-preview a:hover::after {
+//   content: "";
+//   display: block;
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   height: 5px;
+//   background-color: rgba($color: $link-color, $alpha: 0.3);
+//   width: 100%;
+//   transition: width 0.3s ease-in-out;
+// }
+// ::v-deep.comment-preview {
+// }
 </style>
