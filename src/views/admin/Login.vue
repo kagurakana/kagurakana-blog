@@ -33,6 +33,9 @@
         <v-btn color="lime" text @click="successRegiste = false">Close</v-btn>
       </v-snackbar>
     </v-img>
+    <transition>
+      <div ref="foo"></div>
+    </transition>
   </div>
 </template>
 
@@ -106,7 +109,11 @@ export default {
       //监听回车按键
       this.$refs.login.$el.click();
     }
-  }
+  },
+
+  mounted() {
+    console.log('refs: ', this.$refs)
+  },
 };
 </script>
 

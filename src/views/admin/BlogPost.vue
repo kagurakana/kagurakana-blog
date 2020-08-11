@@ -49,7 +49,7 @@ export default {
   mixins: [hljsMixin],
   data() {
     return {
-      updateId:'',
+      updateId: "",
       title: "",
       tags: "",
       desc: "",
@@ -152,4 +152,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "~assets/css/blog.scss" ;
+::v-deep .context {
+  @include blog;
+}
 </style>
