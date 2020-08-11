@@ -2,8 +2,8 @@ import axios from 'axios'
 
 // axios.defaults.withCredentials = true;
 
-// export const BASE_URL = "https://www.kagurakana.xyz/api"
-export const BASE_URL = "http://localhost:8080/api"
+export const BASE_URL = "https://www.kagurakana.xyz/api"
+// export const BASE_URL = "http://localhost:8080/api"
 export const BASE_URL_OUT = BASE_URL + "/out"
 
 
