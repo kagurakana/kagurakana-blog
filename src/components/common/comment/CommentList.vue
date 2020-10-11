@@ -15,6 +15,7 @@
         <v-row class="pa-0 my-3 mx-2 align-center justfy-center">
           <v-col cols="12" class="d-flex pa-0 ma-0">
             <div class="avatar-group-l">
+              <img :src="avatarBorders[0]" class="avatar-border" alt="" />
               <v-img
                 width="60px"
                 class="avatar"
@@ -23,7 +24,11 @@
                 :src="avatarSrc(item)"
               >
               </v-img>
-              <div class="admin-spark-s" title="博主~" v-if="item.isAdmin"></div>
+              <div
+                class="admin-spark-s"
+                title="博主~"
+                v-if="item.isAdmin"
+              ></div>
             </div>
             <div class="comment-detail" :id="'comment-' + item.id">
               <a :href="item.url == '' ? null : item.url">
@@ -68,7 +73,11 @@
                 :src="avatarSrc(reply)"
               >
               </v-img>
-              <div class="admin-spark-s" title="博主~" v-if="reply.isAdmin"></div>
+              <div
+                class="admin-spark-s"
+                title="博主~"
+                v-if="reply.isAdmin"
+              ></div>
             </div>
             <v-col :cols="isAdmin ? 10 : 11" class="pl-2 ma-0">
               <div>
@@ -199,6 +208,9 @@ export default {
       replyShowPosition: {}, //决定了哪个评论主题下的回复框显示
       replyUsername: "",
       replyCommentId: "",
+      avatarBorders: [
+        "https://cdn.kagurakana.xyz/6c7f2ccb92627b11101dfbb616524845cac8f216.webp",
+      ],
     };
   },
   computed: {
@@ -276,6 +288,7 @@ export default {
     border-radius: 50%;
     border: 2px solid #f06292;
   }
+
   .admin-spark-s {
     cursor: pointer;
     background-image: url("https://cdn.kagurakana.xyz/user-auth.png");
@@ -290,11 +303,23 @@ export default {
 }
 .avatar-group-l {
   position: relative;
-  height: 60px;
-  width: 60px;
+  height: 96px;
+  width: 96px;
   .avatar {
     border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
     border: 2px solid #f06292;
+  }
+  .avatar-border {
+    position: absolute;
+    left: 0;
+    top: 0;
+    // z-index:1;
+    width: 96px;
+    height: 96px;
   }
   .admin-spark-s {
     cursor: pointer;

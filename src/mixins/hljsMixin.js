@@ -1,8 +1,9 @@
 import marked from "marked";
 import markedCmt from "marked";
 import hljs from "highlight.js";
-import {filterXSS} from 'xss'
+import { filterXSS } from 'xss'
 import htmlCmtRestore from '@/utils/htmlRestore'
+import OwOdata from '../components/common/comment/OwO/OwO'
 import('highlight.js/styles/solarized-light.css');
 // import('highlight.js/styles/darcula.css');
 
@@ -32,11 +33,11 @@ export default {
       })
       return tempArr
     },
-    compiledCommentInput(){
-      if(!this.comment){
+    compiledCommentInput() {
+      if (!this.comment) {
         return
       }
-      return markedCmt(filterXSS(this.comment))
+      return markedCmt(filterXSS(this.replaceStamp()))
     }
   },
   mounted() {
@@ -70,5 +71,19 @@ export default {
     });
     hljs.initHighlightingOnLoad();
   },
-
+  methods: {
+    replaceStamp() {
+      let replacedComment = this.comment;
+      for (const key in OwOdata) {
+        if (OwOdata[key].type === "bigImg") {
+          OwOdata[key].iconList.forEach(stamp => {
+            console.log(replacedComment.replace(stamp.code, `![${stamp.text}](${stamp.icon}#60)`))
+            replacedComment = replacedComment.replace(stamp.code, `![${stamp.text}](${stamp.icon}#60)`)
+          })
+        }
+      }
+      console.log(replacedComment)
+      return replacedComment
+    }
+  },
 }
