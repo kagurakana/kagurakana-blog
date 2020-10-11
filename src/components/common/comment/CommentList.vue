@@ -326,8 +326,8 @@ export default {
     background-image: url("https://cdn.kagurakana.xyz/user-auth.png");
     background-position: -38px -53px;
     position: absolute;
-    right: 0;
-    bottom: 0;
+    left: 60px;
+    bottom: 10px;
     width: 20px;
     height: 20px;
   }
