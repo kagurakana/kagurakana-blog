@@ -298,6 +298,7 @@ export default {
     bottom: -5px;
     width: 20px;
     height: 20px;
+    z-index: 20;
     transform: scale(0.85);
   }
 }
@@ -330,6 +331,7 @@ export default {
     bottom: 10px;
     width: 20px;
     height: 20px;
+    z-index: 20;
   }
 }
 

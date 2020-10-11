@@ -13,6 +13,7 @@
         <span
           class="catigory"
           v-for="(dataSet,key, index) in OwOdata"
+          :class="{active:current===key}"
           @click="changeCatigory(key)"
           :key="index"
         >
@@ -95,7 +96,7 @@ export default {
     },
   },
   created() {
-    console.log(this.showDataSet);
+    // console.log(this.showDataSet);
   },
   methods: {
     changeCatigory(key){
@@ -143,6 +144,12 @@ export default {
       display: inline-block;
       padding: 3px 5px;
       background-color: rgba(0, 0, 0, 0.05);
+      &.active{
+        color:#7677AF;
+      }
+      &+.catigory{
+        // border-left: 1px solid #7677AF;
+      }
     }
   }
 }

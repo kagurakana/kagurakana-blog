@@ -19,7 +19,7 @@ export default {
       { "icon": "(´இ皿இ｀)", "text": "" },
       { "icon": "⌇●﹏●⌇", "text": "" },
       { "icon": "(ฅ´ω`ฅ)", "text": "" },
-      { "icon": "(╯°A°)╯︵○○○", "text": " },
+      { "icon": "(╯°A°)╯︵○○○", "text": "" },
       { "icon": "φ(￣∇￣o)", "text": "" },
       { "icon": "ヾ(´･ ･｀｡)ノ\"", "text": "" },
       { "icon": "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃", "text": "" },
@@ -167,8 +167,106 @@ export default {
         "icon": "https://cdn.kagurakana.xyz/Cat_hibye.webp",
         "code": "[Cat_hibye]",
         "text": "招呼"
+      }, {
+        "icon": "https://cdn.kagurakana.xyz/Cat_read.jpg",
+        "code": "[Cat_read]",
+        "text": "read"
+      }, {
+        "icon": "https://cdn.kagurakana.xyz/Cat_liedown.gif",
+        "code": "[Cat_liedown]",
+        "text": ""
+      }, {
+        "icon": "https://cdn.kagurakana.xyz/Cat_flap.gif",
+        "code": "[Cat_flap]",
+        "text": "翻滚"
+      }, {
+        "icon": "https://cdn.kagurakana.xyz/Cat_drink.gif",
+        "code": "[Cat_drink]",
+        "text": "吨吨吨~"
+      }, {
+        "icon": "https://cdn.kagurakana.xyz/v2-00516d6d471e23f1c0f5ccf627111136_b.webp",
+        "code": "[Cat_hang]",
+        "text": "悬挂"
+      }, {
+        "icon": "https://cdn.kagurakana.xyz/Cat_excuse.gif",
+        "code": "[Cat_excuse]",
+        "text": "打扰"
+      }, {
+        "icon": "https://cdn.kagurakana.xyz/Cat_fishing.gif",
+        "code": "[Cat_fishing]",
+        "text": "钓鱼"
+      }, {
+        "icon": "https://cdn.kagurakana.xyz/Cat_catch.gif",
+        "code": "[Cat_catch]",
+        "text": "追赶"
+      }, {
+        "icon": "https://cdn.kagurakana.xyz/Cat_campfire.gif",
+        "code": "[Cat_campfire]",
+        "text": "烤火"
+      }, {
+        "icon": "https://cdn.kagurakana.xyz/Cat_gulugulu.gif",
+        "code": "[Cat_gulugulu]",
+        "text": "gulugulu"
       }
     ]
+  },
+  "Vtubers": {
+    "name": "Vtubers",
+    "type": "bigImg",
+    "iconList": [{
+      "icon": "https://cdn.kagurakana.xyz/F0FF15BB78281E75DD6230CE23F762F7.gif",
+      "code": "[aqua_debu]",
+      "text": "aquadebu"
+    },{
+      "icon": "https://cdn.kagurakana.xyz/4f433daf08e7f73f14aadc88df7dd98cfd02b38d.jpg",
+      "code": "[aqua_melon]",
+      "text": "吃瓜"
+    },{
+      "icon": "https://cdn.kagurakana.xyz/V_gitar.gif",
+      "code": "[aqua_gitar]",
+      "text": "gitar"
+    },{
+      "icon": "https://cdn.kagurakana.xyz/V_confuse.png",
+      "code": "[qinying_confuse]",
+      "text": "qinying_confuse"
+    },{
+      "icon": "https://cdn.kagurakana.xyz/auqa_crash.gif",
+      "code": "[auqa_crash]",
+      "text": "auqa_crash"
+    },{
+      "icon": "https://cdn.kagurakana.xyz/shiyu_good.jpg",
+      "code": "[shiyu_good]",
+      "text": "shiyu_good"
+    },{
+      "icon": "https://cdn.kagurakana.xyz/auqa_shock.jpg",
+      "code": "[auqa_shock]",
+      "text": "aqua_shock"
+    },{
+      "icon": "https://cdn.kagurakana.xyz/fbk_shake.gif",
+      "code": "[fbk_shake]",
+      "text": "fbk_shake"
+    },{
+      "icon": "https://cdn.kagurakana.xyz/fbk_shake_slow.gif",
+      "code": "[fbk_shake_s]",
+      "text": "fbk_shake_slow"
+    },{
+      "icon": "https://cdn.kagurakana.xyz/fbk_shake_fast.gif",
+      "code": "[fbk_shake_f]",
+      "text": "fbk_shake_fast"
+    },{
+      "icon": "https://cdn.kagurakana.xyz/nana_lue.jpg",
+      "code": "[nana_lue]",
+      "text": "nana_lue"
+    },{
+      "icon": "https://cdn.kagurakana.xyz/nana_starEye.png",
+      "code": "[nana_starEye]",
+      "text": "nana_starEye"
+    },{
+      "icon": "https://cdn.kagurakana.xyz/nana_play.gif",
+      "code": "[nana_play]",
+      "text": "nana_play"
+    }
+  ]
   }
 
 }

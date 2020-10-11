@@ -77,12 +77,10 @@ export default {
       for (const key in OwOdata) {
         if (OwOdata[key].type === "bigImg") {
           OwOdata[key].iconList.forEach(stamp => {
-            console.log(replacedComment.replace(stamp.code, `![${stamp.text}](${stamp.icon}#60)`))
             replacedComment = replacedComment.replace(stamp.code, `![${stamp.text}](${stamp.icon}#60)`)
           })
         }
       }
-      console.log(replacedComment)
       return replacedComment
     }
   },

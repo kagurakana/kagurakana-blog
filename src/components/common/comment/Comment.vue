@@ -9,7 +9,9 @@
           min-width="60px"
           max-height="60px"
           min-height="60px"
-        ></v-img>
+        >
+
+        </v-img>
         <v-row class="mx-1">
           <v-col class="mx-auto" cols="11" sm="4">
             <v-text-field
@@ -239,7 +241,7 @@ export default {
       let jsondata = {};
       getqqInfo(this.username).then((res) => {
         if (res.errno !== -1) {
-          console.log(res);
+          // console.log(res);
           this.username = res.data.nickName;
           this.commentAvatar = `${this.baseurlOut}/${res.data.avatar}`;
           this.getQQname = true;
@@ -260,12 +262,12 @@ export default {
       let index = document.querySelector(`.${className} textarea`).selectionEnd;
       // console.log(index)
       this.textAreaCursorIndex = index;
-      console.log(code);
+      // console.log(code);
       this.comment = `${this.comment.slice(
         0,
         index
       )}${code}${this.comment.slice(index)}`;
-      console.log(this.comment);
+      // console.log(this.comment);
     },
   },
   watch: {},
