@@ -8,7 +8,7 @@
     <router-link class="title menu-item" :to="'/list/'+ items.name" tag="div">{{items.name}}</router-link>
     <transition
       appear
-      enter-active-class="animated flipInY "
+      enter-active-class="animated flipInY"
       leave-active-class="animated flipOutY"
     >
       <ul class="content" v-show="isShow">

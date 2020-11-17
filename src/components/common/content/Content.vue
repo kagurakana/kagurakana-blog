@@ -2,8 +2,8 @@
   <div class="content">
     <transition
       appear
-      enter-active-class="animated fadeInLeft "
-      leave-active-class="animated fadeOutLeft "
+      enter-active-class="animated fadeInLeft"
+      leave-active-class="animated fadeOutLeft"
     >
       <div class="left" v-show="!isMobile">
         <slot name="left"></slot>
