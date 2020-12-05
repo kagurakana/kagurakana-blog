@@ -99,7 +99,7 @@ module.exports = {
 
   // ---dev online api---
 
-  // devServer: {
+  //  devServer: {
   //   proxy: {
   //     '/api': {
   //       target: 'https://www.kagurakana.xyz',

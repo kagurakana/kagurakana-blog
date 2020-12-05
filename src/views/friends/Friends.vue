@@ -62,7 +62,7 @@
           <v-card-text class="pa-1">例如:</v-card-text>
           <v-card-text class="pa-1">Name: 神楽花菜</v-card-text>
           <v-card-text class="pa-1">Bio: 凑阿库娅单推人</v-card-text>
-          <v-card-text class="pa-1">URL: https://kagurakana.xyz</v-card-text>
+          <v-card-text class="pa-1">URL: https://www.kagurakana.xyz</v-card-text>
           <v-card-text class="pa-1">Avatar: https://s1.ax1x.com/2020/03/19/8yvQWq.jpg</v-card-text>
         </v-card-text>
       </v-card>
