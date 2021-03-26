@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 
 // 线上版本注释Localhost 
