@@ -10,7 +10,6 @@
           max-height="60px"
           min-height="60px"
         >
-
         </v-img>
         <v-row class="mx-1">
           <v-col class="mx-auto" cols="11" sm="4">
@@ -253,7 +252,9 @@ export default {
     getGravatar() {
       this.commentAvatar = this.getQQname
         ? this.commentAvatar
-        : gravatar.url(this.email, { s: "400", r: "pg", d: "mm" });
+        : gravatar
+            .url(this.email, { s: "400", r: "pg", d: "mm" })
+            .replace(/.*com\/avatar\//g, "https://cdn.v2ex.com/gravatar/");
     },
     getCursorIndex(code) {
       let className = this.$refs["comment-text"].$el.className;
