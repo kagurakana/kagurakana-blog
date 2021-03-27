@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{loginCheckMessage}}</h1>
+    <h1>{{ loginCheckMessage }}</h1>
     <v-row v-if="isAdmin">
       <v-col cols="12">
         <v-col cols="8" class="mx-auto">
@@ -58,13 +58,13 @@ export default {
       loginCheckMessage: "验证权限中...",
       isAdmin: false,
       upToken: "",
-      update: false
+      update: false,
     };
   },
 
   created() {
     getLoginCheck()
-      .then(res => {
+      .then((res) => {
         if (res.data.isAdmin) {
           this.isAdmin = true;
           this.loginCheckMessage = "今天要写点什么呢...";
@@ -73,7 +73,7 @@ export default {
         }
         return getUploadToken();
       })
-      .then(res => {
+      .then((res) => {
         //获取后台返回的七牛cdn uptoken
         this.upToken = res.data.uploadToken;
       })
@@ -83,7 +83,7 @@ export default {
           return getBlogDetail(this.$route.params.id);
         }
       })
-      .then(result => {
+      .then((result) => {
         let blogData = result.data[0];
         this.title = blogData.title;
         this.tags = blogData.tags;
@@ -92,6 +92,9 @@ export default {
         this.desc = blogData.desc;
         this.update = true;
       });
+  },
+  mounted() {
+    document.querySelector("#waifu").style.display = "none";
   },
   methods: {
     post() {
@@ -104,7 +107,7 @@ export default {
             this.tags,
             this.desc,
             this.content
-          ).then(result => {
+          ).then((result) => {
             this.$router.push("/detail/" + result.data.id);
             return;
           });
@@ -115,7 +118,7 @@ export default {
             this.tags,
             this.desc,
             this.content
-          ).then(res => {
+          ).then((res) => {
             this.$router.push("/detail/" + res.data.id);
           });
         }
@@ -146,13 +149,13 @@ export default {
         //开始上传
         observable.subscribe(this.next, this.error, this.complete);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style lang='scss' scoped>
-@import "~assets/css/blog.scss" ;
+<style lang="scss" scoped>
+@import "~assets/css/blog.scss";
 ::v-deep .context {
   @include blog;
 }
