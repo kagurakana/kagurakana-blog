@@ -13,6 +13,7 @@
           <v-row>
             <v-col cols="6">
               <v-textarea
+                id="md-input"
                 @drop.prevent.stop="imgDrop"
                 ref="article"
                 v-model="content"
@@ -130,13 +131,18 @@ export default {
     },
     complete(res) {
       console.log(res); //成功处理
-      this.content += `![${res.name}](https://cdn.kagurakana.xyz/${res.name})`;
+      let cursorIndex = document.querySelector("#md-input textarea")
+        .selectionEnd;
+      this.content =`${this.content.slice(0,cursorIndex)}![${res.name}]
+      (https://cdn.kagurakana.xyz/${res.name}@webp)
+      ${this.content.slice(cursorIndex)}`;
     },
     /**拖放监听 */
     imgDrop(e) {
       let file = e.dataTransfer.files[0]; //获取拖放文件 Blob
       if (this.upToken) {
         console.log(file);
+
         //qiniu.upload(file: blob, key: string, token: string, putExtra: object, config: object): observable
         let observable = qiniu.upload(
           file,
