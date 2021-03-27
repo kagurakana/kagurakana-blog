@@ -133,8 +133,7 @@ export default {
       console.log(res); //成功处理
       let cursorIndex =
         document.querySelector("#md-input").selectionEnd || this.content.length;
-      this.content = `${this.content.slice(0, cursorIndex)}![${res.name}]
-      (https://cdn.kagurakana.xyz/${res.name}@webp)
+      this.content = `${this.content.slice(0, cursorIndex)}![${res.name}](https://cdn.kagurakana.xyz/${res.name}@webp)
       ${this.content.slice(cursorIndex)}`;
     },
     /**拖放监听 */
