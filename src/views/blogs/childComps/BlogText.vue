@@ -33,7 +33,7 @@
     </v-img>
 
     <div class="mx-auto col-12 col-lg-7 context-wrapper">
-      <BlogToc />
+      <BlogToc v-if="isMobile" />
       <article
         class="context"
         ref="context"
@@ -49,6 +49,7 @@
 <script>
 import moment from "moment";
 import hljsMixin from "@/mixins/hljsMixin";
+import { mapGetters } from "vuex";
 
 import BlogToc from "@/components/common/blogToc/BlogToc";
 import getTopDistance from "@/utils/isScrollTop";
@@ -60,6 +61,7 @@ export default {
       type: Object,
     },
   },
+
   components: {
     BlogToc,
   },
@@ -93,6 +95,9 @@ export default {
       dialog: false,
       imgSrc: "",
     };
+  },
+  computed: {
+    ...mapGetters(["isMobile"]),
   },
   methods: {
     pushRoute(tag) {
