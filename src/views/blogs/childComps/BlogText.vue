@@ -33,7 +33,7 @@
     </v-img>
 
     <div class="mx-auto col-12 col-lg-7 context-wrapper">
-      <BlogToc v-if="isMobile" />
+      <BlogToc v-if="!isMobile" />
       <article
         class="context"
         ref="context"
