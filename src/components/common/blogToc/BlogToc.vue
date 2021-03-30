@@ -35,16 +35,13 @@ export default {
       this.blogHeading = BlogElList;
       // 添加TOC、监听滚动
       BlogElList.forEach((el) => {
-       
         // 初始化toc
         el.nodeName.toUpperCase().replace(/^H(\d)/, (match, $1) => {
-
           let p = document.createElement("p");
           p.textContent = el.id;
           p.classList.add(`toc-h${$1}`);
           p.setAttribute("data-anchor", el.id);
           p.addEventListener("click", (e) => {
-
             this.$vuetify.goTo(`#${e.target.getAttribute("data-anchor")}`, {
               duration: 250,
               offset: 80,
@@ -55,7 +52,7 @@ export default {
       });
 
       window.addEventListener("scroll", () => {
-        this.debouncedMoveToc(toc);
+      //   this.debouncedMoveToc(toc);
         this.switchColor();
       });
     },

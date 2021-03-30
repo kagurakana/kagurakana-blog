@@ -33,7 +33,9 @@
     </v-img>
 
     <div class="mx-auto col-12 col-lg-7 context-wrapper">
-      <BlogToc />
+      <div class="toc-container">
+        <BlogToc />
+      </div>
       <article
         class="context"
         ref="context"
@@ -151,16 +153,22 @@ export default {
 }
 ::v-deep .context-wrapper {
   position: relative;
+  .toc-container {
+    position: absolute;
+    left: -250px;
+    height: 100%;
+    padding: 80px 0 0 0;
+  }
 }
 .static {
-  position: absolute;
-  top: 80px;
-  left: -300px;
+  position: sticky;
+  top: 100px;
+  left: 0px;
   transition: top 0.25s linear;
 }
 .fixed {
-  position: absolute;
-  left: -300px;
+  position: fixed;
+  top: 0px;
   transition: top 0.25s linear;
 }
 </style>
