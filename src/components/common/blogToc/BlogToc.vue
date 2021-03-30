@@ -35,20 +35,16 @@ export default {
       this.blogHeading = BlogElList;
       // 添加TOC、监听滚动
       BlogElList.forEach((el) => {
-        console.log(
-          el.nodeName.match(/^H(\d)/g, (match, $1) => {
-            console.log(match, $1);
-          })
-        );
+       
         // 初始化toc
         el.nodeName.toUpperCase().replace(/^H(\d)/, (match, $1) => {
-          console.log($1);
+
           let p = document.createElement("p");
           p.textContent = el.id;
           p.classList.add(`toc-h${$1}`);
           p.setAttribute("data-anchor", el.id);
           p.addEventListener("click", (e) => {
-            console.log(e);
+
             this.$vuetify.goTo(`#${e.target.getAttribute("data-anchor")}`, {
               duration: 250,
               offset: 80,
@@ -80,7 +76,7 @@ export default {
         if (isScrollTop(el)) {
           needChangeList[idx] = 1;
           let needChangeIdx = needChangeList.lastIndexOf(1);
-          console.log(needChangeIdx, needChangeList);
+
           this.toc.children.forEach((tocEl, tocIdx) => {
             tocIdx === needChangeIdx
               ? tocEl.classList.add("toc-active")

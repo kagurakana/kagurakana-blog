@@ -12,6 +12,7 @@
 import _ from "lodash";
 import "assets/css/base.css";
 import FloatingButton from "components/common/floatingButton/FloatingButton";
+
 export default {
   name: "App",
 
@@ -34,7 +35,6 @@ export default {
   },
   mounted() {
     // 防抖 缩放重新计算大小
-
     const commitResize = _.debounce(() => {
       this.$store.commit("resize");
     }, 100);
@@ -42,7 +42,8 @@ export default {
     window.onresize = () => {
       commitResize();
     };
-    console.log(`%c
+    console.log(
+      `%c
 created by                                                                    
            _                               _                                  
           | |                             | |                                 
@@ -53,12 +54,14 @@ created by
                       __| |                                                   
                      |___/                                                    
                                                                      with ♥   
-`,'color:#fff;background-color:#FFA726;display:block')
+`,
+      "color:#fff;background-color:#FFA726;display:block"
+    );
   },
 
   components: {
-    FloatingButton
-  }
+    FloatingButton,
+  },
 };
 </script>
 <style lang="scss" scoped>
