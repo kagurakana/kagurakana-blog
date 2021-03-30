@@ -33,7 +33,7 @@
     </v-img>
 
     <div class="mx-auto col-12 col-lg-7 context-wrapper">
-      <BlogToc v-if="!isMobile" />
+      <BlogToc />
       <article
         class="context"
         ref="context"
@@ -49,12 +49,12 @@
 <script>
 import moment from "moment";
 import hljsMixin from "@/mixins/hljsMixin";
-import { mapGetters } from "vuex";
 
 import BlogToc from "@/components/common/blogToc/BlogToc";
 import getTopDistance from "@/utils/isScrollTop";
 export default {
   name: "BlogText",
+
   mixins: [hljsMixin],
   props: {
     blog: {
@@ -96,9 +96,7 @@ export default {
       imgSrc: "",
     };
   },
-  computed: {
-    ...mapGetters(["isMobile"]),
-  },
+
   methods: {
     pushRoute(tag) {
       this.$router.push("/list/" + tag);
@@ -153,38 +151,16 @@ export default {
 }
 ::v-deep .context-wrapper {
   position: relative;
-  .toc {
-    width: 240px;
-    padding-left: 10px;
-    border-left: 2px solid #123;
-    p {
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-    .toc-h1 {
-      font-weight: bold;
-      &::before {
-        content: "◾";
-      }
-    }
-    .toc-h2 {
-      padding-left: 20px;
-    }
-    .toc-h3 {
-      padding-left: 30px;
-    }
-  }
-  .static {
-    position: absolute;
-    top: 80px;
-    left: -300px;
-    transition: top 0.25s linear;
-  }
-  .fixed {
-    position: absolute;
-    left: -300px;
-    transition: top 0.25s linear;
-  }
+}
+.static {
+  position: absolute;
+  top: 80px;
+  left: -300px;
+  transition: top 0.25s linear;
+}
+.fixed {
+  position: absolute;
+  left: -300px;
+  transition: top 0.25s linear;
 }
 </style>

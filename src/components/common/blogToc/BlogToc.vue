@@ -1,14 +1,19 @@
 <template>
-  <div class="toc static"></div>
+  <div v-if="!isMobile" class="toc static"></div>
 </template>
 
 <script>
 import _ from "lodash";
 import isScrollTop from "@/utils/isScrollTop";
+import { mapGetters } from "vuex";
+
 export default {
   name: "BlogToc",
   mounted() {
-    this.configToc();
+    !this.isMobile && this.configToc();
+  },
+  computed: {
+    ...mapGetters(["isMobile"]),
   },
   data() {
     return {
@@ -41,6 +46,14 @@ export default {
           let p = document.createElement("p");
           p.textContent = el.id;
           p.classList.add(`toc-h${$1}`);
+          p.setAttribute("data-anchor", el.id);
+          p.addEventListener("click", (e) => {
+            console.log(e);
+            this.$vuetify.goTo(`#${e.target.getAttribute("data-anchor")}`, {
+              duration: 250,
+              offset: 80,
+            });
+          });
           toc.appendChild(p);
         });
       });
@@ -81,8 +94,36 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-::v-deep .toc-active {
-  color: #1565C0;
-  padding-left: 35px;
+::v-deep.toc {
+  width: 240px;
+  padding-left: 10px;
+  border-left: 2px solid #123;
+  p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: padding, 0.5s ease;
+  }
+  .toc-h1 {
+    font-weight: bold;
+    &::before {
+      content: "◾";
+    }
+  }
+  .toc-h2 {
+    padding-left: 20px;
+  }
+  .toc-h3 {
+    padding-left: 30px;
+  }
+
+  .toc-active {
+    color: #1565c0;
+    padding-left: 35px;
+    transition: padding, 0.5s ease;
+  }
+  p {
+    cursor: pointer;
+  }
 }
 </style>
