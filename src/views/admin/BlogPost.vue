@@ -8,26 +8,34 @@
           <v-text-field v-model="tags" label="tags"></v-text-field>
           <v-text-field v-model="headPic" label="headPic"></v-text-field>
         </v-col>
-        <v-col cols="11" class="mx-auto">
+        <v-col cols="10" class="mx-auto">
           <v-textarea v-model="desc" label="desc"></v-textarea>
-          <v-row>
-            <v-col cols="6">
-              <v-textarea
+          <div
+            class="main-section"
+            :style="{ height: innerHeight - 100 + 'px' }"
+          >
+            <div class="editor-preview">
+              <textarea
                 id="md-input"
                 @drop.prevent.stop="imgDrop"
+                @scroll="syncScroll"
                 ref="article"
                 v-model="content"
-                auto-grow
-                outlined
                 label="content"
-              ></v-textarea>
-            </v-col>
-            <v-col cols="6">
-              <article class="context" v-html="compiledMarkdown"></article>
-            </v-col>
-          </v-row>
-          <v-btn color="blue lighten-4" @click="post">提交</v-btn>
+              ></textarea>
+
+              <article
+                class="context"
+                ref="context"
+                v-html="compiledMarkdown"
+              ></article>
+            </div>
+          </div>
           <!-- <v-btn color="blue lighten-4" @click="hl">提交</v-btn> -->
+          <div class="d-flex align-center justify-space-around">
+            <v-btn color="blue lighten-4" @click="post">提交</v-btn>
+            <v-checkbox v-model="isSyncScroll" label="syncScroll"></v-checkbox>
+          </div>
         </v-col>
       </v-col>
     </v-row>
@@ -60,6 +68,8 @@ export default {
       isAdmin: false,
       upToken: "",
       update: false,
+      innerHeight: window.innerHeight,
+      isSyncScroll: true,
     };
   },
 
@@ -133,7 +143,9 @@ export default {
       console.log(res); //成功处理
       let cursorIndex =
         document.querySelector("#md-input").selectionEnd || this.content.length;
-      this.content = `${this.content.slice(0, cursorIndex)}![${res.name}](https://cdn.kagurakana.xyz/${res.name}@webp)
+      this.content = `${this.content.slice(0, cursorIndex)}![${
+        res.name
+      }](https://cdn.kagurakana.xyz/${res.name}@webp)
       ${this.content.slice(cursorIndex)}`;
     },
     /**拖放监听 */
@@ -155,6 +167,18 @@ export default {
         observable.subscribe(this.next, this.error, this.complete);
       }
     },
+    syncScroll(e) {
+      if (!this.isSyncScroll) {
+        return;
+      }
+      let leftRate =
+        e.target.scrollTop / (e.target.scrollHeight - e.target.offsetHeight);
+      let previewEle = this.$refs.context;
+      let rightDis =
+        (previewEle.scrollHeight - previewEle.offsetHeight) * leftRate;
+      console.log(previewEle);
+      previewEle.scrollTo(0, rightDis);
+    },
   },
 };
 </script>
@@ -163,5 +187,25 @@ export default {
 @import "~assets/css/blog.scss";
 ::v-deep .context {
   @include blog;
+}
+.main-section {
+  margin: 0 0 15px 0;
+  .editor-preview {
+    display: flex;
+    height: 100%;
+    #md-input,
+    .context {
+      flex: 1;
+      overflow: scroll;
+    }
+    #md-input {
+      padding: 10px;
+      outline: none;
+      border: {
+        top: 1px solid #222;
+        left: 1px solid #222;
+      }
+    }
+  }
 }
 </style>
