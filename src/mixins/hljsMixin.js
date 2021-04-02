@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       content: "",
-      previewMarkdownHTML:"",
+      previewMarkdownHTML: "",
       // isDebounce: true,
     }
   },
@@ -75,11 +75,19 @@ export default {
   },
   watch: {
     content() {
-      this.previewMarkdownHTML = this.debouncedRender(this.content)
+      this.content.length > 2000
+        ? this.debouncedRender()
+        : this.constantlyRender()
     }
   },
   methods: {
-    debouncedRender: _.debounce(marked, 3000, { 'leading': true, 'trailing': true }),
+    constantlyRender() {
+      this.previewMarkdownHTML = marked(this.content)
+    },
+    debouncedRender: _.debounce(function () {
+      this.previewMarkdownHTML = marked(this.content)
+    }, 1000, { 'leading': false, 'trailing': true }),
+
     replaceStamp() {
       let replacedComment = this.comment;
       for (const key in OwOdata) {

@@ -20,7 +20,7 @@
                 @drop.prevent.stop="imgDrop"
                 @scroll="syncScroll"
                 ref="article"
-                @input="updateContent"
+                v-model="content"
                 label="content"
               ></textarea>
 
@@ -176,8 +176,10 @@ export default {
       let previewEle = this.$refs.context;
       let rightDis =
         (previewEle.scrollHeight - previewEle.offsetHeight) * leftRate;
+        console.log('-------------')
       previewEle.scrollTo(0, rightDis);
     },
+    
   },
 };
 </script>
