@@ -31,7 +31,7 @@
               ></div>
             </div>
             <div class="comment-detail" :id="'comment-' + item.id">
-              <a :href="item.url == '' ? null : item.url">
+              <a :href="item.url == '' ? null : item.url" target="_blank">
                 <span
                   class="username"
                   :class="{ 'link-style': item.url !== '' }"
@@ -81,7 +81,7 @@
             </div>
             <v-col :cols="isAdmin ? 10 : 11" class="pl-2 ma-0">
               <div>
-                <a :href="reply.url == '' ? null : reply.url">
+                <a :href="reply.url == '' ? null : reply.url" target="_blank">
                   <span
                     class="username"
                     :class="{ 'link-style': reply.url !== '' }"
