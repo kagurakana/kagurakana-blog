@@ -20,14 +20,14 @@
                 @drop.prevent.stop="imgDrop"
                 @scroll="syncScroll"
                 ref="article"
-                v-model="content"
+                @input="updateContent"
                 label="content"
               ></textarea>
 
               <article
                 class="context"
                 ref="context"
-                v-html="compiledMarkdown"
+                v-html="previewMarkdownHTML"
               ></article>
             </div>
           </div>
@@ -176,7 +176,6 @@ export default {
       let previewEle = this.$refs.context;
       let rightDis =
         (previewEle.scrollHeight - previewEle.offsetHeight) * leftRate;
-      console.log(previewEle);
       previewEle.scrollTo(0, rightDis);
     },
   },
@@ -199,6 +198,8 @@ export default {
       overflow: scroll;
     }
     #md-input {
+      line-height: 1.75rem;
+      word-break: break-all;
       padding: 10px;
       outline: none;
       border: {

@@ -16,7 +16,6 @@ export default {
         document.documentElement.scrollTop ||
         document.body.scrollTop;
       let docHeight = document.body.offsetHeight;
-      console.log(docHeight);
       this.$refs.scrollListenerBar.style.width = `${
         (wintop / (docHeight - windowHeight)) * 100
       }%`;

@@ -91,7 +91,7 @@ export default {
   },
   computed: {
     showDataSet() {
-      console.log(this.current)
+      // console.log(this.current)
       return this.OwOdata[this.current];
     },
   },
@@ -146,9 +146,6 @@ export default {
       background-color: rgba(0, 0, 0, 0.05);
       &.active{
         color:#7677AF;
-      }
-      &+.catigory{
-        // border-left: 1px solid #7677AF;
       }
     }
   }
