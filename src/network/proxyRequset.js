@@ -1,9 +1,9 @@
-import { outRequest } from "./request"
+import { proxyRequest } from "./request"
 
 
 
 export function getBangumi(pn,sn) {
-  return outRequest({
+  return proxyRequest({
     withCredentials: true,
     method: 'get',
     url: '/bangumi',
@@ -19,7 +19,7 @@ export function getBangumi(pn,sn) {
 
 
 export function getqqInfo(qqNum) {
-  return outRequest({
+  return proxyRequest({
     method: 'get',
     url: "/qqinfo",
     params: {

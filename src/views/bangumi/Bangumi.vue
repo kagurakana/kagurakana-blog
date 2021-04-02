@@ -57,7 +57,7 @@
 <script>
 import BaseLayout from "components/common/baseLayout/BaseLayout";
 
-import { getBangumi} from "network/out";
+import { getBangumi} from "@/network/proxyRequset";
 import {BASE_URL_OUT} from 'network/request'
 export default {
   name: "Bangumi",

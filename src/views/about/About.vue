@@ -8,7 +8,7 @@
           <v-col cols="12" sm="auto">
             <v-img
               class="mx-auto head-img"
-              src="https://i.loli.net/2020/02/25/eDgkFMqzBHP7UtS.jpg"
+              src="https://cdn.kagurakana.xyz/blog_avatar.jpg@webp"
               height="250px"
               width="250px"
             ></v-img>
@@ -208,7 +208,7 @@ export default {
     return {
       dialog: false, //点击查看大图
       imgSrc: "",
-      textEmail: "点击拷贝:kagurakanaofficial☆qq.com",
+      textEmail: "点击拷贝:1278820830@qq.com",
       textQq: "点击拷贝:1278820830",
       textGithub: "点击拷贝:https://github.com/kagurakana",
       textSteam: "点击拷贝:https://steamcommunity.com/id/kagura_kana/",

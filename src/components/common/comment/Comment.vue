@@ -110,7 +110,7 @@
 <script>
 import { getLoginCheck } from "network/user";
 import { addComment } from "network/comment";
-import { getqqInfo } from "network/out";
+import { getqqInfo } from "@/network/proxyRequset";
 import { mapGetters } from "vuex";
 import { BASE_URL_OUT } from "network/request";
 
