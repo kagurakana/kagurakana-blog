@@ -69,6 +69,10 @@ const routes = [
     redirect: '/bangumi'
   },
   {
+    path: '/list/说说',
+    component: () => import('views/artitalk/ArtitalkPage')
+  },
+  {
     path: '/bangumi',
     component: () => import('views/bangumi/Bangumi'),
     meta: {

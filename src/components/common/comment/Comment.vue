@@ -254,7 +254,7 @@ export default {
         ? this.commentAvatar
         : gravatar
             .url(this.email, { s: "400", r: "pg", d: "mm" })
-            .replace(/.*com\/avatar\//g, "https://cdn.v2ex.com/gravatar/");
+            .replace(/.*com\/avatar\//g, "https://sdn.geekzu.org/avatar/");
     },
     getCursorIndex(code) {
       let className = this.$refs["comment-text"].$el.className;

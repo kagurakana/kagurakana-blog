@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ScrollListenerBar class="scroll-listener"/>
     <NavBar :mobileMenuList="menu">
       <template v-slot:left>
         <img
@@ -26,6 +27,7 @@
 <script>
 import NavBar from "components/common/navBar/NavBar";
 import NavBarItem from "components/common/navBar/NavBarItem";
+import ScrollListenerBar from "components/common/scrollListenerBar/ScrollListener";
 import { mapGetters } from "vuex";
 import _ from "lodash";
 export default {
@@ -33,8 +35,9 @@ export default {
   components: {
     NavBar,
     NavBarItem,
-    
+    ScrollListenerBar
   },
+  // 我为啥放这里了？
   data() {
     return {
       menu: [
@@ -42,7 +45,7 @@ export default {
         { name: "后端", includes: ["nodejs", "express", "nginx", "数据库"] },
         {
           name: "杂物",
-          includes: ["杂记", "追番"]
+          includes: ["杂记", "追番","说说"]
         },
         { name: "小伙伴" },
         { name: "关于" }
@@ -78,5 +81,8 @@ export default {
 .nav-bar-item {
   flex: 1;
 }
-
+.scroll-listener{
+  position: absolute;
+  top: 0;
+}
 </style>
