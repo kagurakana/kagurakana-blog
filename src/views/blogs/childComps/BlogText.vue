@@ -118,8 +118,8 @@ export default {
 .title-card {
   // position: relative;
   @include font-source;
-  color: #dddddd;
-  background-color: rgba(#111, 0.7);
+  color: #dddddd!important;
+  background-color: rgba(#111, 0.7)!important;
   // margin-top: 150px;
   .blog-info {
     overflow: hidden;
