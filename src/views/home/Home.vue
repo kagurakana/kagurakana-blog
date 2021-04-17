@@ -7,20 +7,20 @@
       leave-active-class="bulrOutUp"
       leave-to-class="bulrOutEnd"
       @after-leave="showBodyOverflow"
-      :duration="{leave: 500}"
+      :duration="{ leave: 500 }"
     >
       <HomeHeadPic
         @showImg="showBlog"
         @hideImg="hideImg"
-        v-show="isMobile||showWelcome"
-        style="z-index:10"
-        :class="{'welcome':!isMobile}"
+        v-show="isMobile || showWelcome"
+        style="z-index: 10"
+        :class="{ welcome: !isMobile }"
         :scrollDis="scrollDis"
         ref="headPic"
       />
       <!-- :gettedName="loginCheckUsername===''?'「神楽花菜」':`「${checkedUsername}」`" -->
     </transition>
-    <div class="content" v-show="imgLoaded||isMobile">
+    <div class="content" v-show="imgLoaded || isMobile">
       <v-img
         width="100vw"
         class="background"
@@ -40,21 +40,36 @@
         </template>
       </Content>
 
-      <div cols="12" class="beian d-flex flex-column justify-lg-space-around text-center pa-5">
+      <div
+        cols="12"
+        class="beian d-flex flex-column justify-lg-space-around text-center pa-5"
+      >
         <div class="d-lg-flex justify-center cn-beian">
           <a
             target="_blank"
             href="http://beian.miit.gov.cn/"
-            style="display:block;text-decoration:none;height:20px;line-height:20px;"
+            style="
+              display: block;
+              text-decoration: none;
+              height: 20px;
+              line-height: 20px;
+            "
           >
-            <p style="height:20px;line-height:20px;margin: 0px 0px 0px 5px;">鄂ICP备20002676号</p>
+            <p style="height: 20px; line-height: 20px; margin: 0px 0px 0px 5px">
+              鄂ICP备20002676号
+            </p>
           </a>
           <a
             target="_blank"
             href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011502001189"
-            style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"
+            style="
+              display: inline-block;
+              text-decoration: none;
+              height: 20px;
+              line-height: 20px;
+            "
           >
-            <p style="height:20px;line-height:20px;margin: 0px 0px 0px 5px;">
+            <p style="height: 20px; line-height: 20px; margin: 0px 0px 0px 5px">
               <img src="~assets/img/beian.png" />鄂公网安备 42011502001189号
             </p>
           </a>
@@ -87,7 +102,7 @@
       v-model="welcomeTip"
       :top="isMobile"
     >
-      {{checkedUsername}} 欢迎回来~ ({{second}})
+      {{ checkedUsername }} 欢迎回来~ ({{ second }})
       <v-btn color="gray" text @click="welcomeTip = false">
         <v-icon>mdi-close</v-icon>
       </v-btn>
@@ -126,19 +141,19 @@ export default {
     Content,
     HomeLeftContent,
     HomeMidContent,
-    HomeRightContent
+    HomeRightContent,
   },
   created() {
     //前台登陆校验,若未记录,后台登陆校验 loginCheckUsername:登陆校验后存储在vuex中
     if (this.loginCheckUsername === "") {
       //前台没有数据,后台登录验证
-      getLoginCheck().then(res => {
+      getLoginCheck().then((res) => {
         if (res.errno !== -1) {
           this.checkedUsername = res.data.username;
           //提交vuex
           this.$store.commit("storeUserData", {
             username: res.data.username,
-            email: res.data.email
+            email: res.data.email,
           });
           this.showTip("welcomeTip");
         } else {
@@ -173,13 +188,13 @@ export default {
       oldTime: 0,
       newTime: 0,
       /* 头图全屏滚动节流 */
-      throttledScroll: _.throttle(e => {
+      throttledScroll: _.throttle((e) => {
         this.scroll(e);
-      }, 200)
+      }, 200),
     };
   },
   computed: {
-    ...mapGetters(["isMobile", "loginCheckUsername"])
+    ...mapGetters(["isMobile", "loginCheckUsername"]),
   },
   methods: {
     /*显示提示 tip值为newUserRegisterTip 或welcomeTip*/
@@ -230,7 +245,7 @@ export default {
           this.showWelcome = true;
         }
       }
-    }
+    },
   },
   activated() {
     this.$vuetify.goTo(this.leaveTop, 500);
@@ -240,7 +255,7 @@ export default {
     this.leaveTop = document.documentElement.scrollTop;
     window.removeEventListener("mousewheel", this.imgScroll);
     next();
-  }
+  },
 };
 </script>
 
@@ -302,7 +317,7 @@ export default {
   }
   .moe-icp {
     * {
-      color: #FCE4EC;
+      color: #fce4ec;
       vertical-align: middle;
       font-size: 18px;
     }
@@ -311,10 +326,10 @@ export default {
       font-family: "Times New Roman", Times, serif;
     }
     span:nth-child(3n) {
-      color: #FCE4EC;
+      color: #fce4ec;
     }
     span:nth-child(3n + 1) {
-      color: #E8EAF6;
+      color: #e8eaf6;
     }
     span:nth-child(3n + 2) {
       color: #b2ff59;
@@ -327,7 +342,7 @@ export default {
     }
     .moe-icp-icon {
       &:before {
-        color: #FCE4EC;
+        color: #fce4ec;
         font: normal normal normal 30px/1 "icomoon" !important;
         content: "\e900";
       }

@@ -13,11 +13,26 @@ import _ from "lodash";
 import "assets/css/base.css";
 import FloatingButton from "components/common/floatingButton/FloatingButton";
 import ScrollListenerBar from "components/common/scrollListenerBar/ScrollListener";
-
+import { postHello } from "network/access";
+import UA from "ua-device";
 export default {
   name: "App",
 
-  created() {},
+  created() {
+    window.onload = () => {
+      let loadTime = Date.now() - t1;
+      let userAgent = new UA(navigator.userAgent);
+      console.log(userAgent);
+      let browser =
+        userAgent.browser.name +
+        "_" +
+        userAgent.browser.version.original.split(".")[0];
+      let refer = document.referrer || "-";
+      let platform = userAgent.os.name + "_" + userAgent.os.version.original;
+      console.log(browser, refer, platform);
+      postHello(Date.now(), refer, browser, platform, loadTime);
+    };
+  },
   mounted() {
     // 防抖 缩放重新计算大小
     const commitResize = _.debounce(() => {

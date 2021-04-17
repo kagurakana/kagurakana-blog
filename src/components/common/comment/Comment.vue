@@ -4,7 +4,7 @@
       <v-row class="px-1 ma-0">
         <v-img
           class="pa-2 my-2 mx-auto round"
-          :src="commentAvatar"
+          :src="commentAvatarPreview"
           max-width="60px"
           min-width="60px"
           max-height="60px"
@@ -140,7 +140,8 @@ export default {
       username: "",
       email: "",
       resaveEmail: true,
-      commentAvatar: "https://cdn.kagurakana.xyz/default.png",
+      commentAvatarPreview: "https://cdn.kagurakana.xyz/default.png",
+      commentAvatar: "",
       defaultAvatar: "https://cdn.kagurakana.xyz/default.png",
       URL: "",
       baseurlOut: BASE_URL_OUT,
@@ -250,12 +251,17 @@ export default {
       });
     },
     getGravatar() {
-      this.commentAvatar = this.getQQname
+      this.commentAvatarPreview = this.getQQname
         ? this.commentAvatar
         : gravatar
             .url(this.email, { s: "400", r: "pg", d: "mm" })
             .replace(/.*com\/avatar\//g, "https://sdn.geekzu.org/avatar/");
+
+      this.commentAvatar = this.getQQname
+        ? this.commentAvatar
+        : gravatar.url(this.email, { s: "400", r: "pg", d: "mm" });
     },
+
     getCursorIndex(code) {
       let className = this.$refs["comment-text"].$el.className;
       className = className.match(/(OwO.*)/)[0];
