@@ -3,7 +3,7 @@
     <keep-alive include="Home">
       <router-view></router-view>
     </keep-alive>
-    <ScrollListenerBar class="scroll-listener" />
+    <ScrollListener class="scroll-listener" />
     <FloatingButton />
   </v-app>
 </template>
@@ -12,7 +12,7 @@
 import _ from "lodash";
 import "assets/css/base.css";
 import FloatingButton from "components/common/floatingButton/FloatingButton";
-import ScrollListenerBar from "components/common/scrollListenerBar/ScrollListener";
+import ScrollListener from "components/common/scrollListenerBar/ScrollListener";
 import { postHello } from "network/access";
 import UA from "ua-device";
 export default {
@@ -61,7 +61,7 @@ created by
 
   components: {
     FloatingButton,
-    ScrollListenerBar,
+    ScrollListener,
   },
 };
 </script>

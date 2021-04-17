@@ -1,6 +1,5 @@
 <template>
   <div>
-    <ScrollListenerBar class="scroll-listener"/>
     <NavBar :mobileMenuList="menu">
       <template v-slot:left>
         <img
@@ -27,7 +26,6 @@
 <script>
 import NavBar from "components/common/navBar/NavBar";
 import NavBarItem from "components/common/navBar/NavBarItem";
-import ScrollListenerBar from "components/common/scrollListenerBar/ScrollListener";
 import { mapGetters } from "vuex";
 import _ from "lodash";
 export default {
@@ -35,7 +33,6 @@ export default {
   components: {
     NavBar,
     NavBarItem,
-    ScrollListenerBar
   },
   // 我为啥放这里了？
   data() {

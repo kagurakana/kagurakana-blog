@@ -25,7 +25,9 @@
         </v-navigation-drawer>
       </v-card>
 
-      <router-view class="right-section"></router-view>
+      <keep-alive include="Home">
+        <router-view class="right-section"></router-view>
+      </keep-alive>
     </div>
   </div>
 </template>
