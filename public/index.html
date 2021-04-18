@@ -45,6 +45,13 @@
       href="https://at.alicdn.com/t/font_1897173_rnksghhbtc.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <!-- 获取统计 -->
+    <script>
+      function testJson(obj) {
+        window.__IP__ = obj;
+      }
+    </script>
+    <script src="http://whois.pconline.com.cn/ipJson.jsp?callback=testJson"></script>
     <!-- adobe font -->
     <script>
       (function(d) {

@@ -30,9 +30,10 @@ export default {
       let refer = document.referrer || "-";
       let platform = userAgent.os.name + "_" + userAgent.os.version.original;
       console.log(browser, refer, platform);
-      postHello(Date.now(), refer, browser, platform, loadTime);
+      postHello(Date.now(), refer, browser, platform, loadTime, __IP__);
     };
   },
+
   mounted() {
     // 防抖 缩放重新计算大小
     const commitResize = _.debounce(() => {
