@@ -33,7 +33,6 @@ export default {
       postHello(Date.now(), refer, browser, platform, loadTime, __IP__);
     };
   },
-
   mounted() {
     // 防抖 缩放重新计算大小
     const commitResize = _.debounce(() => {
