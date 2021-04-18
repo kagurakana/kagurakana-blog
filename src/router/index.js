@@ -82,6 +82,9 @@ const routes = [
   },
   {
     path: "/list/说说",
+    meta: {
+      title: "神楽花菜OFFICIAL|说说",
+    },
     component: () => import("views/artitalk/ArtitalkPage"),
   },
   {
@@ -124,7 +127,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title;
+  setTimeout(() => {
+    document.title = to.meta.title;
+  }, 50);
   next();
 });
 

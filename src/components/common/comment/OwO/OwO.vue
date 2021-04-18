@@ -96,7 +96,7 @@ export default {
     },
   },
   created() {
-    // console.log(this.showDataSet);
+    console.log(OwOdata);
   },
   methods: {
     changeCatigory(key){

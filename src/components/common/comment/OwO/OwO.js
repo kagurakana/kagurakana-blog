@@ -1,272 +1,329 @@
 export default {
-  "kaomoji": {
-    "name": "颜文字",
-    "type": "rawText",
-    "iconList": [
-      { "icon": "OωO", "text": "" },
-      { "icon": "|´・ω・)ノ", "text": "" },
-      { "icon": "ヾ(≧∇≦*)ゝ", "text": "" },
-      { "icon": "(☆ω☆)", "text": "" },
-      { "icon": "（╯‵□′）╯︵┴─┴", "text": "" },
-      { "icon": "￣﹃￣", "text": "" },
-      { "icon": "(*/ω＼*)", "text": "" },
-      { "icon": "∠( ᐛ 」∠)＿", "text": "" },
-      { "icon": "(๑•̀ㅁ•́ฅ)", "text": "" },
-      { "icon": "→_→", "text": "斜眼" },
-      { "icon": "୧(๑•̀⌄•́๑)૭", "text": "加油" },
-      { "icon": "٩(ˊᗜˋ*)و", "text": "" },
-      { "icon": "(ノ°ο°)ノ", "text": "" },
-      { "icon": "(´இ皿இ｀)", "text": "" },
-      { "icon": "⌇●﹏●⌇", "text": "" },
-      { "icon": "(ฅ´ω`ฅ)", "text": "" },
-      { "icon": "(╯°A°)╯︵○○○", "text": "" },
-      { "icon": "φ(￣∇￣o)", "text": "" },
-      { "icon": "ヾ(´･ ･｀｡)ノ\"", "text": "" },
-      { "icon": "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃", "text": "" },
-      { "icon": "(ó﹏ò｡)", "text": "" },
-      { "icon": "Σ(っ °Д °;)っ", "text": "" },
-      { "icon": "( ,,´･ω･)ﾉ\"(´っω･｀｡)", "text": "" },
-      { "icon": "╮(╯▽╰)╭ ", "text": "" },
-      { "icon": "o(*////▽////*)q ", "text": "" },
-      { "icon": "＞﹏＜", "text": "" },
-      { "icon": "( ๑´•ω•) \"(ㆆᴗㆆ)", "text": "" },
-      { "icon": "(｡•ˇ‸ˇ•｡)", "text": "" },
-      { "icon": "(๑•̀ω•́๑)", "text": "" },
-      { "icon": "(๑•́ ₃ •̀๑)", "text": "" },
-      { "icon": "(灬°ω°灬)", "text": "" },
-      { "icon": "(*^ω^*)", "text": "" },
-      { "icon": "✧*。٩(ˊωˋ*)و✧*。", "text": "" },
-      { "icon": "(￣y▽￣)~", "text": "" },
-      { "icon": "(o`•ω•)ノ(ノД`)", "text": "" },
-      { "icon": "(⌒▽⌒)", "text": "" },
-      { "icon": "（￣▽￣）", "text": "" },
-      { "icon": "(=・ω・=)", "text": "" },
-      { "icon": "(｀・ω・´)", "text": "" },
-      { "icon": "(〜￣△￣)〜", "text": "" },
-      { "icon": "(･∀･)", "text": "" },
-      { "icon": "(°∀°)ﾉ", "text": "" },
-      { "icon": "(￣3￣)", "text": "" },
-      { "icon": "╮(￣▽￣)╭", "text": "" },
-      { "icon": "( ´_ゝ｀)", "text": "" },
-      { "icon": "←_←", "text": "" },
-      { "icon": "→_→", "text": "" },
-      { "icon": "(<_<)", "text": "" },
-      { "icon": "(>_>)", "text": "" },
-      { "icon": "(;¬_¬)", "text": "" },
-      { "icon": "(\"▔□▔)", "text": "" },
-      { "icon": "(ﾟДﾟ≡ﾟдﾟ)!?", "text": "" },
-      { "icon": "Σ(ﾟдﾟ;)", "text": "" },
-      { "icon": "Σ( ￣□￣||)", "text": "" },
-      { "icon": "(´；ω；`)", "text": "" },
-      { "icon": "（/TДT)/", "text": "" },
-      { "icon": "(^・ω・^ )", "text": "" },
-      { "icon": "(｡･ω･｡)", "text": "" },
-      { "icon": "(●￣(ｴ)￣●)", "text": "" },
-      { "icon": "ε=ε=(ノ≧∇≦)ノ", "text": "" },
-      { "icon": "(´･_･`)", "text": "" },
-      { "icon": "(-_-#)", "text": "" },
-      { "icon": "（￣へ￣）", "text": "" },
-      { "icon": "(￣ε(#￣) Σ", "text": "" },
-      { "icon": "ヽ(`Д´)ﾉ", "text": "" },
-      { "icon": "(╯°口°)╯(┴—┴", "text": "" },
-      { "icon": "（#-_-)┯━┯", "text": "" },
-      { "icon": "_(:3」∠)_", "text": "" },
-      { "icon": "_(•̀ω•́ 」∠)_", "text": "" },
-      { "icon": "─=≡Σ((( つ•̀ω•́)つ", "text": "" },
-      { "icon": "(ಥ_ಥ)", "text": "" },
-      { "icon": "(๑•̀ㅂ•́)و✧", "text": "" },
-      { "icon": "(๑╹∀╹๑)", "text": "" },
-      { "icon": "눈_눈", "text": "" },
-      { "icon": "ᕦ(ò_óˇ)ᕤ", "text": "" },
-      { "icon": "(๑•ั็ω•็ั๑)", "text": "" },
-      { "icon": "( *・ω・)✄╰ひ╯", "text": "" },
-    ]
+  kaomoji: {
+    name: "颜文字",
+    type: "rawText",
+    iconList: [
+      { icon: "OωO", text: "" },
+      { icon: "|´・ω・)ノ", text: "" },
+      { icon: "ヾ(≧∇≦*)ゝ", text: "" },
+      { icon: "(☆ω☆)", text: "" },
+      { icon: "（╯‵□′）╯︵┴─┴", text: "" },
+      { icon: "￣﹃￣", text: "" },
+      { icon: "(*/ω＼*)", text: "" },
+      { icon: "∠( ᐛ 」∠)＿", text: "" },
+      { icon: "(๑•̀ㅁ•́ฅ)", text: "" },
+      { icon: "→_→", text: "斜眼" },
+      { icon: "୧(๑•̀⌄•́๑)૭", text: "加油" },
+      { icon: "٩(ˊᗜˋ*)و", text: "" },
+      { icon: "(ノ°ο°)ノ", text: "" },
+      { icon: "(´இ皿இ｀)", text: "" },
+      { icon: "⌇●﹏●⌇", text: "" },
+      { icon: "(ฅ´ω`ฅ)", text: "" },
+      { icon: "(╯°A°)╯︵○○○", text: "" },
+      { icon: "φ(￣∇￣o)", text: "" },
+      { icon: 'ヾ(´･ ･｀｡)ノ"', text: "" },
+      { icon: "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃", text: "" },
+      { icon: "(ó﹏ò｡)", text: "" },
+      { icon: "Σ(っ °Д °;)っ", text: "" },
+      { icon: '( ,,´･ω･)ﾉ"(´っω･｀｡)', text: "" },
+      { icon: "╮(╯▽╰)╭ ", text: "" },
+      { icon: "o(*////▽////*)q ", text: "" },
+      { icon: "＞﹏＜", text: "" },
+      { icon: '( ๑´•ω•) "(ㆆᴗㆆ)', text: "" },
+      { icon: "(｡•ˇ‸ˇ•｡)", text: "" },
+      { icon: "(๑•̀ω•́๑)", text: "" },
+      { icon: "(๑•́ ₃ •̀๑)", text: "" },
+      { icon: "(灬°ω°灬)", text: "" },
+      { icon: "(*^ω^*)", text: "" },
+      { icon: "✧*。٩(ˊωˋ*)و✧*。", text: "" },
+      { icon: "(￣y▽￣)~", text: "" },
+      { icon: "(o`•ω•)ノ(ノД`)", text: "" },
+      { icon: "(⌒▽⌒)", text: "" },
+      { icon: "（￣▽￣）", text: "" },
+      { icon: "(=・ω・=)", text: "" },
+      { icon: "(｀・ω・´)", text: "" },
+      { icon: "(〜￣△￣)〜", text: "" },
+      { icon: "(･∀･)", text: "" },
+      { icon: "(°∀°)ﾉ", text: "" },
+      { icon: "(￣3￣)", text: "" },
+      { icon: "╮(￣▽￣)╭", text: "" },
+      { icon: "( ´_ゝ｀)", text: "" },
+      { icon: "←_←", text: "" },
+      { icon: "→_→", text: "" },
+      { icon: "(<_<)", text: "" },
+      { icon: "(>_>)", text: "" },
+      { icon: "(;¬_¬)", text: "" },
+      { icon: '("▔□▔)', text: "" },
+      { icon: "(ﾟДﾟ≡ﾟдﾟ)!?", text: "" },
+      { icon: "Σ(ﾟдﾟ;)", text: "" },
+      { icon: "Σ( ￣□￣||)", text: "" },
+      { icon: "(´；ω；`)", text: "" },
+      { icon: "（/TДT)/", text: "" },
+      { icon: "(^・ω・^ )", text: "" },
+      { icon: "(｡･ω･｡)", text: "" },
+      { icon: "(●￣(ｴ)￣●)", text: "" },
+      { icon: "ε=ε=(ノ≧∇≦)ノ", text: "" },
+      { icon: "(´･_･`)", text: "" },
+      { icon: "(-_-#)", text: "" },
+      { icon: "（￣へ￣）", text: "" },
+      { icon: "(￣ε(#￣) Σ", text: "" },
+      { icon: "ヽ(`Д´)ﾉ", text: "" },
+      { icon: "(╯°口°)╯(┴—┴", text: "" },
+      { icon: "（#-_-)┯━┯", text: "" },
+      { icon: "_(:3」∠)_", text: "" },
+      { icon: "_(•̀ω•́ 」∠)_", text: "" },
+      { icon: "─=≡Σ((( つ•̀ω•́)つ", text: "" },
+      { icon: "(ಥ_ಥ)", text: "" },
+      { icon: "(๑•̀ㅂ•́)و✧", text: "" },
+      { icon: "(๑╹∀╹๑)", text: "" },
+      { icon: "눈_눈", text: "" },
+      { icon: "ᕦ(ò_óˇ)ᕤ", text: "" },
+      { icon: "(๑•ั็ω•็ั๑)", text: "" },
+      { icon: "( *・ω・)✄╰ひ╯", text: "" },
+    ],
   },
-  "eveOneCat":
-  {
-    "name": "eveOneCat",
-    "type": "bigImg",
-    "iconList": [
+  eveOneCat: {
+    name: "eveOneCat",
+    type: "bigImg",
+    iconList: [
       {
-        "icon": "https://cdn.kagurakana.xyz/Cat_hightouch.webp",
-        "code": "[Cat_hightouch]",
-        "text": "击掌"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_stealth.webp",
-        "code": "[Cat_stealth]",
-        "text": "躲"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_congras.webp",
-        "code": "[Cat_congras]",
-        "text": "欢呼"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_coffeebath.webp",
-        "code": "[Cat_coffeebath]",
-        "text": "test"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_lonely.webp",
-        "code": "[Cat_lonely]",
-        "text": "Cat_lonely"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_escort.webp",
-        "code": "[Cat_escort]",
-        "text": "牵手"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_confuse.webp",
-        "code": "[Cat_confuse]",
-        "text": "困惑"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_ignore.webp",
-        "code": "[Cat_ignore]",
-        "text": "摇头"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_agree.webp",
-        "code": "[Cat_agree]",
-        "text": "点头"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_fire.webp",
-        "code": "[Cat_fire]",
-        "text": "燃起来了！"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_splash.webp",
-        "code": "[Cat_splash]",
-        "text": "溅水"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_glance.webp",
-        "code": "[Cat_glance]",
-        "text": "盯----"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_sleep.webp",
-        "code": "[Cat_sleep]",
-        "text": "zzz"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_glance.webp",
-        "code": "[Cat_glance]",
-        "text": "盯----"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_slip.webp",
-        "code": "[Cat_slip]",
-        "text": "滑倒"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_chip.webp",
-        "code": "[Cat_chip]",
-        "text": "吃薯片"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_study.webp",
-        "code": "[Cat_study]",
-        "text": "学习"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_run.webp",
-        "code": "[Cat_run]",
-        "text": "跑"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_prussure.webp",
-        "code": "[Cat_prussure]",
-        "text": "压迫"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_hibye.webp",
-        "code": "[Cat_hibye]",
-        "text": "招呼"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_read.jpg",
-        "code": "[Cat_read]",
-        "text": "read"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_liedown.gif",
-        "code": "[Cat_liedown]",
-        "text": ""
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_flap.gif",
-        "code": "[Cat_flap]",
-        "text": "翻滚"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_drink.gif",
-        "code": "[Cat_drink]",
-        "text": "吨吨吨~"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/v2-00516d6d471e23f1c0f5ccf627111136_b.webp",
-        "code": "[Cat_hang]",
-        "text": "悬挂"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_excuse.gif",
-        "code": "[Cat_excuse]",
-        "text": "打扰"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_fishing.gif",
-        "code": "[Cat_fishing]",
-        "text": "钓鱼"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_catch.gif",
-        "code": "[Cat_catch]",
-        "text": "追赶"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_campfire.gif",
-        "code": "[Cat_campfire]",
-        "text": "烤火"
-      }, {
-        "icon": "https://cdn.kagurakana.xyz/Cat_gulugulu.gif",
-        "code": "[Cat_gulugulu]",
-        "text": "gulugulu"
-      }
-    ]
+        icon: "https://cdn.kagurakana.xyz/Cat_hightouch.webp",
+        code: "[Cat_hightouch]",
+        text: "击掌",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_stealth.webp",
+        code: "[Cat_stealth]",
+        text: "躲",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_congras.webp",
+        code: "[Cat_congras]",
+        text: "欢呼",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_coffeebath.webp",
+        code: "[Cat_coffeebath]",
+        text: "test",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_lonely.webp",
+        code: "[Cat_lonely]",
+        text: "Cat_lonely",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_escort.webp",
+        code: "[Cat_escort]",
+        text: "牵手",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_confuse.webp",
+        code: "[Cat_confuse]",
+        text: "困惑",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_ignore.webp",
+        code: "[Cat_ignore]",
+        text: "摇头",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_agree.webp",
+        code: "[Cat_agree]",
+        text: "点头",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_fire.webp",
+        code: "[Cat_fire]",
+        text: "燃起来了！",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_splash.webp",
+        code: "[Cat_splash]",
+        text: "溅水",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_glance.webp",
+        code: "[Cat_glance]",
+        text: "盯----",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_sleep.webp",
+        code: "[Cat_sleep]",
+        text: "zzz",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_glance.webp",
+        code: "[Cat_glance]",
+        text: "盯----",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_slip.webp",
+        code: "[Cat_slip]",
+        text: "滑倒",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_chip.webp",
+        code: "[Cat_chip]",
+        text: "吃薯片",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_study.webp",
+        code: "[Cat_study]",
+        text: "学习",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_run.webp",
+        code: "[Cat_run]",
+        text: "跑",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_prussure.webp",
+        code: "[Cat_prussure]",
+        text: "压迫",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_hibye.webp",
+        code: "[Cat_hibye]",
+        text: "招呼",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_read.jpg",
+        code: "[Cat_read]",
+        text: "read",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_liedown.gif",
+        code: "[Cat_liedown]",
+        text: "",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_flap.gif",
+        code: "[Cat_flap]",
+        text: "翻滚",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_drink.gif",
+        code: "[Cat_drink]",
+        text: "吨吨吨~",
+      },
+      {
+        icon:
+          "https://cdn.kagurakana.xyz/v2-00516d6d471e23f1c0f5ccf627111136_b.webp",
+        code: "[Cat_hang]",
+        text: "悬挂",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_excuse.gif",
+        code: "[Cat_excuse]",
+        text: "打扰",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_fishing.gif",
+        code: "[Cat_fishing]",
+        text: "钓鱼",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_catch.gif",
+        code: "[Cat_catch]",
+        text: "追赶",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_campfire.gif",
+        code: "[Cat_campfire]",
+        text: "烤火",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/Cat_gulugulu.gif",
+        code: "[Cat_gulugulu]",
+        text: "gulugulu",
+      },
+    ],
   },
-  "Vtubers": {
-    "name": "Vtubers",
-    "type": "bigImg",
-    "iconList": [{
-      "icon": "https://cdn.kagurakana.xyz/F0FF15BB78281E75DD6230CE23F762F7.gif",
-      "code": "[aqua_debu]",
-      "text": "aquadebu"
-    },{
-      "icon": "https://cdn.kagurakana.xyz/4f433daf08e7f73f14aadc88df7dd98cfd02b38d.jpg",
-      "code": "[aqua_melon]",
-      "text": "吃瓜"
-    },{
-      "icon": "https://cdn.kagurakana.xyz/V_gitar.gif",
-      "code": "[aqua_gitar]",
-      "text": "gitar"
-    },{
-      "icon": "https://cdn.kagurakana.xyz/V_confuse.png",
-      "code": "[qinying_confuse]",
-      "text": "qinying_confuse"
-    },{
-      "icon": "https://cdn.kagurakana.xyz/auqa_crash.gif",
-      "code": "[auqa_crash]",
-      "text": "auqa_crash"
-    },{
-      "icon": "https://cdn.kagurakana.xyz/shiyu_good.jpg",
-      "code": "[shiyu_good]",
-      "text": "shiyu_good"
-    },{
-      "icon": "https://cdn.kagurakana.xyz/auqa_shock.jpg",
-      "code": "[auqa_shock]",
-      "text": "aqua_shock"
-    },{
-      "icon": "https://cdn.kagurakana.xyz/fbk_shake.gif",
-      "code": "[fbk_shake]",
-      "text": "fbk_shake"
-    },{
-      "icon": "https://cdn.kagurakana.xyz/fbk_shake_slow.gif",
-      "code": "[fbk_shake_s]",
-      "text": "fbk_shake_slow"
-    },{
-      "icon": "https://cdn.kagurakana.xyz/fbk_shake_fast.gif",
-      "code": "[fbk_shake_f]",
-      "text": "fbk_shake_fast"
-    },{
-      "icon": "https://cdn.kagurakana.xyz/nana_lue.jpg",
-      "code": "[nana_lue]",
-      "text": "nana_lue"
-    },{
-      "icon": "https://cdn.kagurakana.xyz/nana_starEye.png",
-      "code": "[nana_starEye]",
-      "text": "nana_starEye"
-    },{
-      "icon": "https://cdn.kagurakana.xyz/nana_play.gif",
-      "code": "[nana_play]",
-      "text": "nana_play"
-    }
-  ]
-  }
-
-}
+  Vtubers: {
+    name: "Vtubers",
+    type: "bigImg",
+    iconList: [
+      {
+        icon: "https://cdn.kagurakana.xyz/F0FF15BB78281E75DD6230CE23F762F7.gif",
+        code: "[aqua_debu]",
+        text: "aquadebu",
+      },
+      {
+        icon:
+          "https://cdn.kagurakana.xyz/4f433daf08e7f73f14aadc88df7dd98cfd02b38d.jpg",
+        code: "[aqua_melon]",
+        text: "吃瓜",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/V_gitar.gif",
+        code: "[aqua_gitar]",
+        text: "gitar",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/V_confuse.png",
+        code: "[qinying_confuse]",
+        text: "qinying_confuse",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/auqa_crash.gif",
+        code: "[auqa_crash]",
+        text: "auqa_crash",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/shiyu_good.jpg",
+        code: "[shiyu_good]",
+        text: "shiyu_good",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/auqa_shock.jpg",
+        code: "[auqa_shock]",
+        text: "aqua_shock",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/fbk_shake.gif",
+        code: "[fbk_shake]",
+        text: "fbk_shake",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/fbk_shake_slow.gif",
+        code: "[fbk_shake_s]",
+        text: "fbk_shake_slow",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/fbk_shake_fast.gif",
+        code: "[fbk_shake_f]",
+        text: "fbk_shake_fast",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/nana_lue.jpg",
+        code: "[nana_lue]",
+        text: "nana_lue",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/nana_starEye.png",
+        code: "[nana_starEye]",
+        text: "nana_starEye",
+      },
+      {
+        icon: "https://cdn.kagurakana.xyz/nana_play.gif",
+        code: "[nana_play]",
+        text: "nana_play",
+      },
+    ],
+  },
+  MHW: {
+    name: "Monster Hunter",
+    type: "bigImg",
+    iconList: (function() {
+      let arr = [];
+      for (let i = 1; i <= 36; i++) {
+        arr.push({
+          icon: `https://cdn.kagurakana.xyz/MHW_sticker_${i}.png@webp`,
+          code: `[MHW_sticker_${i}]`,
+          text: `MHW_sticker_${i}`,
+        });
+      }
+      return arr;
+    })(),
+  },
+};
