@@ -4,16 +4,16 @@
     <div class="imgs-container">
       <v-img
         class="back"
-        :class="{'bulr':isBulr}"
-        :height="isMobile?'40vh':'100vh'"
-        src="https://cdn.kagurakana.xyz/4a1992cc6c992b13994d52193e90028d4ac535bc.png"
+        :class="{ bulr: isBulr, breath: !isMobile }"
+        :height="isMobile ? '40vh' : '100vh'"
+        src="https://cdn.kagurakana.xyz/home_image_trees.jpg@webp"
         eager
         ref="back"
         @load="$emit('showImg')"
       ></v-img>
       <div class="flag d-flex align-center justify-center">
         <section class="flex-fill">
-          <h1 class="p-0 m-0 home-text">{{welcomeTip}}</h1>
+          <h1 class="p-0 m-0 home-text">{{ welcomeTip }}</h1>
 
           <!-- <div v-if="!isMobile">
             <transition-group name="topic-transistion" class="topic">
@@ -39,14 +39,14 @@
       <v-col v-show="!isMobile" cols="12" class="text-center home-head-btn">
         <v-btn
           class="btn-in"
-          @mouseover="isBulr=true"
-          @mouseleave="isBulr=false"
+          @mouseover="isBulr = true"
+          @mouseleave="isBulr = false"
           fab
           text
           color="white"
           @click="$emit('hideImg')"
         >
-          <v-icon class="btn-in" style="font-size:24px">mdi-arrow-down</v-icon>
+          <v-icon class="btn-in" style="font-size: 24px">mdi-arrow-down</v-icon>
         </v-btn>
       </v-col>
     </div>
@@ -67,24 +67,24 @@ export default {
         {
           content:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum saepe est laudantium deserunt harum eligendi odit aperiam recusandae impedit.",
-          date: "2020-12-5"
+          date: "2020-12-5",
         },
         {
           content:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum saepe est laudantium deserunt harum eligendi odit aperiam recusandae impedit.",
-          date: "2020-13-5"
+          date: "2020-13-5",
         },
         {
           content:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum saepe est laudantium deserunt harum eligendi odit aperiam recusandae impedit.",
-          date: "2020-11-5"
-        }
-      ]
+          date: "2020-11-5",
+        },
+      ],
     };
   },
   props: {
     //deprecate
-    scrollDis: 0
+    scrollDis: 0,
   },
   computed: {
     ...mapGetters(["isMobile"]),
@@ -103,7 +103,7 @@ export default {
         str = "晚安!";
       }
       return str + this.gettedName;
-    }
+    },
   },
 
   methods: {
@@ -112,18 +112,18 @@ export default {
       this.topics.push({
         content:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum saepe est laudantium deserunt harum eligendi odit aperiam recusandae impedit.",
-        date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss:SSS")
+        date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss:SSS"),
       });
     },
     loadPrevious() {
       this.topics.unshift({
         content:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum saepe est laudantium deserunt harum eligendi odit aperiam recusandae impedit.",
-        date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss:SSS")
+        date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss:SSS"),
       });
       this.topics.pop();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -213,8 +213,8 @@ export default {
   height: 100px;
   font-family: "SiYuan-Heavy,roboto";
   font-weight: 900;
-  color: rgba($color: #fff, $alpha: 0.85);
-
+  color: #ffffff;
+  text-shadow: 3px 3px 8px  rgba(0, 0, 0, 0.25);
   :focus {
     border: 0px;
     outline: none;
@@ -239,7 +239,24 @@ export default {
   transition: all 1s;
   transform: scale(0.1);
 }
+.breath {
+  animation: breath 10s ease-in-out alternate infinite;
+}
+@keyframes breath {
+  0% {
+    transform: translate(-3px, -5.19px) scale(1.01);
+  }
 
+  33% {
+    transform: translate(5.19px, 3px) scale(1.01);
+  }
+  66% {
+    transform: translate(5.19px, -3px) scale(1.01);
+  }
+  100% {
+    transform: translate(-5.19px, 3px) scale(1.01);
+  }
+}
 @media screen and(max-width: 1300px) {
   .home-text {
     font-size: 36px;
