@@ -4,41 +4,47 @@
       <v-toolbar-title>KAGURAKANA CMS</v-toolbar-title>
     </v-app-bar>
     <div class="d-flex" id="main-section">
-      <v-card tile width="300">
-        <v-navigation-drawer class="left-nav" fixed permanent dark width="300">
-          <v-list class="left-lists">
-            <v-list-item
-              v-for="(item, i) in drawerLists"
-              :key="i"
-              link
-              :to="item.link"
-            >
-              <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
+      <v-navigation-drawer class="left-nav" fixed permanent dark width="300">
+        <v-list class="left-lists">
+          <v-list-item
+            v-for="(item, i) in drawerLists"
+            :key="i"
+            link
+            :to="item.link"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
 
-              <v-list-item-content>
-                <v-list-item-title>{{ item.text }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>
-      </v-card>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
 
-      <keep-alive include="Home">
-        <router-view class="right-section"></router-view>
-      </keep-alive>
+      <router-view v-if="isAdmin" class="right-section"></router-view>
+      <div class="right-section-no-permission" v-else>
+        <h1>Access denied...</h1>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { getLoginCheck } from "network/user";
+import { mapGetters } from "vuex";
 export default {
   name: "Admin",
+  computed: {
+    ...mapGetters(["isAdmin"]),
+  },
+  created() {},
   data() {
     return {
+      // isAdmin: false,
       drawerLists: [
-        { icon: "mdi-speedometer", text: "仪表盘", link: "/admin/aaa" },
+        { icon: "mdi-speedometer", text: "仪表盘", link: "/admin/pannel" },
         {
           icon: "mdi-file-document-edit",
           text: "新增文章",
@@ -59,6 +65,7 @@ export default {
 
 <style lang='scss' scoped>
 #main-section {
+  min-height: 100vh;
   .left-nav {
     z-index: 2;
   }
@@ -67,7 +74,18 @@ export default {
   }
   .right-section {
     margin-top: 60px;
-    flex: 1;
+    padding: 0px 0px 0px 300px;
+    min-width: 100%;
+    min-height: 100%;
+   
+  }
+  .right-section-no-permission {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-left: 300px;
   }
 }
 </style>

@@ -29,15 +29,15 @@ const routes = [
   {
     path: "/admin",
     component: () => import("views/admin/Admin"),
-    redirect: "/admin/aaa",
+    redirect: "/admin/pannel",
     children: [
       {
         path: "/admin/bbb",
         component: () => import("views/admin/childComps/bbb"),
       },
       {
-        path: "/admin/aaa",
-        component: () => import("views/admin/childComps/aaa"),
+        path: "/admin/pannel",
+        component: () => import("views/admin/childComps/Pannel"),
       },
     ],
   },

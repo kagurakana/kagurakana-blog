@@ -61,7 +61,6 @@ export default {
         for (let index in this.todos) {
           this.todos[index].state && a.push(index * 1);
         }
-        console.log(a);
         return a;
       },
       set(val) {

@@ -192,12 +192,12 @@ export default {
   },
   created() {
     getCommentList(this.blogId).then((res) => {
-      // console.log(res);
+      
       this.commentLists = res.data;
     });
     this.$bus.$on("commentSuccess", () => {
       getCommentList(this.blogId).then((res) => {
-        // console.log(res);
+        
         this.commentLists = res.data;
       });
     });
@@ -248,7 +248,7 @@ export default {
     },
     /*根据不同的replyID显示不同位置的回复框,设置回复评论的id*/
     setReply(mainCommentId, replyCommentId, username) {
-      // console.log(this.$refs);
+      
       this.replyShowPosition = {}; //重置对象
       this.replyUsername = username; //重置回复target名字
       // this.

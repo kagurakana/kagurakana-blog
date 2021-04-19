@@ -70,7 +70,7 @@ export default {
     //   this.tag = tag;
     //   getBlogList(tag).then(list => {
     //     this.listData = list.data;
-    //     console.log(this.listData);
+    
     //     this.quickShowData = this.listData.slice(0, 3);
     //     this.blogListData = this.listData.slice(3);
     //   });
@@ -103,7 +103,7 @@ export default {
   //     const arr = this.$route.path.split("/");
   //     const tag = arr[arr.length - 1];
   //     this.tag = tag;
-  //     console.log(tag);
+  
   //   }
   // }
 };

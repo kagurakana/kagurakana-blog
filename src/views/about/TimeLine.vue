@@ -40,7 +40,6 @@ export default {
 
   mounted() {
     getGitHubCommits().then((res) => {
-      console.log(res);
       res.data.forEach((commitInfo) => {
         this.commitLogs.push({
           title: commitInfo.commit.message,

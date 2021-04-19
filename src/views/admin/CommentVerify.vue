@@ -61,7 +61,7 @@ export default {
     },
     submit() {
       controlComment(this.isShowList, this.deleteList).then(res => {
-        // console.log(res);
+        
       });
     }
   }

@@ -91,12 +91,11 @@ export default {
   },
   computed: {
     showDataSet() {
-      // console.log(this.current)
+      
       return this.OwOdata[this.current];
     },
   },
   created() {
-    console.log(OwOdata);
   },
   methods: {
     changeCatigory(key){
@@ -108,14 +107,14 @@ export default {
       let code =
         stickerObj.code === undefined ? stickerObj.icon : stickerObj.code;
       this.$emit("requestCursorIndex", code);
-      // console.log(this.cursorIndex)
+      
     },
     showHoverImg(sticker, e) {
-      // console.log(e);
+      
       this.hoverImgSrc = sticker.icon;
       this.imgPos.top = e.clientY + 10 + "px";
       this.imgPos.left = e.clientX + 10 + "px";
-      // console.log(this.imgPos);
+      
     },
     clearHoverImg() {
       setTimeout(() => {

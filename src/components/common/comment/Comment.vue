@@ -229,7 +229,6 @@ export default {
         this.getEmail, //isRegisted
         this.commentAvatar
       ).then((res) => {
-        // console.log(res);
         if (res.errno !== -1) {
           this.comment = "";
           this.isShowTip = true;
@@ -241,7 +240,6 @@ export default {
       let jsondata = {};
       getqqInfo(this.username).then((res) => {
         if (res.errno !== -1) {
-          // console.log(res);
           this.username = res.data.nickName;
           this.commentAvatar = `${this.baseurlOut}/${res.data.avatar}`;
           this.getQQname = true;
@@ -265,16 +263,15 @@ export default {
     getCursorIndex(code) {
       let className = this.$refs["comment-text"].$el.className;
       className = className.match(/(OwO.*)/)[0];
-      // console.log(className)
       let index = document.querySelector(`.${className} textarea`).selectionEnd;
-      // console.log(index)
+      
       this.textAreaCursorIndex = index;
-      // console.log(code);
+      
       this.comment = `${this.comment.slice(
         0,
         index
       )}${code}${this.comment.slice(index)}`;
-      // console.log(this.comment);
+      
     },
   },
   watch: {},

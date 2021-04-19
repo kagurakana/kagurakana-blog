@@ -11,7 +11,7 @@ export default {
     getListData(tag) {
       return getBlogList(tag).then(list => {
         this.listData = list.data;
-        // console.log(this.listData);
+        
       });
     }
   },

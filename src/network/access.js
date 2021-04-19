@@ -6,3 +6,11 @@ export function postHello(timeStamp, refer = "", ua, platform, loadTime, pv) {
     data: { timeStamp, refer, ua, platform, loadTime, pv },
   });
 }
+
+export function getAccessData(timeSpan) {
+  return request({
+    method: "get",
+    url: "/access/get-access",
+    params: timeSpan,
+  });
+}

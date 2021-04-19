@@ -66,9 +66,7 @@ export default {
   },
   created() {
     getBangumi(this.page, 15).then(res => {
-      console.log(res.data);
       this.bangumiList.push(...res.data.list);
-      console.log(this.bangumiList);
       this.total = res.data.total;
     });
   },
