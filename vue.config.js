@@ -1,8 +1,8 @@
 const PrerenderSPAPlugin = require("prerender-spa-plugin");
-
-const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
+const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const path = require("path");
+// const { __webpack_config__, __dev_server__ } = require("./src/assets/.env/env");
 
 module.exports = {
   configureWebpack: {
@@ -42,7 +42,7 @@ module.exports = {
       }),
       new CompressionWebpackPlugin({
         algorithm: "gzip", // 使用gzip压缩
-        test: /\.(js|css|svg|woff|ttf|json|html)$/, // 匹配文件名
+        test: /\.(js|css)$/, // 匹配文件名
         filename: "[path].gz[query]", // 压缩后的文件名(保持原文件名，后缀加.gz)
         minRatio: 1, // 压缩率小于1才会压缩
         threshold: 10240, // 对超过10k的数据压缩
@@ -110,14 +110,14 @@ module.exports = {
   // --------
 
   //  ---dev local api---
-
   // devServer: {
   //   proxy: {
-  //     '/api': {
-  //       target: 'http://localhost:3000',
-  //     }
-  //   }
+  //     "/api": {
+  //       target: "http://localhost:3000",
+  //     },
+  //   },
   // },
+  // devServer: __dev_server__,
 
   productionSourceMap: false,
 };

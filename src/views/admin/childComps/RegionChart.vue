@@ -41,7 +41,7 @@ export default {
         this.regions.forEach((region) => {
           let matchArr = region.match(/省(.*)市/);
           region = matchArr ? matchArr[1] : region;
-          typeof o[region] === "undefined" ? (o[region] = 0) : o[region]++;
+          typeof o[region] === "undefined" ? (o[region] = 1) : o[region]++;
         });
         for (const key in o) {
           arr.push({ name: key, value: o[key] });

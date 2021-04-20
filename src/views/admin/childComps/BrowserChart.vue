@@ -1,5 +1,5 @@
 <template>
-  <v-card class="chart" id="refer-chart"></v-card>
+  <v-card class="chart" id="browser-chart"></v-card>
 </template>
 
 <script>
@@ -13,7 +13,7 @@ import {
 } from "echarts/components";
 import { CanvasRenderer } from "echarts/renderers";
 export default {
-  name: "ReferChart",
+  name: "BrowserChart",
   mounted() {
     echarts.use([
       TitleComponent,
@@ -25,21 +25,22 @@ export default {
     ]);
   },
   props: {
-    refers: {
+    browserArr: {
       type: Array,
     },
   },
   watch: {
-    refers() {
-      this.initReferChart();
+    browserArr() {
+      console.log(1111111111);
+      this.initBrowserChart();
     },
   },
   methods: {
-    initReferChart() {
-      let referChart = echarts.init(document.getElementById("refer-chart")); // 指定图表的配置项和数据
-      let referChartOption = {
+    initBrowserChart() {
+      let browserChart = echarts.init(document.getElementById("browser-chart")); // 指定图表的配置项和数据
+      let browserChartOption = {
         title: {
-          text: "访问来源",
+          text: "浏览器类型",
           left: "center",
           top: "15px",
         },
@@ -49,53 +50,47 @@ export default {
         },
         series: [
           {
-            name: "访问来源",
+            name: "ua",
             type: "pie",
-            radius: "55%",
-            selectedMode: "single",
+            radius: ["30%", "50%"],
+            selectedMode: true,
             label: {
               formatter: `{b}: {d}%`,
             },
             data: (() => {
               let o = {};
               let arr = [];
-              this.refers.forEach((refer) => {
-                refer = refer.match(/(https?:\/\/.*?\/)/g);
-                refer = refer && refer[0];
+              this.browserArr.forEach((browser) => {
+                console.log(browser);
                 switch (true) {
-                  case /-|(null)/g.test(refer):
+                  case /NULL/g.test(browser):
                     typeof o["未知"] === "undefined"
                       ? (o["未知"] = 1)
                       : o["未知"]++;
                     break;
-                  case /baidu/g.test(refer):
-                    typeof o["百度"] === "undefined"
-                      ? (o["百度"] = 1)
-                      : o["百度"]++;
-                    break;
-                  case /bing/g.test(refer):
-                    typeof o["必应"] === "undefined"
-                      ? (o["必应"] = 1)
-                      : o["必应"]++;
+                  case /Chrome/g.test(browser):
+                    typeof o["谷歌浏览器"] === "undefined"
+                      ? (o["谷歌浏览器"] = 1)
+                      : o["谷歌浏览器"]++;
                     break;
                   default:
-                    typeof o[refer] === "undefined"
-                      ? (o[refer] = 1)
-                      : o[refer]++;
+                    typeof o[browser] === "undefined"
+                      ? (o[browser] = 1)
+                      : o[browser]++;
                 }
               });
               for (const key in o) {
                 arr.push({ name: key, value: o[key] });
+                arr.sort((a, b) => {
+                  a.value - b.value;
+                })[0].selected = true;
               }
-              arr.sort((a, b) => {
-                a.value - b.value;
-              })[0].selected = true;
               return arr;
             })(),
           },
         ],
       };
-      referChart.setOption(referChartOption);
+      browserChart.setOption(browserChartOption);
     },
   },
 };

@@ -150,6 +150,7 @@ export default {
     },
     /**拖放监听 */
     imgDrop(e) {
+      console.log('aaaaaaaaaaaaaaaaaaaaaaaa')
       let file = e.dataTransfer.files[0]; //获取拖放文件 Blob
       if (this.upToken) {
         console.log(file);
@@ -176,7 +177,6 @@ export default {
       let previewEle = this.$refs.context;
       let rightDis =
         (previewEle.scrollHeight - previewEle.offsetHeight) * leftRate;
-        console.log('-------------')
       previewEle.scrollTo(0, rightDis);
     },
     

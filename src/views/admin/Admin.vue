@@ -74,10 +74,22 @@ export default {
   }
   .right-section {
     margin-top: 60px;
-    padding: 0px 0px 0px 300px;
+    padding: 0px 20px 0px 320px;
     min-width: 100%;
     min-height: 100%;
-   
+    position: relative;
+
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   left: 0;
+    //   right: 0;
+    //   top: 0;
+    //   bottom: 0;
+    //   background: url("https://cdn.kagurakana.xyz/78990961_p0.jpg@webp") center /
+    //     cover no-repeat;
+    //   filter: blur(8px);
+    // }
   }
   .right-section-no-permission {
     display: flex;
@@ -86,6 +98,17 @@ export default {
     justify-content: center;
     align-items: center;
     padding-left: 300px;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: url("https://cdn.kagurakana.xyz/78990961_p0.jpg@webp") center /
+        cover no-repeat;
+      filter: blur(8px);
+    }
   }
 }
 </style>
