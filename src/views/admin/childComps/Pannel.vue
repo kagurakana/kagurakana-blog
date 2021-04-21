@@ -15,10 +15,13 @@
         <v-card-title class="card-title">上次更新：2021年4月20日</v-card-title>
       </v-card>
     </v-col>
-    <v-col class="col-12 col-lg-6 chart-container">
+    <v-col class="col-12 col-lg-4 chart-container">
       <pv-chart :accessTime="accessTimes" />
     </v-col>
-    <v-col class="col-12 col-lg-6 chart-container">
+    <v-col class="col-12 col-lg-4 chart-container">
+      <load-time-chart :loadTimes="loadTimes" />
+    </v-col>
+    <v-col class="col-12 col-lg-4 chart-container">
       <refer-chart :refers="refers" />
     </v-col>
     <v-col class="col-12 col-lg-6 chart-container">
@@ -35,6 +38,7 @@ import ReferChart from "./ReferChart";
 import PvChart from "./PvChart";
 import RegionChart from "./RegionChart.vue";
 import BrowserChart from "./BrowserChart";
+import LoadTimeChart from "./LoadTimeChart";
 import { getAccessData } from "network/access";
 export default {
   name: "Pannel",
@@ -50,6 +54,7 @@ export default {
     ReferChart,
     RegionChart,
     BrowserChart,
+    LoadTimeChart,
   },
   data() {
     return {
@@ -81,6 +86,13 @@ export default {
         item.accessUa && browserArr.push(item.accessUa);
       });
       return browserArr;
+    },
+    loadTimes() {
+      let laodTimeArr = [];
+      this.accessData.forEach((item) => {
+        !isNaN(item.loadTime) && laodTimeArr.push(item.loadTime * 1);
+      });
+      return laodTimeArr;
     },
   },
 };
