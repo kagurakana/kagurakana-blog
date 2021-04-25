@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="pannel">
     <v-col class="col-12 col-lg-4 chart-container">
       <v-card class="top-card" width="100%" height="100px">
         <v-card-title class="card-title">pv访问：{{ count }}</v-card-title>
@@ -99,17 +99,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-#pannel-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  min-width: 500px;
-  overflow: scroll;
-}
 .chart {
   height: 400px;
-  width: 550px;
+  width: 100%; 
 }
 .chart-container {
   display: flex;

@@ -32,12 +32,32 @@ const routes = [
     redirect: "/admin/pannel",
     children: [
       {
-        path: "/admin/bbb",
-        component: () => import("views/admin/childComps/bbb"),
-      },
-      {
         path: "/admin/pannel",
         component: () => import("views/admin/childComps/Pannel"),
+      },
+      {
+        path: "/admin/add-blog",
+        component: () => import("views/admin/BlogPost"),
+      },
+      {
+        path: "/admin/add-blog/:id",
+        component: () => import("views/admin/BlogPost"),
+      },
+      {
+        path: "/admin/manage-blog",
+        component: () => import("views/admin/BlogCtrlDetail"),
+      },
+      {
+        path: "/admin/manage-comment",
+        component: () => import("views/admin/CommentVerify"),
+      },
+      {
+        path: "/admin/manage-link",
+        component: () => import("views/admin/AddLink"),
+      },
+      {
+        path: "/admin/server-monitor",
+        component: () => import("views/admin/ServerMonitor"),
       },
     ],
   },

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar class="admin-nav" app color="primary" dark>
       <v-toolbar-title>KAGURAKANA CMS</v-toolbar-title>
     </v-app-bar>
     <div class="d-flex" id="main-section">
@@ -48,15 +48,27 @@ export default {
         {
           icon: "mdi-file-document-edit",
           text: "新增文章",
-          link: "/admin/bbb",
+          link: "/admin/add-blog",
         },
-        { icon: "mdi-file-check", text: "文章管理" },
-        { icon: "mdi-account", text: "用户管理" },
-        { icon: "mdi-comment-text-multiple", text: "评论管理" },
-        { icon: "mdi-link-variant-plus", text: "链接管理" },
+        {
+          icon: "mdi-file-check",
+          text: "文章管理",
+          link: "/admin/manage-blog",
+        },
+        // { icon: "mdi-account", text: "用户管理" },
+        {
+          icon: "mdi-comment-text-multiple",
+          text: "评论管理",
+          link: "/admin/manage-comment",
+        },
+        {
+          icon: "mdi-link-variant-plus",
+          text: "链接管理",
+          link: "/admin/manage-link",
+        },
         { icon: "mdi-image", text: "图床" },
         { icon: "mdi-earth", text: "日志分析" },
-        { icon: "mdi-chart-bell-curve-cumulative", text: "性能监控" },
+        { icon: "mdi-chart-bell-curve-cumulative", text: "性能监控",link:"/admin/server-monitor" },
       ],
     };
   },
@@ -64,6 +76,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.admin-nav {
+  z-index: 100;
+}
 #main-section {
   min-height: 100vh;
   .left-nav {
@@ -86,8 +101,7 @@ export default {
     //   right: 0;
     //   top: 0;
     //   bottom: 0;
-    //   background: url("https://cdn.kagurakana.xyz/78990961_p0.jpg@webp") center /
-    //     cover no-repeat;
+    background: #f5f5f5;
     //   filter: blur(8px);
     // }
   }
@@ -98,17 +112,17 @@ export default {
     justify-content: center;
     align-items: center;
     padding-left: 300px;
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      background: url("https://cdn.kagurakana.xyz/78990961_p0.jpg@webp") center /
-        cover no-repeat;
-      filter: blur(8px);
-    }
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   left: 0;
+    //   right: 0;
+    //   top: 0;
+    //   bottom: 0;
+    //   background: url("https://cdn.kagurakana.xyz/78990961_p0.jpg@webp") center /
+    //     cover no-repeat;
+    //   filter: blur(8px);
+    // }
   }
 }
 </style>

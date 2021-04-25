@@ -8,7 +8,7 @@ function resolve(dir) {
 module.exports = {
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === "production") {
-      let pligins = [
+      let plugins = [
         new PrerenderSPAPlugin({
           staticDir: path.join(__dirname, "dist"),
           routes: ["/", "/friends", "/about"],
@@ -52,7 +52,7 @@ module.exports = {
         }),
       ];
       typeof config.plugins === "undefined"
-        ? (config.plugins = pligins)
+        ? (config.plugins = plugins)
         : config.plugins.concat(plugins);
     }
 

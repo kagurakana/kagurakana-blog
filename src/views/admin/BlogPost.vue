@@ -1,44 +1,49 @@
 <template>
   <div>
-    <h1>{{ loginCheckMessage }}</h1>
-    <v-row v-if="isAdmin">
-      <v-col cols="12">
-        <v-col cols="8" class="mx-auto">
-          <v-text-field v-model="title" label="title"></v-text-field>
-          <v-text-field v-model="tags" label="tags"></v-text-field>
-          <v-text-field v-model="headPic" label="headPic"></v-text-field>
-        </v-col>
-        <v-col cols="10" class="mx-auto">
-          <v-textarea v-model="desc" label="desc"></v-textarea>
-          <div
-            class="main-section"
-            :style="{ height: innerHeight - 100 + 'px' }"
-          >
-            <div class="editor-preview">
-              <textarea
-                id="md-input"
-                @drop.prevent.stop="imgDrop"
-                @scroll="syncScroll"
-                ref="article"
-                v-model="content"
-                label="content"
-              ></textarea>
+    <main id="blog-post-container">
+      <h1>{{ loginCheckMessage }}</h1>
+      <v-row v-if="isAdmin">
+        <v-col cols="12">
+          <v-col cols="8" class="mx-auto">
+            <v-text-field v-model="title" label="title"></v-text-field>
+            <v-text-field v-model="tags" label="tags"></v-text-field>
+            <v-text-field v-model="headPic" label="headPic"></v-text-field>
+          </v-col>
+          <v-col cols="10" class="mx-auto">
+            <v-textarea v-model="desc" label="desc"></v-textarea>
+            <div
+              class="main-section"
+              :style="{ height: innerHeight - 100 + 'px' }"
+            >
+              <div class="editor-preview">
+                <textarea
+                  id="md-input"
+                  @drop.prevent.stop="imgDrop"
+                  @scroll="syncScroll"
+                  ref="article"
+                  v-model="content"
+                  label="content"
+                ></textarea>
 
-              <article
-                class="context"
-                ref="context"
-                v-html="previewMarkdownHTML"
-              ></article>
+                <article
+                  class="context"
+                  ref="context"
+                  v-html="previewMarkdownHTML"
+                ></article>
+              </div>
             </div>
-          </div>
-          <!-- <v-btn color="blue lighten-4" @click="hl">提交</v-btn> -->
-          <div class="d-flex align-center justify-space-around">
-            <v-btn color="blue lighten-4" @click="post">提交</v-btn>
-            <v-checkbox v-model="isSyncScroll" label="syncScroll"></v-checkbox>
-          </div>
+            <!-- <v-btn color="blue lighten-4" @click="hl">提交</v-btn> -->
+            <div class="d-flex align-center justify-space-around">
+              <v-btn color="blue lighten-4" @click="post">提交</v-btn>
+              <v-checkbox
+                v-model="isSyncScroll"
+                label="syncScroll"
+              ></v-checkbox>
+            </div>
+          </v-col>
         </v-col>
-      </v-col>
-    </v-row>
+      </v-row>
+    </main>
   </div>
 </template>
 
@@ -145,12 +150,12 @@ export default {
         document.querySelector("#md-input").selectionEnd || this.content.length;
       this.content = `${this.content.slice(0, cursorIndex)}![${
         res.name
-      }](https://cdn.kagurakana.xyz/${res.name}@webp)
-      ${this.content.slice(cursorIndex)}`;
+      }](https://cdn.kagurakana.xyz/${res.name}@webp)${this.content.slice(
+        cursorIndex
+      )}`;
     },
     /**拖放监听 */
     imgDrop(e) {
-      console.log('aaaaaaaaaaaaaaaaaaaaaaaa')
       let file = e.dataTransfer.files[0]; //获取拖放文件 Blob
       if (this.upToken) {
         console.log(file);
@@ -179,13 +184,21 @@ export default {
         (previewEle.scrollHeight - previewEle.offsetHeight) * leftRate;
       previewEle.scrollTo(0, rightDis);
     },
-    
   },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "~assets/css/blog.scss";
+#blog-post-container {
+  background-color: #fff;
+  width: 80vw;
+  min-width: 1000px;
+  margin: 25px auto;
+  padding: 5px 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.25);
+}
 ::v-deep .context {
   @include blog;
 }

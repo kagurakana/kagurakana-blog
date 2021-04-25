@@ -83,6 +83,9 @@ export default {
         ],
       };
       pvChart.setOption(pvChartOption);
+      window.addEventListener("resize",()=>{
+        pvChart.resize()
+      })
     },
   },
 };

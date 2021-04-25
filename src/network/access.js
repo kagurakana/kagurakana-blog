@@ -14,3 +14,10 @@ export function getAccessData(timeSpan) {
     params: timeSpan,
   });
 }
+
+export function getServerMonitorData() {
+  return request({
+    method: "get",
+    url: "/access/get-server-monitor-data",
+  });
+}

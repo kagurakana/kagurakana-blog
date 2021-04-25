@@ -511,6 +511,9 @@ export default {
       };
 
       regionChartOption && regionChart.setOption(regionChartOption);
+            window.addEventListener("resize",()=>{
+        regionChart.resize()
+      })
     },
   },
 };

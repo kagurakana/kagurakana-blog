@@ -52,7 +52,7 @@ export default {
         },
         tooltip: {},
         xAxis: {
-          name:"计数",
+          name: "计数",
           type: "category",
           data: (() => {
             let arr = [];
@@ -85,6 +85,9 @@ export default {
       };
 
       LoadTimeChartOption && LoadTimeChart.setOption(LoadTimeChartOption);
+      window.addEventListener("resize", () => {
+        LoadTimeChart.resize();
+      });
     },
   },
 };

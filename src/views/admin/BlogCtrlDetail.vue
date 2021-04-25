@@ -1,16 +1,10 @@
 <template>
-<!-- 后台管理页 -->
+  <!-- 后台管理页 -->
   <div>
-    <h1>{{text}}</h1>
-    <v-col cols="12" md="4">
-      <v-textarea v-model="id" label="id"></v-textarea>
-      <v-col cols="6">
-        <v-btn color="lime" @click.stop.native="updateBlog">更新</v-btn>
-      </v-col>
-      <v-col cols="6">
-      </v-col>
-    </v-col>
-    <AdminBlogList :blogList="list" />
+    <div class="blog-manage-container">
+      <h1 class="blog-manage-title">{{ text }}</h1>
+      <AdminBlogList :blogList="list" />
+    </div>
   </div>
 </template>
 
@@ -21,21 +15,21 @@ import { getLoginCheck } from "network/user";
 export default {
   name: "BlogCtrlDetail",
   components: {
-    AdminBlogList
+    AdminBlogList,
   },
   data() {
     return {
       list: [],
-      text: "验证中。。。。",
-      id: ""
+      text: "验证权限中。。。。",
+      id: "",
     };
   },
   created() {
-    getLoginCheck().then(res => {
+    getLoginCheck().then((res) => {
       if (res.errno !== -1) {
         this.isAdmin = true;
-        this.text = "欢迎回来 kagurakana！";
-        getBlogList().then(res => {
+        this.text = "文章管理";
+        getBlogList().then((res) => {
           this.list = res.data;
         });
       }
@@ -43,18 +37,29 @@ export default {
   },
   methods: {
     deleteBlog() {
-      postDeleteBlog(this.id).then(res => {
+      postDeleteBlog(this.id).then((res) => {
         if (res.errno !== -1) {
           this.text = "删除成功";
           setTimeout(() => {
-            this.text = "欢迎回来 kagurakana！";
+            this.text = "文章管理";
           }, 6000);
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang='scss' scoped>
+.blog-manage-title {
+}
+.blog-manage-container {
+  width: 80%;
+  min-width: 900px;
+  padding: 15px;
+  margin: 25px auto;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background-color: #fff !important;
+}
 </style>

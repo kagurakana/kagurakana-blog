@@ -96,6 +96,9 @@ export default {
         ],
       };
       referChart.setOption(referChartOption);
+      window.addEventListener("resize",()=>{
+        referChart.resize()
+      })
     },
   },
 };
