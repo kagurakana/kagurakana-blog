@@ -33,31 +33,59 @@ const routes = [
     children: [
       {
         path: "/admin/pannel",
-        component: () => import("views/admin/childComps/Pannel"),
+        component: () => import("views/admin/Pannel"),
+        meta: {
+          title: "神楽花菜OFFICIAL|仪表盘",
+        },
       },
       {
         path: "/admin/add-blog",
         component: () => import("views/admin/BlogPost"),
+        meta: {
+          title: "神楽花菜OFFICIAL|新增文章",
+        },
       },
       {
         path: "/admin/add-blog/:id",
         component: () => import("views/admin/BlogPost"),
+        meta: {
+          title: "神楽花菜OFFICIAL|更新文章",
+        },
       },
       {
         path: "/admin/manage-blog",
         component: () => import("views/admin/BlogCtrlDetail"),
+        meta: {
+          title: "神楽花菜OFFICIAL|文章管理",
+        },
       },
       {
         path: "/admin/manage-comment",
         component: () => import("views/admin/CommentVerify"),
+        meta: {
+          title: "神楽花菜OFFICIAL|评论管理",
+        },
       },
       {
         path: "/admin/manage-link",
         component: () => import("views/admin/AddLink"),
+        meta: {
+          title: "神楽花菜OFFICIAL|友链管理",
+        },
+      },
+      {
+        path: "/admin/image-resources",
+        component: () => import("views/admin/ImageResources"),
+        meta: {
+          title: "神楽花菜OFFICIAL|仪表盘",
+        },
       },
       {
         path: "/admin/server-monitor",
         component: () => import("views/admin/ServerMonitor"),
+        meta: {
+          title: "神楽花菜OFFICIAL|服务器监控",
+        },
       },
     ],
   },
@@ -65,15 +93,24 @@ const routes = [
   {
     path: "/admin/new",
     component: () => import("views/admin/BlogPost"),
+    meta: {
+      title: "神楽花菜OFFICIAL|新增文章",
+    },
   },
   //更新
   {
     path: "/admin/new/:id",
     component: () => import("views/admin/BlogPost"),
+    meta: {
+      title: "神楽花菜OFFICIAL|更新文章",
+    },
   },
   {
     path: "/admin/detail",
     component: () => import("views/admin/BlogCtrlDetail"),
+    meta: {
+      title: "神楽花菜OFFICIAL|文章详情",
+    },
   },
   {
     path: "/admin/comment",

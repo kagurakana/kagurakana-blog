@@ -237,7 +237,6 @@ export default {
       });
     },
     getQQInfo() {
-      let jsondata = {};
       getqqInfo(this.username).then((res) => {
         if (res.errno !== -1) {
           this.username = res.data.nickName;

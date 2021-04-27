@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import ReferChart from "./ReferChart";
-import PvChart from "./PvChart";
-import RegionChart from "./RegionChart.vue";
-import BrowserChart from "./BrowserChart";
-import LoadTimeChart from "./LoadTimeChart";
+import ReferChart from "views/admin/childComps/ReferChart";
+import PvChart from "views/admin/childComps/PvChart";
+import RegionChart from "views/admin/childComps/RegionChart.vue";
+import BrowserChart from "views/admin/childComps/BrowserChart";
+import LoadTimeChart from "views/admin/childComps/LoadTimeChart";
 import { getAccessData } from "network/access";
 export default {
   name: "Pannel",

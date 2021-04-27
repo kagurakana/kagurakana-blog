@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="home-head" :style="{'margin-top':imgMarginTop}"> -->
   <div class="home-head">
     <div class="imgs-container">
       <v-img
@@ -14,26 +13,6 @@
       <div class="flag d-flex align-center justify-center">
         <section class="flex-fill">
           <h1 class="p-0 m-0 home-text">{{ welcomeTip }}</h1>
-
-          <!-- <div v-if="!isMobile">
-            <transition-group name="topic-transistion" class="topic">
-              <v-card
-                class="topic-card"
-                width="345px"
-                v-for="(topic, index) in topics"
-                :key="topic.date"
-              >
-                <p class="topic-text">{{topic.content}}</p>
-                <v-divider></v-divider>
-                <v-card-text>{{topic.date}}</v-card-text>
-              </v-card>
-            </transition-group>
-
-            <div class="text-center">
-              <v-btn class="ma-2" @click="loadNext" key="left-btn">下一个</v-btn>
-              <v-btn class="ma-2" @click="loadPrevious" key="right-btn">上一个</v-btn>
-            </div>
-          </div> -->
         </section>
       </div>
       <v-col v-show="!isMobile" cols="12" class="text-center home-head-btn">
@@ -107,22 +86,6 @@ export default {
   },
 
   methods: {
-    loadNext() {
-      this.topics.shift();
-      this.topics.push({
-        content:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum saepe est laudantium deserunt harum eligendi odit aperiam recusandae impedit.",
-        date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss:SSS"),
-      });
-    },
-    loadPrevious() {
-      this.topics.unshift({
-        content:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum saepe est laudantium deserunt harum eligendi odit aperiam recusandae impedit.",
-        date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss:SSS"),
-      });
-      this.topics.pop();
-    },
   },
 };
 </script>
@@ -162,11 +125,7 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    // background-color: rgba($color: #fff, $alpha: 0.5);
-    // img {
-    //   width: 100%;
-    //   animation-duration: 0.5s;
-    // }
+
   }
 }
 .home-head-btn {
@@ -180,10 +139,7 @@ export default {
   background-color: #000;
   position: absolute;
 }
-// .flag:hover .bottom-line{
-//   width: 100%;
-//   transition: all 0.2s ease-in-out;
-// }
+
 
 .flag:hover .back {
   filter: blur(10px);
@@ -204,7 +160,7 @@ export default {
 }
 
 .home-text {
-  // position: relative;
+
   font-size: 74px;
   border: 0;
   outline: none;
@@ -245,16 +201,23 @@ export default {
 @keyframes breath {
   0% {
     transform: translate(-3px, -5.19px) scale(1.01);
+    filter: brightness(1.05);
   }
 
   33% {
     transform: translate(5.19px, 3px) scale(1.01);
+    filter: brightness(0.9);
+
   }
   66% {
     transform: translate(5.19px, -3px) scale(1.01);
+    filter: brightness(1.08);
+
   }
   100% {
     transform: translate(-5.19px, 3px) scale(1.01);
+    filter: brightness(0.8);
+
   }
 }
 @media screen and(max-width: 1300px) {

@@ -66,7 +66,7 @@ export default {
           text: "链接管理",
           link: "/admin/manage-link",
         },
-        { icon: "mdi-image", text: "图床" },
+        { icon: "mdi-image", text: "图床",link:"/admin/image-resources" },
         { icon: "mdi-earth", text: "日志分析" },
         { icon: "mdi-chart-bell-curve-cumulative", text: "性能监控",link:"/admin/server-monitor" },
       ],
