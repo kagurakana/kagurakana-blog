@@ -197,11 +197,14 @@ export default {
     }
   },
   mounted() {
-    // this.OwODemo =
+    this.checkLocalStorage("username", "email", "URL");
   },
   methods: {
     commitComment() {
       let replacedComment = this.replaceStamp();
+      localStorage.username = this.username;
+      localStorage.email = this.email;
+      localStorage.URL = this.URL;
       let commentPayload = {
         blogId: this.blogId,
         username: this.username,
@@ -258,19 +261,22 @@ export default {
         ? this.commentAvatar
         : gravatar.url(this.email, { s: "400", r: "pg", d: "mm" });
     },
-
     getCursorIndex(code) {
       let className = this.$refs["comment-text"].$el.className;
       className = className.match(/(OwO.*)/)[0];
       let index = document.querySelector(`.${className} textarea`).selectionEnd;
-      
+
       this.textAreaCursorIndex = index;
-      
+
       this.comment = `${this.comment.slice(
         0,
         index
       )}${code}${this.comment.slice(index)}`;
-      
+    },
+    checkLocalStorage(...keys) {
+      keys.forEach((key) => {
+        this[key] = localStorage[key] ? localStorage[key] : this[key];
+      });
     },
   },
   watch: {},
