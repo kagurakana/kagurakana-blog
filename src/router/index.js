@@ -179,7 +179,7 @@ document.title = "神楽花菜OFFICIAL";
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: "/",
   routes,
 });
 

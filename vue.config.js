@@ -3,6 +3,10 @@ const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const path = require("path");
 const packgeConfig = require("./package.json");
+let version = packgeConfig.version.split('.')
+version[2]++;
+version=version.join('.');
+
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
@@ -88,7 +92,7 @@ module.exports = {
 
   publicPath:
     process.env.NODE_ENV === "production"
-      ? `https://cdn.jsdelivr.net/gh/kagurakana/kagurakana-blog@${packgeConfig.version}/dist/`
+      ? `https://cdn.jsdelivr.net/gh/kagurakana/kagurakana-blog@${version}/dist/`
       : "/",
 
   transpileDependencies: ["vuetify"],
