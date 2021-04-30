@@ -1,3 +1,4 @@
+// vscode alias路径提示
 {
   "compilerOptions": {
     "baseUrl": "./",
@@ -5,12 +6,12 @@
       "@/*": ["src/*"],
       "assets/*": ["src/assets/*"],
       "common/*": ["src/common/*"],
-      "network/*":["src/network/*"],
+      "network/*": ["src/network/*"],
       "components/*": ["src/components/*"],
       "views/*": ["src/views/*"],
       "~assets/*": ["src/assets/*"],
       "~common/*": ["src/common/*"],
-      "~network/*":["src/network/*"],
+      "~network/*": ["src/network/*"],
       "~components/*": ["src/components/*"],
       "~views/*": ["src/views/*"]
     },

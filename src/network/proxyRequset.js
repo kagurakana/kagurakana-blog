@@ -28,3 +28,11 @@ export function getqqInfo(qqNum) {
     }
   })
 }
+
+export function getGitHubCommits() {
+  return proxyRequest({
+    withCredentials: false,
+    method: 'get',
+    url: '/commits',
+  })
+}
