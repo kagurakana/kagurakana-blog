@@ -1,11 +1,11 @@
 {
   "name": "kagura_kana",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "publish": "npm version patch"
+    "publish": "git push && node ./publish.js && npm version patch"
   },
   "dependencies": {
     "axios": "^0.19.2",
