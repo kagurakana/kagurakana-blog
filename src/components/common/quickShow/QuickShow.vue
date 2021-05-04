@@ -1,20 +1,29 @@
 <template>
   <v-container class="mx-auto" max-width="50%">
     <v-row>
-      <v-col v-for="(quickShow, index1) in quickShows" :key="index1" lg="4" cols="12">
+      <v-col
+        v-for="(quickShow, index1) in quickShows"
+        :key="index1"
+        lg="4"
+        cols="12"
+      >
         <v-lazy min-height="250">
           <transition appear appear-active-class="animated zoomIn">
-            <v-hover v-slot:default="{ hover }" close-delay="200" open-delay="100">
+            <v-hover
+              v-slot:default="{ hover }"
+              close-delay="200"
+              open-delay="100"
+            >
               <v-card
                 :title="quickShow.title"
                 class="quick-card"
                 color="rgba(255,255,255,0.85)"
-                :elevation="hover?12:2"
+                :elevation="hover ? 12 : 2"
                 min-height="100%"
                 @click.native="pushRouter(quickShow.id)"
               >
                 <v-img
-                  :src="quickShow.headPic"
+                  :src="pressBlogImg(quickShow.headPic)"
                   height="256px"
                   max-width="100%"
                   lazy-src="~assets/img/loading.gif"
@@ -27,11 +36,16 @@
                       justify="center"
                       align-content="center"
                     >
-                      <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                      <v-progress-circular
+                        indeterminate
+                        color="grey lighten-5"
+                      ></v-progress-circular>
                     </v-row>
                   </template>
                 </v-img>
-                <v-card-title class="title" tag="div" text-truncate>{{quickShow.title}}</v-card-title>
+                <v-card-title class="title" tag="div" text-truncate>{{
+                  quickShow.title
+                }}</v-card-title>
                 <v-card-subtitle class="d-flex">
                   <v-chip
                     class="ma-1 chip"
@@ -40,7 +54,8 @@
                     :refs="`chip-${index1}-${index}`"
                     :key="index"
                     @click.stop="pushRouterTag(tag)"
-                  >{{tag}}</v-chip>
+                    >{{ tag }}</v-chip
+                  >
                 </v-card-subtitle>
               </v-card>
             </v-hover>
@@ -48,8 +63,13 @@
         </v-lazy>
       </v-col>
     </v-row>
-    <v-snackbar color="blue" :timeout="timeout" v-model="routerErrTip" :top="isMobile">
-      现在已经是{{nowRoute}}页了！！！ ({{second}})
+    <v-snackbar
+      color="blue"
+      :timeout="timeout"
+      v-model="routerErrTip"
+      :top="isMobile"
+    >
+      现在已经是{{ nowRoute }}页了！！！ ({{ second }})
       <v-btn color="gray" text @click="routerErrTip = false">
         <v-icon>mdi-close</v-icon>
       </v-btn>
@@ -68,7 +88,7 @@ export default {
   data() {
     return {
       isBind: false,
-      isMounted: false
+      isMounted: false,
     };
   },
   // updated(){
@@ -77,22 +97,26 @@ export default {
   props: {
     //前三个博客的id,title,tags,headPic
     quickShows: {
-      type: Array
-    }
+      type: Array,
+    },
   },
   computed: {
-    ...mapGetters(["isMobile"])
+    ...mapGetters(["isMobile"]),
   },
   methods: {
     pushRouter(id) {
       this.$router.push("/detail/" + id);
     },
     pushRouterTag(tag) {
-      this.$router.push("/list/" + tag).catch(err => {
+      this.$router.push("/list/" + tag).catch((err) => {
         this.debouncedShowErrTip(tag);
       });
-    }
-  }
+    },
+    pressBlogImg(url) {
+      url += "@800w_600h.webp";
+      return url.replace(/@webp@800w_600h\.webp$/g, "@800w_600h.webp");
+    },
+  },
 };
 </script>
 

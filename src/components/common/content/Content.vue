@@ -9,7 +9,7 @@
         <slot name="left"></slot>
       </div>
     </transition>
-    <v-col class="mid" cols="12" md="6">
+    <v-col class="mid" cols="12" md="9" lg="6">
       <slot name="mid"></slot>
     </v-col>
     <transition

@@ -20,7 +20,7 @@ export default {
   name: "App",
 
   created() {
-    window.onload = () => {
+    document.addEventListener("DOMContentLoaded", () => {
       let loadTime = Date.now() - t1;
       let userAgent = new UA(navigator.userAgent);
       let browser =
@@ -29,9 +29,9 @@ export default {
         userAgent.browser.version.original.split(".")[0];
       let refer = document.referrer || "-";
       let platform = userAgent.os.name + "_" + userAgent.os.version.original;
-
+      console.log(loadTime);
       postHello(Date.now(), refer, browser, platform, loadTime, __IP__);
-    };
+    });
     getLoginCheck().then((res) => {
       if (res.data.isAdmin) {
         this.$store.commit("updateAdmin");

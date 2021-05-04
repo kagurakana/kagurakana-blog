@@ -32,7 +32,7 @@
       </v-card>
     </v-img>
 
-    <div class="mx-auto col-12 col-lg-7 context-wrapper">
+    <div class="mx-auto col-12 col-lg-7 pa-0 context-wrapper">
       <div class="toc-container">
         <BlogToc />
       </div>

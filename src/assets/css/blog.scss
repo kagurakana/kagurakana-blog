@@ -80,11 +80,11 @@
     margin: 0 auto;
     display: block;
     max-width: 100%;
-    &[src*="#60"]{
+    &[src*="#60"] {
       height: 60px;
       display: inline-block;
       margin: 0 3px;
-      box-shadow: none!important;
+      box-shadow: none !important;
     }
   }
   h1,
@@ -94,7 +94,7 @@
   h5,
   p,
   blockquote {
-    margin-left: 25px;
+    margin-left: 0px;
   }
   h1 {
     padding-bottom: 5px;
@@ -120,7 +120,7 @@
       font-family: "iconfont";
     }
   }
-  h4{
+  h4 {
     font-size: 18px;
   }
   h4,
@@ -234,5 +234,23 @@
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
+  }
+  @media screen and(max-width: 860px) {
+    * {
+      font-family: "Merriweather Sans", Helvetica, Tahoma, Arial, "PingFang SC",
+        "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
+    }
+    h1 {
+      font-size: 20px;
+    }
+    h2 {
+      font-size: 18px;
+    }
+    h3 {
+      font-size: 16px;
+    }
+    h4,p {
+      font-size: 14px;
+    }
   }
 }

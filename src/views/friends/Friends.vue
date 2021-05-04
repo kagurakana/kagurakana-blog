@@ -7,7 +7,7 @@
       min-height="100vh"
       class="img-fixed"
     ></v-img>
-    <v-col cols="11" md="8" class="mx-auto">
+    <v-col cols="11" md="8" class="mx-auto main-container">
       <v-card
         class="mx-auto friendsLink text-center"
         color="rgba(255,255,255,0.8)"
@@ -243,5 +243,13 @@ export default {
   background-color: rgba($color: $link-color, $alpha: 0.3);
   width: 100%;
   transition: width 0.3s ease-in-out;
+}
+@media screen and (max-width: 860px) {
+  .main-container {
+    padding: {
+      left: 0;
+      right: 0;
+    }
+  }
 }
 </style>
