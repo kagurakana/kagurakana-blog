@@ -3,7 +3,7 @@ import marked from "marked";
 import markedCmt from "marked";
 import hljs from "highlight.js";
 import { filterXSS } from 'xss'
-import htmlCmtRestore from '@/utils/htmlRestore'
+
 import OwOdata from '../components/common/comment/OwO/OwO'
 import _ from 'lodash';
 import('highlight.js/styles/solarized-light.css');

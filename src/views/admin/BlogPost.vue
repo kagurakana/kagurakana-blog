@@ -11,34 +11,25 @@
           </v-col>
           <v-col cols="10" class="mx-auto">
             <v-textarea v-model="desc" label="desc"></v-textarea>
-            <div
-              class="main-section"
-              :style="{ height: innerHeight - 100 + 'px' }"
-            >
-              <div class="editor-preview">
-                <textarea
-                  id="md-input"
-                  @drop.prevent.stop="imgDrop"
-                  @scroll="syncScroll"
-                  ref="article"
-                  v-model="content"
-                  label="content"
-                ></textarea>
 
-                <article
-                  class="context"
-                  ref="context"
-                  v-html="previewMarkdownHTML"
-                ></article>
-              </div>
+            <div class="editor-preview">
+              <Editor
+                :value="markdownText"
+                :plugins="plugins"
+                :uploadImages="uploadImages"
+                @change="handleChange"
+                class="markdown-editor"
+              />
+              <!-- <Viewer
+                  :value="markdownText"
+                  class="markdown-body"
+                  :plugins="plugins"
+                /> -->
             </div>
+
             <!-- <v-btn color="blue lighten-4" @click="hl">提交</v-btn> -->
             <div class="d-flex align-center justify-space-around">
               <v-btn color="blue lighten-4" @click="post">提交</v-btn>
-              <v-checkbox
-                v-model="isSyncScroll"
-                label="syncScroll"
-              ></v-checkbox>
             </div>
           </v-col>
         </v-col>
@@ -48,6 +39,14 @@
 </template>
 
 <script>
+import "bytemd/dist/index.min.css";
+import { Editor } from "@bytemd/vue";
+import highlight from "@bytemd/plugin-highlight";
+import math from "@bytemd/plugin-math";
+import gfm from "@bytemd/plugin-gfm";
+import "katex/dist/katex.css";
+// import("highlight.js/styles/solarized-light.css");
+
 import { postNewBlog, getBlogDetail, postUpdateBlog } from "network/blog.js";
 import { getLoginCheck } from "network/user";
 import { getUploadToken } from "network/imgUpdate";
@@ -58,9 +57,12 @@ import * as qiniu from "qiniu-js";
 // import hljs from "highlight.js";
 // import('highlight.js/styles/pojoaque.css')
 
+const plugins = [gfm(), highlight(), math()];
+
 export default {
   name: "BlogPost",
   mixins: [hljsMixin],
+  components: { Editor },
   data() {
     return {
       updateId: "",
@@ -74,7 +76,9 @@ export default {
       upToken: "",
       update: false,
       innerHeight: window.innerHeight,
-      isSyncScroll: true,
+      markdownText: "",
+      plugins,
+      uploadImages: this.uploadFunction,
     };
   },
 
@@ -104,17 +108,18 @@ export default {
         this.title = blogData.title;
         this.tags = blogData.tags;
         this.headPic = blogData.headPic;
-        this.content = htmlRestore(blogData.content);
+        this.markdownText = htmlRestore(blogData.content);
         this.desc = blogData.desc;
         this.update = true;
       });
   },
   mounted() {
-    document.querySelector("#waifu").style.display = "none";
+    let waifu = document.querySelector("#waifu");
+    waifu && (waifu.style.display = "none");
   },
   methods: {
     post() {
-      if (this.title && this.headPic && this.desc && this.content) {
+      if (this.title && this.headPic && this.desc && this.markdownText) {
         if (this.update) {
           postUpdateBlog(
             this.updateId,
@@ -122,7 +127,7 @@ export default {
             this.title,
             this.tags,
             this.desc,
-            this.content
+            this.markdownText
           ).then((result) => {
             this.$router.push("/detail/" + result.data.id);
             return;
@@ -133,56 +138,49 @@ export default {
             this.title,
             this.tags,
             this.desc,
-            this.content
+            this.markdownText
           ).then((res) => {
             this.$router.push("/detail/" + res.data.id);
           });
         }
       }
     },
-    next(res) {},
-    error(err) {
-      console.log(err); //上传错误处理
+    handleChange(v) {
+      this.markdownText = v;
     },
-    complete(res) {
-      console.log(res); //成功处理
-      let cursorIndex =
-        document.querySelector("#md-input").selectionEnd || this.content.length;
-      this.content = `${this.content.slice(0, cursorIndex)}![${
-        res.name
-      }](https://cdn.kagurakana.xyz/${res.name}@webp)${this.content.slice(
-        cursorIndex
-      )}`;
-    },
-    /**拖放监听 */
-    imgDrop(e) {
-      let file = e.dataTransfer.files[0]; //获取拖放文件 Blob
-      if (this.upToken) {
-        console.log(file);
+    /**
+     * bytemd build in funciton, upload images
+     */
+    uploadFunction(files) {
+      return Promise.all(
+        files.map((file) => {
+          let p = new Promise((resolve, reject) => {
+            if (this.upToken) {
+              console.log(file);
 
-        //qiniu.upload(file: blob, key: string, token: string, putExtra: object, config: object): observable
-        let observable = qiniu.upload(
-          file,
-          file.name,
-          this.upToken,
-          { fname: file.name, params: {}, mimeType: null }, //putExtra
-          { useCdnDomain: true } //config
-        );
+              //qiniu.upload(file: blob, key: string, token: string, putExtra: object, config: object): observable
+              let observable = qiniu.upload(
+                file,
+                file.name,
+                this.upToken,
+                { fname: file.name, params: {}, mimeType: null }, //putExtra
+                { useCdnDomain: true } //config
+              );
+              function next(res) {}
+              function error(err) {
+                console.log(err); //上传错误处理
+              }
+              function complete(res) {
+                resolve({ url: `https://cdn.kagurakana.xyz/${res.name}@webp` });
+              }
+              //开始上传
+              observable.subscribe(next, error, complete);
+            }
+          });
 
-        //开始上传
-        observable.subscribe(this.next, this.error, this.complete);
-      }
-    },
-    syncScroll(e) {
-      if (!this.isSyncScroll) {
-        return;
-      }
-      let leftRate =
-        e.target.scrollTop / (e.target.scrollHeight - e.target.offsetHeight);
-      let previewEle = this.$refs.context;
-      let rightDis =
-        (previewEle.scrollHeight - previewEle.offsetHeight) * leftRate;
-      previewEle.scrollTo(0, rightDis);
+          return p;
+        })
+      );
     },
   },
 };
@@ -190,6 +188,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~assets/css/blog.scss";
+
 #blog-post-container {
   background-color: #fff;
   width: 80vw;
@@ -199,29 +198,18 @@ export default {
   border-radius: 8px;
   box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.25);
 }
-::v-deep .context {
+
+::v-deep .bytemd {
+  height: 100vh;
+}
+::v-deep .markdown-body {
+  // overflow: scroll;
   @include blog;
 }
-.main-section {
+
+.editor-preview {
   margin: 0 0 15px 0;
-  .editor-preview {
-    display: flex;
-    height: 100%;
-    #md-input,
-    .context {
-      flex: 1;
-      overflow: scroll;
-    }
-    #md-input {
-      line-height: 1.75rem;
-      word-break: break-all;
-      padding: 10px;
-      outline: none;
-      border: {
-        top: 1px solid #222;
-        left: 1px solid #222;
-      }
-    }
-  }
+  height: 100vh;
+  width: 100%;
 }
 </style>

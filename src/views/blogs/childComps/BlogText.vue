@@ -3,7 +3,15 @@
     <v-img class="blog-img" :src="blog.headPic" height="400px">
       <v-card
         min-width="40vw"
-        class="mx-auto fill-height d-flex flex-column align-center justify-center title-card"
+        class="
+          mx-auto
+          fill-height
+          d-flex
+          flex-column
+          align-center
+          justify-center
+          title-card
+        "
       >
         <h1 class="text-center py-2 my-0">{{ blog.title }}</h1>
         <div class="blog-info text-center">
@@ -32,15 +40,22 @@
       </v-card>
     </v-img>
 
-    <div class="mx-auto col-12 col-lg-7 pa-0 context-wrapper">
+    <div class="mx-auto col-12 col-lg-7 pa-0 markdown-viewer-wrapper">
       <div class="toc-container">
-        <BlogToc />
+        <BlogToc :markdownText="this.blog.content"/>
       </div>
-      <article
-        class="context"
-        ref="context"
+
+      <Viewer
+        :value="this.blog && this.blog.content"
+        :plugins="plugins"
+        class="markdown-viewer"
+        ref="markdownViewer"
+      />
+      <!-- <article
+        class="markdown-viewer"
+        ref="markdown-viewer"
         v-html="compiledMarkdown"
-      ></article>
+      ></article> -->
     </div>
     <v-dialog class="big-img" v-model="dialog" max-width="70vw">
       <v-img :src="imgSrc"></v-img>
@@ -49,14 +64,23 @@
 </template>
 
 <script>
+import "bytemd/dist/index.min.css";
+import { Viewer } from "@bytemd/vue";
+import highlight from "@bytemd/plugin-highlight";
+import math from "@bytemd/plugin-math";
+import gfm from "@bytemd/plugin-gfm";
+import "katex/dist/katex.css";
+
 import moment from "moment";
 import hljsMixin from "@/mixins/hljsMixin";
 
 import BlogToc from "@/components/common/blogToc/BlogToc";
-import getTopDistance from "@/utils/isScrollTop";
+
+
+const plugins = [gfm(), highlight(), math()];
+
 export default {
   name: "BlogText",
-
   mixins: [hljsMixin],
   props: {
     blog: {
@@ -66,25 +90,29 @@ export default {
 
   components: {
     BlogToc,
+    Viewer,
   },
   mounted() {
-    let trs = document.querySelectorAll("tbody tr");
-    let imgs = document.querySelectorAll(".context img");
+    // let trs = document.querySelectorAll("tbody tr");
+    let imgs = document.querySelectorAll(".markdown-viewer img");
 
-    trs.forEach((tr) => {
-      tr.children.forEach((td, indexCl) => {
-        td.addEventListener("mouseover", () => {
-          trs.forEach((tr, index) => {
-            tr.children[indexCl].style.backgroundColor = "#ddd";
-          });
-        });
-        td.addEventListener("mouseout", () => {
-          trs.forEach((tr, index) => {
-            tr.children[indexCl].style.backgroundColor = "unset";
-          });
-        });
-      });
-    });
+    // trs.forEach((tr) => {
+    //   tr.children.forEach((td, indexCl) => {
+    //     td.addEventListener("mouseover", () => {
+    //       trs.forEach((tr, index) => {
+    //         tr.children[indexCl].style.backgroundColor = "#ddd";
+    //       });
+    //     });
+    //     td.addEventListener("mouseout", () => {
+    //       trs.forEach((tr, index) => {
+    //         tr.children[indexCl].style.backgroundColor = "unset";
+    //       });
+    //     });
+    //   });
+    // });
+    this.$nextTick(()=>{
+      this.markdownRendered()
+    })
     imgs.forEach((img) => {
       img.addEventListener("click", (e) => {
         this.imgSrc = e.target.src;
@@ -96,6 +124,7 @@ export default {
     return {
       dialog: false,
       imgSrc: "",
+      plugins,
     };
   },
 
@@ -103,6 +132,13 @@ export default {
     pushRoute(tag) {
       this.$router.push("/list/" + tag);
     },
+    markdownRendered(){
+      let mathDoms = document.querySelectorAll(".katex");
+      [...mathDoms].forEach(mathDom=>{
+        let latex = mathDom.querySelector("annotation").innerText;
+        console.log('----',mathDom);
+      })
+    }
   },
   computed: {
     date() {
@@ -118,8 +154,8 @@ export default {
 .title-card {
   // position: relative;
   @include font-source;
-  color: #dddddd!important;
-  background-color: rgba(#111, 0.7)!important;
+  color: #dddddd !important;
+  background-color: rgba(#111, 0.7) !important;
   // margin-top: 150px;
   .blog-info {
     overflow: hidden;
@@ -148,10 +184,10 @@ export default {
   // background-color: $base-lightgray-color;
   padding: 10px 0;
 }
-::v-deep .context {
+::v-deep .markdown-viewer {
   @include blog;
 }
-::v-deep .context-wrapper {
+::v-deep .markdown-viewer-wrapper {
   position: relative;
   .toc-container {
     position: absolute;

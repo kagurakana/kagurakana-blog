@@ -126,6 +126,7 @@ module.exports = {
   //   },
   // },
   // devServer: __dev_server__,
+
   devServer: (() => {
     switch (process.env.NODE_ENV) {
       case "production":
@@ -140,5 +141,6 @@ module.exports = {
         };
     }
   })(),
+  
   productionSourceMap: false,
 };
