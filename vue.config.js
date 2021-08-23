@@ -140,7 +140,7 @@ module.exports = {
           },
         };
     }
-  })(),
+  })(), 
   
   productionSourceMap: false,
 };
