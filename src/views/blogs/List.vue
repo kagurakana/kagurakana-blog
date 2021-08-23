@@ -3,17 +3,6 @@
     <template v-slot:layout>
       <Content class="content">
         <template v-slot:mid>
-          <!-- <v-img
-          class="align-center justify-center d-flex text-center"
-          height="400px"
-          src="https://i.loli.net/2020/03/01/pnsZHyfKrl5LR46.jpg"
-        >
-          <v-row class="justify-center">
-            <h1 class="align-center d-flex text-center list-title justify-center">{{tag}}</h1>
-          </v-row>
-          </v-img>-->
-          <!-- TODO：在这绑定数据 -->
-          <!-- <QuickShow :quickShows="quickShowData" /> -->
           <BlogList :blogList="blogListData" />
         </template>
       </Content>
