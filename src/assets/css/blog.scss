@@ -239,19 +239,30 @@
     * {
       font-family: "Merriweather Sans", Helvetica, Tahoma, Arial, "PingFang SC",
         "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
+        font-weight: 400;
+    }
+    img{
+      margin: 10px auto!important;
+    }
+    pre{
+      margin: 20px 20px;
     }
     h1 {
       font-size: 20px;
+      font-weight: bold;
+
     }
     h2 {
       font-size: 18px;
+      font-weight: bold;
     }
     h3 {
       font-size: 16px;
     }
     h4,
-    p {
+    p,li,table,pre {
       font-size: 14px;
+      margin-top: 5px;
     }
   }
 }
