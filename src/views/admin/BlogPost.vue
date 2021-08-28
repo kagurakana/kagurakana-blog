@@ -211,5 +211,7 @@ export default {
   margin: 0 0 15px 0;
   height: 100vh;
   width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 </style>

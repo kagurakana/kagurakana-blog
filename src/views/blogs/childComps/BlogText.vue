@@ -42,7 +42,7 @@
 
     <div class="mx-auto col-12 col-lg-7 pa-0 markdown-viewer-wrapper">
       <div class="toc-container">
-        <BlogToc :markdownText="this.blog.content"/>
+        <BlogToc :markdownText="this.blog.content" />
       </div>
 
       <Viewer
@@ -57,9 +57,7 @@
         v-html="compiledMarkdown"
       ></article> -->
     </div>
-    <v-dialog class="big-img" v-model="dialog" max-width="70vw">
-      <v-img :src="imgSrc"></v-img>
-    </v-dialog>
+    <ImgViewer :imgSet="imgSet" />
   </div>
 </template>
 
@@ -75,7 +73,7 @@ import moment from "moment";
 import hljsMixin from "@/mixins/hljsMixin";
 
 import BlogToc from "@/components/common/blogToc/BlogToc";
-
+import ImgViewer from "@/components/common/imgViewer/ImgViewer";
 
 const plugins = [gfm(), highlight(), math()];
 
@@ -91,11 +89,11 @@ export default {
   components: {
     BlogToc,
     Viewer,
+    ImgViewer,
   },
   mounted() {
+    this.imgSet = [...document.querySelectorAll(".markdown-viewer img")];
     // let trs = document.querySelectorAll("tbody tr");
-    let imgs = document.querySelectorAll(".markdown-viewer img");
-
     // trs.forEach((tr) => {
     //   tr.children.forEach((td, indexCl) => {
     //     td.addEventListener("mouseover", () => {
@@ -110,21 +108,22 @@ export default {
     //     });
     //   });
     // });
-    this.$nextTick(()=>{
-      this.markdownRendered()
-    })
-    imgs.forEach((img) => {
-      img.addEventListener("click", (e) => {
-        this.imgSrc = e.target.src;
-        this.dialog = true;
-      });
-    });
+    // imgs.forEach((img, idx) => {
+    //   img.addEventListener("click", (e) => {
+    //     this.imgSet.push(e.target.src);
+    //     img.setAttribute("data-order", idx);
+    //     this.showImgViewer = true;
+    //     document.documentElement.style.overflowY = "hidden";
+    //   });
+    // });
   },
+
   data() {
     return {
-      dialog: false,
       imgSrc: "",
       plugins,
+      showImgViewer: false,
+      imgSet: [],
     };
   },
 
@@ -132,13 +131,17 @@ export default {
     pushRoute(tag) {
       this.$router.push("/list/" + tag);
     },
-    markdownRendered(){
-      let mathDoms = document.querySelectorAll(".katex");
-      [...mathDoms].forEach(mathDom=>{
-        let latex = mathDom.querySelector("annotation").innerText;
-        console.log('----',mathDom);
-      })
-    }
+    // markdownRendered() {
+    //   let mathDoms = document.querySelectorAll(".katex");
+    //   [...mathDoms].forEach((mathDom) => {
+    //     let latex = mathDom.querySelector("annotation").innerText;
+    //     console.log("----", mathDom);
+    //   });
+    // },
+    hideImgViewer() {
+      this.showImgViewer = false;
+      document.documentElement.style.overflowY = "auto";
+    },
   },
   computed: {
     date() {

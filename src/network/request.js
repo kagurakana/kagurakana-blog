@@ -3,19 +3,28 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 // 线上版本注释Localhost
-export const BASE_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://www.kagurakana.xyz/api"
-    : "http://localhost:8080/api";
-// export const BASE_URL = "http://localhost:8080/api"
-// export const BASE_URL = (() => {
-//   switch (__ENV__) {
-//     case "DEV":
-//       return "http://localhost:8080/api";
-//     case "PROD":
-//       return "https://www.kagurakana.xyz/api";
-//   }
-// })();
+let url;
+switch (process.env.NODE_ENV) {
+  case "production":
+    url = "https://www.kagurakana.xyz/api";
+    break;
+  case "development":
+    url = "http://localhost:8080/api";
+    // url = "http://192.168.134.132:8001/api";
+    break;
+
+  default:
+    break;
+}
+// export const BASE_URL = 
+//   process.env.NODE_ENV === "production" ?
+//   "https://www.kagurakana.xyz/api" :
+//   "http://192.168.134.132:8001/api";
+
+export const BASE_URL = url;
+
+// http://localhost:8080/api";
+
 export const BASE_URL_OUT = BASE_URL + "/out";
 
 export function request(config) {

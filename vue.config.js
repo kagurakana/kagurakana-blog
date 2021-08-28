@@ -5,7 +5,7 @@ const path = require("path");
 const packgeConfig = require("./package.json");
 let version = packgeConfig.version.split('.')
 version[2]++;
-version=version.join('.');
+version = version.join('.');
 
 function resolve(dir) {
   return path.join(__dirname, dir);
@@ -57,9 +57,9 @@ module.exports = {
         //   deleteOriginalAssets: false, // 是否删除未压缩的源文件，谨慎设置，如果希望提供非gzip的资源，可不设置或者设置为false（比如删除打包后的gz后还可以加载到原始资源文件）
         // }),
       ];
-      typeof config.plugins === "undefined"
-        ? (config.plugins = plugins)
-        : (config.plugins = config.plugins.concat(plugins));
+      typeof config.plugins === "undefined" ?
+        (config.plugins = plugins) :
+        (config.plugins = config.plugins.concat(plugins));
     }
     // 复制路径别名
     Object.assign(config.resolve.alias, {
@@ -76,7 +76,7 @@ module.exports = {
   },
   chainWebpack: (config) => {
     config.plugin("html").tap((args) => {
-      args[0].title = "神楽花菜OFFICIAL"; 
+      args[0].title = "神楽花菜OFFICIAL";
       return args;
     });
   },
@@ -90,10 +90,9 @@ module.exports = {
     },
   },
 
-  publicPath:
-    process.env.NODE_ENV === "production"
-      ? `https://cdn.jsdelivr.net/gh/kagurakana/kagurakana-blog@${version}/dist/`
-      : "/",
+  publicPath: process.env.NODE_ENV === "production" ?
+    `https://cdn.jsdelivr.net/gh/kagurakana/kagurakana-blog@${version}/dist/` :
+    "/",
 
   transpileDependencies: ["vuetify"],
 
@@ -140,7 +139,7 @@ module.exports = {
           },
         };
     }
-  })(), 
-  
+  })(),
+
   productionSourceMap: false,
 };
