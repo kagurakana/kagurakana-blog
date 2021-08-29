@@ -60,7 +60,8 @@ export default {
           p.classList.add(`toc-h${$1}`);
           p.setAttribute("data-anchor", el.id);
           p.addEventListener("click", (e) => {
-            this.$vuetify.goTo(`#${e.target.getAttribute("data-anchor")}`, {
+            let targetElement = document.getElementById(e.target.getAttribute("data-anchor"))
+            this.$vuetify.goTo(targetElement, {
               duration: 250,
               offset: 79,
             });

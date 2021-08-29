@@ -159,7 +159,6 @@
       font-family: "iconfont";
     }
   }
-
   p,
   ul {
     margin: 20px 5px;
@@ -256,8 +255,21 @@
     -ms-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
   }
+  .math.math-display {
+    overflow-x: scroll;
+  }
   @media screen and(max-width: 860px) {
-    h1,h2,h3,h4,h5,h6,p,table,ul,li,ol {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    table,
+    ul,
+    li,
+    ol {
       font-family: "Merriweather Sans", Helvetica, Tahoma, Arial, "PingFang SC",
         "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
       font-weight: 400;
