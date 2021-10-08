@@ -12,7 +12,7 @@
     "@bytemd/plugin-highlight": "^1.10.13",
     "@bytemd/plugin-math": "^1.10.13",
     "@bytemd/vue": "^1.10.13",
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "clipboard": "^2.0.4",
     "cnpm": "^6.1.1",
     "core-js": "^3.6.4",
