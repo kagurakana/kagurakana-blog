@@ -48,8 +48,10 @@
       <Viewer
         :value="this.blog && this.blog.content"
         :plugins="plugins"
+        :sanitize="closeSanitize"
         class="markdown-viewer"
         ref="markdownViewer"
+
       />
       <!-- <article
         class="markdown-viewer"
@@ -93,6 +95,15 @@ export default {
   },
   mounted() {
     this.imgSet = [...document.querySelectorAll(".markdown-viewer img")];
+    [...document.querySelectorAll(".kagura-addon")].forEach((script)=>{
+        console.log("-----",script.src==='');
+        
+      if(script.src!==''){
+        
+      }else{
+         window.eval(script.innerHTML)
+      }
+    })
     // let trs = document.querySelectorAll("tbody tr");
     // trs.forEach((tr) => {
     //   tr.children.forEach((td, indexCl) => {
@@ -142,6 +153,14 @@ export default {
       this.showImgViewer = false;
       document.documentElement.style.overflowY = "auto";
     },
+    closeSanitize(src){
+      src.tagNames?.push("iframe","script","html","!DOCTYPE","DOCTYPE","body","canvas");
+      src.attributes["script"]=["src","onLoad","async","defer"];
+      src.strip=[];
+      src.clobber=[];
+      console.log(src);
+      return src;
+    }
   },
   computed: {
     date() {
