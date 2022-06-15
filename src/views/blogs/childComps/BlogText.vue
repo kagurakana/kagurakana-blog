@@ -154,11 +154,10 @@ export default {
       document.documentElement.style.overflowY = "auto";
     },
     closeSanitize(src){
-      src.tagNames?.push("iframe","script","html","!DOCTYPE","DOCTYPE","body","canvas");
+      src.tagNames?.push("iframe","script","html","!DOCTYPE","DOCTYPE","body","canvas","black");
       src.attributes["script"]=["src","onLoad","async","defer"];
       src.strip=[];
       src.clobber=[];
-      console.log(src);
       return src;
     }
   },
