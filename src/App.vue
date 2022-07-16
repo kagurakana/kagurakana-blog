@@ -51,7 +51,7 @@ export default {
     };
     console.log(
       `%c
- created by                                                                    
+   created by                                                                    
            _                               _                                  
           | |                             | |                                 
           | | ____ _  __ _ _   _ _ __ __ _| | ____ _ _ __   __ _              
