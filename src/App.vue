@@ -39,6 +39,8 @@ export default {
     });
   },
   mounted() {
+    const packgeConfig = require("./package.json");
+    let version = packgeConfig.version;
     // 防抖 缩放重新计算大小
     const commitResize = _.debounce(() => {
       this.$store.commit("resize");
@@ -49,7 +51,7 @@ export default {
     };
     console.log(
       `%c
-created by                                                                    
+v${version} created by                                                                    
            _                               _                                  
           | |                             | |                                 
           | | ____ _  __ _ _   _ _ __ __ _| | ____ _ _ __   __ _              

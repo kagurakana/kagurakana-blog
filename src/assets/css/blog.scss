@@ -206,9 +206,9 @@
   strong {
     background-image: linear-gradient(rgba(#000, 0) 60%, #ffee58 60%);
   }
-  .katex.accent{
-    background-color: none;
-    border: none;
+  .katex .accent{
+    background-color: none!important;
+    border: none!important;
   }
   code {
     display: inline !important;
