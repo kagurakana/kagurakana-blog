@@ -1,6 +1,7 @@
 const PrerenderSPAPlugin = require("prerender-spa-plugin");
 const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
-const CompressionWebpackPlugin = require("compression-webpack-plugin");
+
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require("path");
 const packgeConfig = require("./package.json");
 let version = packgeConfig.version.split('.')
@@ -12,9 +13,11 @@ function resolve(dir) {
 }
 module.exports = {
   configureWebpack: (config) => {
+    
     if (process.env.NODE_ENV === "production") {
       // 预渲染组件，gzip组件
       let plugins = [
+
         // new PrerenderSPAPlugin({
         //   staticDir: path.join(__dirname, "dist"),
         //   routes: ["/", "/friends", "/about"],
@@ -77,6 +80,7 @@ module.exports = {
   chainWebpack: (config) => {
     config.plugin("html").tap((args) => {
       args[0].title = "神楽花菜OFFICIAL";
+      args[0].meta =  {meta:{"version":`v${version}`}}
       return args;
     });
   },

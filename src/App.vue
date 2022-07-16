@@ -15,6 +15,7 @@ import FloatingButton from "components/common/floatingButton/FloatingButton";
 import ScrollListener from "components/common/scrollListenerBar/ScrollListener";
 import { postHello } from "network/access";
 import { getLoginCheck } from "network/user";
+
 import UA from "ua-device";
 export default {
   name: "App",
@@ -39,8 +40,7 @@ export default {
     });
   },
   mounted() {
-    const packgeConfig = require("./package.json");
-    let version = packgeConfig.version;
+   
     // 防抖 缩放重新计算大小
     const commitResize = _.debounce(() => {
       this.$store.commit("resize");
@@ -51,7 +51,7 @@ export default {
     };
     console.log(
       `%c
-v${version} created by                                                                    
+ created by                                                                    
            _                               _                                  
           | |                             | |                                 
           | | ____ _  __ _ _   _ _ __ __ _| | ____ _ _ __   __ _              
