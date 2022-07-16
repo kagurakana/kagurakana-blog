@@ -206,7 +206,10 @@
   strong {
     background-image: linear-gradient(rgba(#000, 0) 60%, #ffee58 60%);
   }
-
+  .katex.accent{
+    background-color: none;
+    border: none;
+  }
   code {
     display: inline !important;
     font-family: "Fira Mono", "Fira Code", "Roboto" !important;
