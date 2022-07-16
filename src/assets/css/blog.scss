@@ -207,7 +207,7 @@
     background-image: linear-gradient(rgba(#000, 0) 60%, #ffee58 60%);
   }
   .katex .accent{
-    background-color: none!important;
+    background-color: unset!important;
     border: none!important;
   }
   code {
@@ -259,7 +259,7 @@
     -o-transition: all 0.3s ease-in-out;
   }
   .math.math-display {
-    overflow-x: scroll;
+    overflow-x: auto;
   }
   @media screen and(max-width: 860px) {
     h1,
