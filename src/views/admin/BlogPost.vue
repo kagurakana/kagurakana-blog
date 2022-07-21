@@ -30,6 +30,7 @@
             <!-- <v-btn color="blue lighten-4" @click="hl">提交</v-btn> -->
             <div class="d-flex align-center justify-space-around">
               <v-btn color="blue lighten-4" @click="post">提交</v-btn>
+              <v-btn color="blue lighten-4" @click="recurvey">还原</v-btn>
             </div>
           </v-col>
         </v-col>
@@ -116,6 +117,10 @@ export default {
   mounted() {
     let waifu = document.querySelector("#waifu");
     waifu && (waifu.style.display = "none");
+    setInterval(() => {
+     this.markdownText.length >10 && localStorage.setItem("blog-text",this.markdownText)
+      console.log("done");
+    }, 1000*30);
   },
   methods: {
     post() {
@@ -147,6 +152,9 @@ export default {
     },
     handleChange(v) {
       this.markdownText = v;
+    },
+    recurvey(){
+      this.markdownText = localStorage.getItem("blog-text")
     },
     /**
      * bytemd build in funciton, upload images
