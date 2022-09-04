@@ -81,7 +81,10 @@
                 </v-tooltip>
               </v-row>
             </v-card-actions>
-            <v-card-text>本站文章全部采用知识共享署名-非商业性使用-相同方式共享4.0许可协议进行许可。</v-card-text>
+            <v-card-text>
+              <li>图片版权说明：本站不会将图片作为任何形式的商业用途,如有侵权请联系我进行删除</li> 
+              <li>本站文章全部采用知识共享署名-非商业性使用-相同方式共享4.0许可协议进行许可。</li>
+            </v-card-text>
           </v-col>
         </v-row>
       </v-card>
@@ -99,7 +102,8 @@
                 <li>css预处理:scss/sass</li>
                 <li>状态管理:vuex</li>
                 <li>路由管理:vue-router</li>
-                <li>live2d:live2d-widget</li>
+                <li><s>live2d:live2d-widget(暂时弃用)</s></li>
+                <li>Sakana! 石蒜模拟器</li>
                 <li>
                   live2d-api:
                   <a href="https://github.com/fghrsh/live2d_api">fghrsh</a>
@@ -133,15 +137,13 @@
                 <li>内存数据库:redis</li>
                 <li>数据库:mysql</li>
                 <li>多进程守护:pm2</li>
-                <li>服务器端渲染:暂无..(不利于SEO)</li>
+                <li>markdown引擎:bytemd</li>
                 <li>
                   <div @click="fold" class="fold-secondary">
                     <v-icon>mdi-chevron-down</v-icon>工具
                   </div>
                   <ul>
                     <li>node-mailer:邮件推送工具</li>
-                    <li>xss:xss过滤</li>
-                    <li>cross-env:环境切换工具</li>
                     <li>gravatar:头像链接生成</li>
                     <li>qiniu:七牛后端鉴权</li>
                   </ul>
@@ -155,10 +157,8 @@
               <ul>
                 <li>域名:阿里云</li>
                 <li>服务器:华为云</li>
-                <li>CDN:百度云加速</li>
+                <li>CDN:阿里云CDN</li>
                 <li>SMTP支持:zoho</li>
-                <li>封面来源:感谢:<a href="https://weibo.com/bangqiaoyan" target="_blank">@邦乔彦</a></li>
-                <li>其他图片来源:pixiv,Twitter.(本站不会将图片作为任何形式的商业用途,如有侵权请联系我进行删除)</li>
               </ul>
             </li>
           </ul>
@@ -208,17 +208,17 @@ export default {
     return {
       dialog: false, //点击查看大图
       imgSrc: "",
-      textEmail: "点击拷贝:1278820830@qq.com",
-      textQq: "点击拷贝:1278820830",
-      textGithub: "点击拷贝:https://github.com/kagurakana",
-      textSteam: "点击拷贝:https://steamcommunity.com/id/kagura_kana/",
-      textBili: "点击拷贝:https://space.bilibili.com/14076737",
+      textEmail: "点击复制",
+      textQq: "点击复制",
+      textGithub: "点击复制",
+      textSteam: "点击复制",
+      textBili: "点击复制",
       showttt: false
     };
   },
   methods: {
     copy(content) {
-      this[content] = "以拷贝到剪贴板";
+      this[content] = "点击复制";
     },
     showBigImg(src) {
       this.imgSrc = src;

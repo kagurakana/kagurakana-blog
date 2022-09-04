@@ -1,6 +1,6 @@
 <template>
   <div>
-    <transition
+    <!-- <transition
       appear
       @before-enter="hideBodyOverflow"
       enter-active-class="bulrInDown"
@@ -18,9 +18,9 @@
         :scrollDis="scrollDis"
         ref="headPic"
       />
-      <!-- :gettedName="loginCheckUsername===''?'「神楽花菜」':`「${checkedUsername}」`" -->
     </transition>
-    <div class="content" v-show="imgLoaded || isMobile">
+    -->
+ <div class="content" >    <!-- v-show="imgLoaded || isMobile" -->
       <v-img
         width="100vw"
         class="background"
@@ -42,7 +42,14 @@
 
       <div
         cols="12"
-        class="beian d-flex flex-column justify-lg-space-around text-center pa-5"
+        class="
+          beian
+          d-flex
+          flex-column
+          justify-lg-space-around
+          text-center
+          pa-5
+        "
       >
         <div class="d-lg-flex justify-center cn-beian">
           <a

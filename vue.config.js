@@ -13,7 +13,7 @@ function resolve(dir) {
 }
 module.exports = {
   configureWebpack: (config) => {
-    
+
     if (process.env.NODE_ENV === "production") {
       // 预渲染组件，gzip组件
       let plugins = [
@@ -75,12 +75,17 @@ module.exports = {
 
     config.externals = {
       moment: "moment",
+      Sakana: "Sakana"
     };
   },
   chainWebpack: (config) => {
     config.plugin("html").tap((args) => {
       args[0].title = "神楽花菜OFFICIAL";
-      args[0].meta =  {meta:{"version":`v${version}`}}
+      args[0].meta = {
+        meta: {
+          "version": `v${version}`
+        }
+      }
       return args;
     });
   },
@@ -95,9 +100,8 @@ module.exports = {
   },
 
   publicPath: process.env.NODE_ENV === "production" ?
-  `https://www.kagurakana.xyz/`:
-  "/",
-    // `https://cdn.jsdelivr.net/gh/kagurakana/kagurakana-blog@${version}/dist/` :
+    `https://www.kagurakana.xyz/` : "/",
+  // `https://cdn.jsdelivr.net/gh/kagurakana/kagurakana-blog@${version}/dist/` :
 
   transpileDependencies: ["vuetify"],
 

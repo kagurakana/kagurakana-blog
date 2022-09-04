@@ -8,11 +8,10 @@
 
 <script>
 export default {
-  name: 'LeftContent'
+  name: "LeftContent",
 
 };
 </script>
 
 <style lang='scss' scoped>
-
 </style>
