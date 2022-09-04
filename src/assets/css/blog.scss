@@ -115,6 +115,22 @@
   img[src*="#200"] {
     height: 200px !important;
   }
+  img[src*="#300"] {
+    height: 300px !important;
+  }
+  img[src*="#400"] {
+    height: 400px !important;
+  }
+  img[src*="#500"] {
+    height: 500px !important;
+  }
+  img[src*="#600"] {
+    height: 600px !important;
+  }
+  img[src*="#center"] {
+     display:block!important;
+     margin:0 auto!important;
+  }
   h1,
   h2,
   h3,
