@@ -98,7 +98,7 @@
         <v-card-text class="text-start pa-3" style="user-select: text">
           <v-card-text class="pa-1">例如:</v-card-text>
           <v-card-text class="pa-1">Name: 神楽花菜</v-card-text>
-          <v-card-text class="pa-1">Bio: 我们一天天度过的所谓的日常，实际上可能是接连不断的奇迹。</v-card-text>
+          <v-card-text class="pa-1">Bio: 我们一天天度过的所谓的日常，实际上可能是接连不断的奇迹。 </v-card-text>
           <v-card-text class="pa-1"
             >URL: https://www.kagurakana.xyz</v-card-text
           >
