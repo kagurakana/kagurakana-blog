@@ -51,7 +51,6 @@
         :sanitize="closeSanitize"
         class="markdown-viewer"
         ref="markdownViewer"
-
       />
       <!-- <article
         class="markdown-viewer"

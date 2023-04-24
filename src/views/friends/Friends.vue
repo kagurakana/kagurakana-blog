@@ -103,7 +103,7 @@
             >URL: https://www.kagurakana.xyz</v-card-text
           >
           <v-card-text class="pa-1"
-            >Avatar: https://cdn.jsdelivr.net/gh/kagurakana/kagurakana-blog/public/avatar/avatar.jpg</v-card-text
+            >Avatar: https://cdn.kagurakana.xyz/blog_avatar.jpg </v-card-text
           >
         </v-card-text>
       </v-card>
