@@ -25,7 +25,7 @@
         width="100vw"
         class="background"
         height="100vh"
-        src="https://cdn.kagurakana.xyz/DpumTcUX4AEvMfp.jpg"
+        src="https://cdn.kagurakana.xyz/DpumTcUX4AEvMfp.jpg@webp"
       ></v-img>
       <HomeNav class="home-nav" ref="nav" />
       <Content id="content">

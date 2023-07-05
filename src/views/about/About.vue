@@ -196,7 +196,7 @@ export default {
     bgcImg() {
       return this.isMobile
         ? "https://cdn.kagurakana.xyz/head_pic_mobile.jpg"
-        : "https://cdn.kagurakana.xyz/about-up.jpg";
+        : "https://cdn.kagurakana.xyz/about-up.jpg@webp";
     }
   },
   mounted() {
